@@ -100,6 +100,25 @@ data: {
 
 2.2.2 当num已经为1的时候，我们将减号按钮设置为disabled样式，一旦大于1，又变回normal状态，加减事件均要如此处理，不然到了临界值1的时候，回不到normal状态
 
+js代码：
+
+```
+bindMinus: function() {
+	var num = this.data.num;
+	// 如果只有1件了，就不允许再减了
+	if (num > 1) {
+		num --;
+	}
+	// 只有大于一件的时候，才能normal状态，否则disable状态
+	var minusStatus = num <= 1 ? 'disabled' : 'normal';
+	// 将数值与状态写回
+	this.setData({
+		num: num,
+		minusStatus: minusStatus
+	});
+},
+```
+
 效果如图，注意减号是灰色的#ccc
 
 ![图2](https://static.oschina.net/uploads/img/201610/10213354_fdYl.png "加入了禁用状态")
