@@ -7,8 +7,8 @@ page {
 .stepper {
 	border: 1px solid #ccc;
 	border-radius: 3px;
-	width: 70px;
-	height: 21px;
+	width: 80px;
+	height: 26px;
 	margin:0 auto;
 }
 
@@ -16,8 +16,7 @@ page {
 /*加号与减号*/
 .stepper text {
 	width: 19px;
-	height: 28px;
-	line-height: 21px;
+	line-height: 26px;
 	text-align: center;
 	float: left;
 }
@@ -27,7 +26,8 @@ page {
 .stepper input {
 	float: left;
 	margin: 0 auto;
-	width: 30px;
+	width: 40px;
+	height: 26px;
 	text-align: center;
 	font-size: 12px;
 	border-left: 1px solid #ccc;
