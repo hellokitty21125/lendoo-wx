@@ -20,6 +20,7 @@ LXStepper组件，用于购物车商品数量的加减。
 
 布局文件代码
 
+```
 <!-- Stepper容器 -->
 <view class="stepper">
 	<!-- 减号 -->
@@ -29,9 +30,11 @@ LXStepper组件，用于购物车商品数量的加减。
 	<!-- 加号 -->
 	<text>+</text>
 </view>
+```
 
 样式表代码
 
+```
 /*stepper容器*/
 .stepper {
 	border: 1px solid #ccc;
@@ -62,10 +65,40 @@ LXStepper组件，用于购物车商品数量的加减。
 	border-left: 1px solid #ccc;
 	border-right: 1px solid #ccc;
 }
-
-
+```
 
 2. 绑定事件
+
+2.1 准备两个按钮样式分别对应普通与禁用状态
+
+```
+/*普通样式*/
+.stepper .normal{
+	color: black;
+}
+
+/*禁用样式*/
+.stepper .disabled{
+	color: gray;
+}
+```
+
+还要准备一个data的值对象，用于监测数值与状态的改变：
+
+```
+data: {
+	num: 1,
+	minusStatus: 'disabled'
+}
+```
+
+2.2 加号与减号事件
+
+2.2.1 绑定text事件bindtap，在取出data中的num值后作自增与自减，对于自减操作要先判断是否大于1才做自减操作，也就是说已经是1的时候，就不要自减了
+
+2.2.2 当num已经为1的时候，我们将减号按钮设置为disabled样式
+
+
 
 源码下载：关注下方的公众号->回复数字1007
 

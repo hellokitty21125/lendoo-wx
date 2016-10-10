@@ -41,5 +41,5 @@ page {
 
 /*禁用样式*/
 .stepper .disabled{
-	color: gray;
+	color: #ccc;
 }

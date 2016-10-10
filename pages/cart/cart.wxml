@@ -1,9 +1,9 @@
 <!-- Stepper容器 -->
 <view class="stepper">
 	<!-- 减号 -->
-	<text>-</text>
+	<text class="{{minusStatus}}" bindtap="bindMinus">-</text>
 	<!-- 数值 -->
 	<input type="number" value="{{num}}" />
 	<!-- 加号 -->
-	<text>+</text>
+	<text class="normal" bindtap="bindPlus">+</text>
 </view>
