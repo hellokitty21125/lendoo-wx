@@ -145,7 +145,7 @@ bindManual: function(e) {
 
 fix iPhone6 height bug
 
-`.stepper input {height: 26px}`
+```.stepper input {height: 26px}```
 
 正文完
 
