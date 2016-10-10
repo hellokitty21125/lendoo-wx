@@ -141,6 +141,12 @@ bindManual: function(e) {
 
 这个步骤看似多余，实则为了num个数同步，以作为提交到网络数据时是真正的data.num，而不是input手工改写的数值
 
+[2016-10-11]
+
+fix iPhone6 height bug
+
+`.stepper input {height: 26px}`
+
 正文完
 
 源码下载：关注下方的公众号->回复数字1007
