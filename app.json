@@ -1,0 +1,25 @@
+{
+    "pages":[
+        "pages/cart/cart",
+        "pages/index/index"
+    ],
+    "window": {
+        "navigationBarBackgroundColor": "#48C23D",
+        "navigationBarTitleText": "灵动商城开源系统",
+        "navigationBarTextStyle":"white"
+    },
+    "tabBar":{
+        "selectedColor": "#3cc51f",
+        "list":[{
+                "pagePath":"pages/index/index",
+                "iconPath":"image/icon_API.png",
+                "selectedIconPath":"image/icon_API_HL.png",
+                "text":"首页"
+            },{
+                "pagePath":"pages/cart/cart",
+                "iconPath":"image/icon_component.png",
+                "selectedIconPath":"image/icon_component_HL.png",
+                "text":"购物车"
+            }]
+    }
+}
