@@ -125,7 +125,7 @@ bindMinus: function() {
 
 2.3 文本框输入事件
 
-2.3.1 在wxml文件中的<input>监听值变更事件bindchange="bindManual"。注：bindchange是失去焦点才会调用一次的，而bininput是每当有值有改变会有调用一次，敲打123，则会产生值1，12，123三次，比较适合于输入验证。
+2.3.1 在wxml文件中的\<input\>监听值变更事件bindchange="bindManual"。注：bindchange是失去焦点才会调用一次的，而bininput是每当有值有改变会有调用一次，敲打123，则会产生值1，12，123三次，比较适合于输入验证。
 
 2.3.2 实现bindManual
 
