@@ -3,7 +3,7 @@
 	<!-- 减号 -->
 	<text class="{{minusStatus}}" bindtap="bindMinus">-</text>
 	<!-- 数值 -->
-	<input type="number" value="{{num}}" />
+	<input type="number" bindchange="bindManual" value="{{num}}" />
 	<!-- 加号 -->
 	<text class="normal" bindtap="bindPlus">+</text>
 </view>

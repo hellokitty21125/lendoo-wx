@@ -28,5 +28,12 @@ Page({
 			num: num,
 			minusStatus: minusStatus
 		});
+	},
+	bindManual: function(e) {
+		var num = e.detail.value;
+		// 将数值与状态写回
+		this.setData({
+			num: num
+		});
 	}
 })

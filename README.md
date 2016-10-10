@@ -79,7 +79,7 @@ LXStepper组件，用于购物车商品数量的加减。
 
 /*禁用样式*/
 .stepper .disabled{
-	color: gray;
+	color: #ccc;
 }
 ```
 
@@ -94,11 +94,31 @@ data: {
 
 2.2 加号与减号事件
 
-2.2.1 绑定text事件bindtap，在取出data中的num值后作自增与自减，对于自减操作要先判断是否大于1才做自减操作，也就是说已经是1的时候，就不要自减了
+2.2.1 绑定text事件bindtap，分别是bindMinus，bindPlus。按如下处理：取出data中的num值后作自增与自减，对于自减操作要先判断是否大于1才做自减操作，也就是说已经是1的时候，就不要自减了
 
-2.2.2 当num已经为1的时候，我们将减号按钮设置为disabled样式
+2.2.2 当num已经为1的时候，我们将减号按钮设置为disabled样式，一旦大于1，又变回normal状态，加减事件均要如此处理，不然到了临界值1的时候，回不到normal状态
 
+效果如图，注意减号是灰色的#ccc
 
+2.3 文本框输入事件
+
+2.3.1 在wxml文件中的<input>监听值变更事件bindchange="bindManual"。注：bindchange是失去焦点才会调用一次的，而bininput是每当有值有改变会有调用一次，敲打123，则会产生值1，12，123三次，比较适合于输入验证。
+
+2.3.2 实现bindManual
+
+```
+bindManual: function(e) {
+	var num = e.detail.value;
+	// 将数值与状态写回
+	this.setData({
+		num: num
+	});
+}
+```
+
+这个步骤看似多余，实则为了num个数同步，以作为提交到网络数据时是真正的data.num，而不是input手工改写的数值
+
+正文完
 
 源码下载：关注下方的公众号->回复数字1007
 
