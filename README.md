@@ -1,8 +1,8 @@
-#lendoo-wx
-
 LXStepper组件，用于购物车商品数量的加减。
 
 翻看了个文档，微信没有提供现成的组件，于是写了这个小widget。
+
+![图0](https://static.oschina.net/uploads/img/201610/10213214_MTmK.gif "效果图")
 
 总体思路：
 
@@ -18,7 +18,7 @@ LXStepper组件，用于购物车商品数量的加减。
 
 1.4 3个组件都是向左浮动，由于我们计算好3个组件的宽度绝对值，于是不必设定加号按钮的浮动float: right
 
-如图：
+![图1](https://static.oschina.net/uploads/img/201610/10213317_FAph.png "初始")
 
 布局文件代码
 
@@ -101,6 +101,8 @@ data: {
 2.2.2 当num已经为1的时候，我们将减号按钮设置为disabled样式，一旦大于1，又变回normal状态，加减事件均要如此处理，不然到了临界值1的时候，回不到normal状态
 
 效果如图，注意减号是灰色的#ccc
+
+![图2](https://static.oschina.net/uploads/img/201610/10213354_fdYl.png "加入了禁用状态")
 
 2.3 文本框输入事件
 
