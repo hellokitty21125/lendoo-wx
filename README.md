@@ -164,9 +164,8 @@ fix iPhone6 height bug
 5.每次点击都会将checkbox的value值存在到valueArray数组中，存在于checkboxGroup的data-valueArray
 
 步骤：
-1. 利用e.currentTarget.dataset.value传checkbox的值
 
-设置布局，使用文字与图标垂直居中，左间距4px，每个独占一行。
+1. 设置布局，使用文字与图标垂直居中，左间距4px，每个独占一行。
 
 布局文件
 ```
@@ -235,6 +234,44 @@ Page({
 ```
 
 如图
+
+2. 响应点击事件
+
+2.1 利用e.currentTarget.dataset.value传checkbox的index值，作点选与非点选操作，并将已选的values值单独存到数组checkedValues中，供返回提交等操作。
+
+```
+	bindCheckbox: function(e) {
+		/*绑定点击事件，将checkbox样式改变为选中与非选中*/
+
+		//拿到下标值，以在items作遍历指示用
+		var index = parseInt(e.currentTarget.dataset.index);
+		//原始的icon状态
+		var type = this.data.items[index].type;
+		var items = this.data.items;
+		if (type == 'circle') {
+			//未选中时
+			items[index].type = 'success_circle';
+		} else {
+			items[index].type = 'circle';
+		}
+
+		// 写回经点击修改后的数组
+		this.setData({
+			items: items
+		});
+		// 遍历拿到已经勾选的值
+		var checkedValues = [];
+		for (var i = 0; i < items.length; i++) {
+			if (items[i].type == 'success_circle') {
+				checkedValues.push(items[i].value);
+			}
+		}
+		// 写回data，供提交到网络
+		this.setData({
+			checkedValues: checkedValues
+		});
+	}
+``` 
 
 正文完
 
