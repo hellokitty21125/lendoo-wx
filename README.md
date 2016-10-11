@@ -149,7 +149,9 @@ fix iPhone6 height bug
 
 ##LXCheckboxGroup复选框
 
->微信小程序官方提供的checkbox有那么点原始，就给写个。
+>微信小程序官方提供的checkbox有点丑，于是就写了这个。
+
+![图2-0](https://static.oschina.net/uploads/img/201610/11160900_Cd0j.gif "复选框效果图")
 
 思路：
 
@@ -161,7 +163,7 @@ fix iPhone6 height bug
 
 4.每个checkbox的view都有一个value属性与text属性，分别对应实现值与字面显示，只转递前者作为数据交互。view设定2个属性，data-value与data-text。
 
-5.每次点击都会将checkbox的value值存在到valueArray数组中，存在于checkboxGroup的data-valueArray
+5.每次点击都会将checkbox的value值存在到checkedValues数组中
 
 步骤：
 
@@ -235,9 +237,11 @@ Page({
 
 如图
 
+![图2-1](https://static.oschina.net/uploads/img/201610/11160611_0TSe.png "布局图")
+
 2. 响应点击事件
 
-2.1 利用e.currentTarget.dataset.value传checkbox的index值，作点选与非点选操作，并将已选的values值单独存到数组checkedValues中，供返回提交等操作。
+2.1 利用e.currentTarget.dataset.index传checkbox的index值，作点选与非点选操作，并将已选的values值单独存到数组checkedValues中，供返回提交等操作。
 
 ```
 	bindCheckbox: function(e) {
@@ -272,6 +276,18 @@ Page({
 		});
 	}
 ``` 
+3. text也需要绑定bindCheckBox事件，产生label for的效果，但还可以更简单的处理，就是把事件绑在容器view上，这样点击更直观。
+
+如下面代码：
+```
+<!-- CheckboxGroup容器 -->
+<view class="lxCheckboxGroup">
+	<view wx:for="{{items}}" data-index="{{index}}" size="20" bindtap="bindCheckbox">
+		<icon type="{{item.type}}" size="20"/>
+		<text>{{item.text}}</text>
+	</view>
+</view>
+```
 
 正文完
 
