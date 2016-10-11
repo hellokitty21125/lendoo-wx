@@ -1,6 +1,6 @@
-LXStepper组件，用于购物车商品数量的加减。
+##LXStepper组件，用于购物车商品数量的加减。
 
-翻看了个文档，微信没有提供现成的组件，于是写了这个小widget。
+>翻看了个文档，微信没有提供现成的组件，于是写了这个小widget。
 
 ![图0](https://static.oschina.net/uploads/img/201610/10213214_MTmK.gif "效果图")
 
@@ -125,7 +125,7 @@ bindMinus: function() {
 
 2.3 文本框输入事件
 
-2.3.1 在wxml文件中的\<input\>监听值变更事件bindchange="bindManual"。注：bindchange是失去焦点才会调用一次的，而bininput是每当有值有改变会有调用一次，敲打123，则会产生值1，12，123三次，比较适合于输入验证。
+2.3.1 在wxml文件中的input输入框监听值变更事件bindchange="bindManual"。注：bindchange是失去焦点才会调用一次的，而bininput是每当有值有改变会有调用一次，敲打123，则会产生值1，12，123三次，比较适合于输入验证。
 
 2.3.2 实现bindManual
 
@@ -146,6 +146,95 @@ bindManual: function(e) {
 fix iPhone6 height bug
 
 ```.stepper input {height: 26px}```
+
+##LXCheckboxGroup复选框
+
+>微信小程序官方提供的checkbox有那么点原始，就给写个。
+
+思路：
+
+1.checkboxGroup里包着一个checkbox view组件
+
+2.每个checkbox里都包含一个icon与text
+
+3.icon与text点击都会选中，类似于label for的用法，icon样式会切换状态。normal与highlight状态，对应的值赋予icon的type属性。
+
+4.每个checkbox的view都有一个value属性与text属性，分别对应实现值与字面显示，只转递前者作为数据交互。view设定2个属性，data-value与data-text。
+
+5.每次点击都会将checkbox的value值存在到valueArray数组中，存在于checkboxGroup的data-valueArray
+
+步骤：
+1. 利用e.currentTarget.dataset.value传checkbox的值
+
+设置布局，使用文字与图标垂直居中，左间距4px，每个独占一行。
+
+布局文件
+```
+<!-- CheckboxGroup容器 -->
+<view class="lxCheckboxGroup">
+	<view wx:for="{{items}}">
+		<icon type="{{item.type}}" data-value="{{item.value}}" size="20" bindtap="bindCheckbox"/>
+		<text>{{item.text}}</text>
+	</view>
+</view>
+```
+
+样式表
+```
+/*整个复选框组容器*/
+.lxCheckboxGroup {
+	width: 80px;
+	height: 26px;
+	margin:20px auto;
+}
+
+/*单个复选框容器*/
+.lxCheckboxGroup view {
+	/*上下间距4px*/
+	margin: 4px auto;
+}
+
+/*复选框图标*/
+.lxCheckboxGroup icon {
+	/*text用block描述，所以要左浮动*/
+	float: left;
+}
+
+/*文字标签样式*/
+.lxCheckboxGroup text{
+	font-size: 14px;
+	/*20px是左按钮的大小，4px是真实的左间距*/
+	margin-left: 24px;
+	/*高亮与icon相等，实现垂直居中*/
+	height: 20px;
+	/*文本垂直居中*/
+	line-height: 20px;
+	/*块布局，否则文本高度无效*/
+	display: block;
+}
+```
+js代码
+
+```
+Page({
+	data: {
+    items: [
+	      {value: 'USA', text: '美国', type: 'circle'},
+	      {value: 'CHN', text: '中国', type: 'success_circle'},
+	      {value: 'BRA', text: '巴西', type: 'circle'},
+	      {value: 'JPN', text: '日本', type: 'circle'},
+	      {value: 'ENG', text: '英国', type: 'circle'},
+	      {value: 'TUR', text: '法国', type: 'circle'},
+	    ]
+  	},
+	bindCheckbox: function(e) {
+		//绑定点击事件，将checkbox样式改变为选中与非选中
+		console.log('s' + e.currentTarget.dataset.value);
+	}
+})
+```
+
+如图
 
 正文完
 

@@ -1,0 +1,7 @@
+<!-- CheckboxGroup容器 -->
+<view class="lxCheckboxGroup">
+	<view wx:for="{{items}}">
+		<icon type="{{item.type}}" data-value="{{item.value}}" size="20" bindtap="bindCheckbox"/>
+		<text>{{item.text}}</text>
+	</view>
+</view>
