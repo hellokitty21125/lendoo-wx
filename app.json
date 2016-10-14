@@ -1,7 +1,9 @@
 {
     "pages":[
+        "pages/cart/cart",
         "pages/index/index",
-        "pages/cart/cart"
+        "pages/demo/stepper/stepper",
+        "pages/demo/checkbox/checkbox"
     ],
     "window": {
         "navigationBarBackgroundColor": "#48C23D",

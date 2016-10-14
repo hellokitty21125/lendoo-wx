@@ -1,0 +1,31 @@
+/*整个复选框组容器*/
+.lxCheckboxGroup {
+	width: 80px;
+	height: 26px;
+	margin:20px auto;
+}
+
+/*单个复选框容器*/
+.lxCheckboxGroup view {
+	/*上下间距4px*/
+	margin: 4px auto;
+}
+
+/*复选框图标*/
+.lxCheckboxGroup icon {
+	/*text用block描述，所以要左浮动*/
+	float: left;
+}
+
+/*文字标签样式*/
+.lxCheckboxGroup text{
+	font-size: 14px;
+	/*20px是左按钮的大小，4px是真实的左间距*/
+	margin-left: 24px;
+	/*高亮与icon相等，实现垂直居中*/
+	height: 20px;
+	/*文本垂直居中*/
+	line-height: 20px;
+	/*块布局，否则文本高度无效*/
+	display: block;
+}
