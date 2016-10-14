@@ -1,0 +1,62 @@
+/*外部容器*/
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	box-sizing: border-box;
+} 
+
+/*整体列表*/
+.carts-list {
+	display: flex;
+	flex-direction: column;
+	padding: 20rpx 40rpx;
+}
+
+/*每行单元格*/
+.carts-item {
+	display: flex;
+	flex-direction: row;
+	height:150rpx;
+	/*width属性解决标题文字太短而缩略图偏移*/
+	width:100%;
+	border-bottom: 1px solid #eee;
+	padding: 30rpx 0;
+}
+
+/*左部图片*/
+.carts-image {
+	width:150rpx;
+	height:150rpx;
+}
+
+
+/*右部描述*/
+.carts-text {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+/*右上部分标题*/
+.carts-title {
+	margin: 10rpx;
+	font-size: 30rpx;
+}
+
+/*右下部分价格与数量*/
+.carts-subtitle {
+	font-size: 25rpx;
+	color:darkgray;
+	padding: 0 20rpx;
+	display: flex;
+	flex-direction: row;
+	justify-content:space-between;
+}
+
+/*价格*/
+.carts-price {
+	color: #f60;
+}

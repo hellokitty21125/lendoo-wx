@@ -289,17 +289,20 @@ Page({
 </view>
 ```
 
-##购物车成品
+##购物车
+
+[2016-10-14]
 
 设计思路：
-购物车组件：
 
 一、从网络上传入以下Json数据格式的数组
 1.购物车id：cid
-2.数量num
-3.标题title
-4.价格price
-5.是否选中selected
+2.标题title
+3.数量num
+4.图片地址
+5.价格price
+6.小计
+7.是否选中selected
 
 二、点击复选框toggle操作
 如已经选中的，经点击变成未选中，反之而反之
@@ -313,6 +316,126 @@ Page({
 五、利用stepper作加减运算，同样依据index作为标识，点完写回num值。
 
 六、布局，全选与结算按钮底部对齐，购物车商城自适应高度，类似于Android的weight。
+
+步骤：
+
+1. 初始数据渲染
+
+1.1 布局与样式表
+
+上方是一个商品列表，下方是一个全选按钮与立即结算按钮
+
+商品列表左部为商品缩略图，右上为商品标题，右下为商品价格与数量，其中商品数量使用WXStepper来实现加减操作
+
+关联阅读：新闻客户端Demo，http://mp.weixin.qq.com/s?__biz=MzI0MjYwMjM2NQ==&mid=2247483657&idx=1&sn=8280c8e08b68ff1b9d109e8e684085a7&chksm=e978991bde0f100de5653b3410646e08e10c6f932005ffac1f8dd4cd5d071bc844601d3ec1a0&mpshare=1&scene=1&srcid=1014dxaF7OosekEduXFJFKDQ#rd
+
+js：初始化一个数据源，这往往是从网络获取的，相关接口可参见：https://mp.weixin.qq.com/debug/wxadoc/dev/api/network-request.html
+
+```
+Page({
+	data:{
+		carts: [
+			{cid:1008,title:'Zippo打火机',image:'https://img12.360buyimg.com/n7/jfs/t2584/348/1423193442/572601/ae464607/573d5eb3N45589898.jpg',num:'1',price:'198.0',sum:'198.0',selected:true},
+			{cid:1012,title:'iPhone7 Plus',image:'https://img13.360buyimg.com/n7/jfs/t3235/100/1618018440/139400/44fd706e/57d11c33N5cd57490.jpg',num:'1',price:'7188.0',sum:'7188.0',selected:true},
+			{cid:1031,title:'得力订书机',image:'https://img10.360buyimg.com/n7/jfs/t2005/172/380624319/93846/b51b5345/5604bc5eN956aa615.jpg',num:'3',price:'15.0',sum:'45.0',selected:false},
+			{cid:1054,title:'康师傅妙芙蛋糕',image:'https://img14.360buyimg.com/n7/jfs/t2614/323/914471624/300618/d60b89b6/572af106Nea021684.jpg',num:'2',price:'15.2',sum:'30.4',selected:false},
+			{cid:1063,title:'英雄钢笔',image:'https://img10.360buyimg.com/n7/jfs/t1636/60/1264801432/53355/bb6a3fd1/55c180ddNbe50ad4a.jpg',num:'1',price:'122.0',sum:'122.0',selected:true},
+		]
+	}
+})
+
+布局文件
+
+```
+<view class="container carts-list">
+    <view wx:for="{{carts}}" class="carts-item" data-title="{{item.title}}" data-url="{{item.url}}" bindtap="bindViewTap">
+		<view>
+		  <image class="carts-image" src="{{item.image}}" mode="aspectFill"/>
+		</view>
+      <view class="carts-text">
+        <text class="carts-title">{{item.title}}</text>
+        <view class="carts-subtitle">
+          <text class="carts-price">{{item.sum}}</text>
+          <text>WXStepper</text>
+        </view>
+      </view>
+    </view>
+</view>
+
+样式表
+
+```
+/*外部容器*/
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	box-sizing: border-box;
+} 
+
+/*整体列表*/
+.carts-list {
+	display: flex;
+	flex-direction: column;
+	padding: 20rpx 40rpx;
+}
+
+/*每行单元格*/
+.carts-item {
+	display: flex;
+	flex-direction: row;
+	height:150rpx;
+	/*width属性解决标题文字太短而缩略图偏移*/
+	width:100%;
+	border-bottom: 1px solid #eee;
+	padding: 30rpx 0;
+}
+
+/*左部图片*/
+.carts-image {
+	width:150rpx;
+	height:150rpx;
+}
+
+
+/*右部描述*/
+.carts-text {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+/*右上部分标题*/
+.carts-title {
+	margin: 10rpx;
+	font-size: 30rpx;
+}
+
+/*右下部分价格与数量*/
+.carts-subtitle {
+	font-size: 25rpx;
+	color:darkgray;
+	padding: 0 20rpx;
+	display: flex;
+	flex-direction: row;
+	justify-content:space-between;
+}
+
+/*价格*/
+.carts-price {
+	color: #f60;
+}
+```
+
+![图3-1](https://static.oschina.net/uploads/img/201610/14153754_gc9Z.png "基本布局")
+
+1.2 集成WXStepper
+
+关联阅读：WXStepper加减按钮，http://mp.weixin.qq.com/s?__biz=MzI0MjYwMjM2NQ==&mid=2247483678&idx=1&sn=68460a24f95379cade212a8facaf888f&chksm=e978990cde0f101aab5d65b327e91068a66b08c342a6bb397e42f207d7dedf5d480d1e39ddcf&mpshare=1&scene=1&srcid=10148lgWXZeLS4QfbDpoSqzd#rd
+
+
 
 正文完
 
