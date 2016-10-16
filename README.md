@@ -327,8 +327,6 @@ Page({
 
 商品列表左部为商品缩略图，右上为商品标题，右下为商品价格与数量，其中商品数量使用WXStepper来实现加减操作
 
-关联阅读：新闻客户端Demo，http://mp.weixin.qq.com/s?__biz=MzI0MjYwMjM2NQ==&mid=2247483657&idx=1&sn=8280c8e08b68ff1b9d109e8e684085a7&chksm=e978991bde0f100de5653b3410646e08e10c6f932005ffac1f8dd4cd5d071bc844601d3ec1a0&mpshare=1&scene=1&srcid=1014dxaF7OosekEduXFJFKDQ#rd
-
 js：初始化一个数据源，这往往是从网络获取的，相关接口可参见：https://mp.weixin.qq.com/debug/wxadoc/dev/api/network-request.html
 
 ```
@@ -433,7 +431,7 @@ Page({
 
 1.2 集成WXStepper
 
-关联阅读：WXStepper加减按钮，http://mp.weixin.qq.com/s?__biz=MzI0MjYwMjM2NQ==&mid=2247483678&idx=1&sn=68460a24f95379cade212a8facaf888f&chksm=e978990cde0f101aab5d65b327e91068a66b08c342a6bb397e42f207d7dedf5d480d1e39ddcf&mpshare=1&scene=1&srcid=10148lgWXZeLS4QfbDpoSqzd#rd
+相关阅读：WXStepper商品数量加减按钮，http://mp.weixin.qq.com/s?__biz=MzI0MjYwMjM2NQ==&mid=2247483678&idx=1&sn=68460a24f95379cade212a8facaf888f&chksm=e978990cde0f101aab5d65b327e91068a66b08c342a6bb397e42f207d7dedf5d480d1e39ddcf&mpshare=1&scene=1&srcid=10148lgWXZeLS4QfbDpoSqzd#rd
 
 
 
