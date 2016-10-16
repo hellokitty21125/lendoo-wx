@@ -1,5 +1,5 @@
 <view class="container carts-list">
-    <view wx:for="{{carts}}" class="carts-item" data-title="{{item.title}}" data-url="{{item.url}}" bindtap="bindViewTap">
+    <view wx:for="{{carts}}" class="carts-item">
 		<view>
 		  <image class="carts-image" src="{{item.image}}" mode="aspectFill"/>
 		</view>
@@ -7,7 +7,16 @@
         <text class="carts-title">{{item.title}}</text>
         <view class="carts-subtitle">
           <text class="carts-price">{{item.sum}}</text>
-          <text>WXStepper</text>
+          <view>
+	          <view class="stepper">
+				<!-- 减号 -->
+				<text class="{{minusStatuses[index]}}" data-index="{{index}}" bindtap="bindMinus">-</text>
+				<!-- 数值 -->
+				<input type="number" bindchange="bindManual" value="{{item.num}}" />
+				<!-- 加号 -->
+				<text class="normal" data-index="{{index}}" bindtap="bindPlus">+</text>
+			  </view>
+		  </view>
         </view>
       </view>
     </view>

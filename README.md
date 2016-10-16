@@ -341,6 +341,7 @@ Page({
 		]
 	}
 })
+```
 
 布局文件
 
@@ -359,6 +360,7 @@ Page({
       </view>
     </view>
 </view>
+```
 
 样式表
 
@@ -431,12 +433,78 @@ Page({
 
 1.2 集成WXStepper
 
-相关阅读：WXStepper商品数量加减按钮，http://mp.weixin.qq.com/s?__biz=MzI0MjYwMjM2NQ==&mid=2247483678&idx=1&sn=68460a24f95379cade212a8facaf888f&chksm=e978990cde0f101aab5d65b327e91068a66b08c342a6bb397e42f207d7dedf5d480d1e39ddcf&mpshare=1&scene=1&srcid=10148lgWXZeLS4QfbDpoSqzd#rd
+1.2.1 复制组件内容
 
+[2016-10-16]
 
+将stepper.wxss的内容复制到cart.wxss中
 
-正文完
+将stepper.wxml的内容复制到cart.wxml中
 
+与之前的单一组件不同的是：这里要定义数组minusStatuses来与每一个加减按钮相应。当然，合并入carts也是没问题的。
+
+```
+		minusStatuses: ['disabled', 'disabled', 'normal', 'normal', 'disabled']
+```
+原来的静态字符WXStepper换成以下的代码
+```
+	          <view class="stepper">
+				<!-- 减号 -->
+				<text class="{{minusStatuses[index]}}" data-index="{{index}}" bindtap="bindMinus">-</text>
+				<!-- 数值 -->
+				<input type="number" bindchange="bindManual" value="{{item.num}}" />
+				<!-- 加号 -->
+				<text class="normal" data-index="{{index}}" bindtap="bindPlus">+</text>
+			  </view>
+```
+
+js代码bindMinus、bindPlus分别改造为如下：
+```
+bindMinus: function(e) {
+		var index = parseInt(e.currentTarget.dataset.index);
+		var num = this.data.carts[index].num;
+		// 如果只有1件了，就不允许再减了
+		if (num > 1) {
+			num --;
+		}
+		// 只有大于一件的时候，才能normal状态，否则disable状态
+		var minusStatus = num <= 1 ? 'disabled' : 'normal';
+		// 购物车数据
+		var carts = this.data.carts;
+		carts[index].num = num;
+		// 按钮可用状态
+		var minusStatuses = this.data.minusStatuses;
+		minusStatuses[index] = minusStatus;
+		// 将数值与状态写回
+		this.setData({
+			carts: carts,
+			minusStatuses: minusStatuses
+		});
+	},
+	bindPlus: function(e) {
+		var index = parseInt(e.currentTarget.dataset.index);
+		var num = this.data.carts[index].num;
+		// 自增
+		num ++;
+		// 只有大于一件的时候，才能normal状态，否则disable状态
+		var minusStatus = num <= 1 ? 'disabled' : 'normal';
+		// 购物车数据
+		var carts = this.data.carts;
+		carts[index].num = num;
+		// 按钮可用状态
+		var minusStatuses = this.data.minusStatuses;
+		minusStatuses[index] = minusStatus;
+		// 将数值与状态写回
+		this.setData({
+			carts: carts,
+			minusStatuses: minusStatuses
+		});
+	},
+```
+
+效果如图：
+
+![图4-1](https://static.oschina.net/uploads/img/201610/16214421_U41q.png "带加减按钮的购物车")
 源码下载：关注下方的公众号->回复数字1007
 
 对小程序开发有趣的朋友关注公众号: huangxiujie85，QQ群: 575136499，微信: small_application，陆续还将推出更多作品。
