@@ -50,10 +50,14 @@ Page({
 		});
 	},
 	bindManual: function(e) {
+		var index = parseInt(e.currentTarget.dataset.index);
+		var carts = this.data.carts;
 		var num = e.detail.value;
+		carts[index].num = num;
 		// 将数值与状态写回
 		this.setData({
-			num: num
+			carts: carts
 		});
+		console.log(this.data.carts);
 	}
 })
