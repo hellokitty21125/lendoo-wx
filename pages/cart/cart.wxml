@@ -1,4 +1,3 @@
-<view class="container">
 	<view class="container carts-list">
 	    <view wx:for="{{carts}}" class="carts-item">
 	    	<!-- 复选框图标 -->
@@ -29,12 +28,11 @@
 	      </view>
 	    </view>
 	</view>
-	<view class="carts-bottom">
+	<view class="carts-footer">
 		<view bindtap="bindSelectAll">
 			<icon wx:if="{{selectedAllStatus}}" type="success_circle" size="20"/>
 			<icon wx:else type="circle" size="20" />
 			<text>全选</text>
 		</view>
-		<button>立即结算</button>
+		<view class="button">立即结算</view>
 	</view>
-<view>

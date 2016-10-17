@@ -559,16 +559,70 @@ index值用于传值js，遍历之用。
 
 1.4 加入全选与立即结算按钮
 
-修改布局文件，实现上述按钮底部对齐，使用flex与固定高度来完成。
+1.4.1 修改布局文件，实现上述按钮底部对齐，使用flex与固定高度来完成。
 
 减少为3行，看是否还在最底；此外，还要保证悬浮在底部，不被列表项的滚动而滚动。
 
 
 ```
+	<view class="carts-footer">
+		<view bindtap="bindSelectAll">
+			<icon wx:if="{{selectedAllStatus}}" type="success_circle" size="20"/>
+			<icon wx:else type="circle" size="20" />
+			<text>全选</text>
+		</view>
+		<view class="button">立即结算</view>
+	</view>
+```
+
+之前用<button>立即结算</button>来实现，发现无论如何都不能实现全选部件与结算按钮分散对齐，不响应如下样式
+
+```
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+```
+
+样式表
 
 ```
 
-全选与全不选事件
+/*底部按钮*/
+.carts-footer {
+	width: 100%;
+	height: 80rpx;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+/*复选框*/
+.carts-footer icon {
+	margin-left: 20rpx;
+}
+
+/*全选字样*/
+.carts-footer text {
+	font-size: 30rpx;
+	margin-left: 8rpx;
+	line-height: 10rpx;
+}
+
+/*立即结算按钮*/
+.carts-footer .button {
+	line-height: 80rpx;
+	text-align: center;
+	width:220rpx;
+	height: 80rpx;
+	background-color: #f60;
+	color: white;
+	font-size: 36rpx;
+	border-radius: 0;
+	border: 0;
+}
+```
+
+1.4.2 全选与全不选事件
 
 实现bindSelectAll事件，改变全选状态
 
