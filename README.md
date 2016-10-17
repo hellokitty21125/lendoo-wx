@@ -738,6 +738,10 @@ total: ''
 
 然后分别在bindMinus bindPlus bindCheckbox bindSelectAll onLoad中调用this.sum()
 
+如图：
+
+![图6-3](https://static.oschina.net/uploads/img/201610/17195800_Xq64.png "价格汇总")
+
 正文完
 
 源码下载：关注下方的公众号->回复数字1007
