@@ -708,6 +708,36 @@ selectedAllStatus: false
 
 ![图6-1](https://static.oschina.net/uploads/img/201610/17163555_PUmd.png "底部悬浮")
 
+1.6 汇总
+
+1.6.1 首先定义一个数据源，并在布局文件中埋坑
+
+total: ''
+
+<text>{{total}}</text>
+
+1.6.2 通用汇总函数
+
+```
+	sum: function() {
+		var carts = this.data.carts;
+		// 计算总金额
+		var total = 0;
+		for (var i = 0; i < carts.length; i++) {
+			if (carts[i].selected) {
+				total += carts[i].num * carts[i].price;
+			}
+		}
+		// 写回经点击修改后的数组
+		this.setData({
+			carts: carts,
+			total: '￥' + total
+		});
+	}
+```
+
+然后分别在bindMinus bindPlus bindCheckbox bindSelectAll onLoad中调用this.sum()
+
 正文完
 
 源码下载：关注下方的公众号->回复数字1007
