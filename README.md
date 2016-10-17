@@ -505,6 +505,11 @@ bindMinus: function(e) {
 效果如图：
 
 ![图4-1](https://static.oschina.net/uploads/img/201610/16214421_U41q.png "带加减按钮的购物车")
+
+[2016-10-17]
+
+修正手工改动数量保存到数组
+
 源码下载：关注下方的公众号->回复数字1007
 
 对小程序开发有趣的朋友关注公众号: huangxiujie85，QQ群: 575136499，微信: small_application，陆续还将推出更多作品。
