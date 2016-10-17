@@ -521,7 +521,6 @@ index值用于传值js，遍历之用。
 		<!-- 复选框图标 -->
 		<icon wx:if="{{item.selected}}" type="success_circle" size="20" bindtap="bindCheckbox" data-index="{{index}}"/>
 		<icon wx:else type="circle" size="20" bindtap="bindCheckbox" data-index="{{index}}"/>
-		<view>
 ```
 
 复选框居中
@@ -693,9 +692,23 @@ selectedAllStatus: false
 	}
 ```
 
-源码下载：关注下方的公众号->回复数字1007
+1.5 底部悬浮固定
+
+1.5.1 商品列表 .carts-list 加入 margin-bottom: 80rpx; 以及修改上边距为零，使得底部部件与分隔不重复出现，padding: 0 40rpx;
+
+1.5.2 底部按钮 .carts-footer 加入 background: white;
+
+1.5.3 .carts-footer 加入
+
+```
+	position: fixed;
+	bottom: 0;
+	border-top: 1px solid #eee;
+```
 
 正文完
+
+源码下载：关注下方的公众号->回复数字1007
 
 对小程序开发有趣的朋友关注公众号: huangxiujie85，QQ群: 575136499，微信: small_application，陆续还将推出更多作品。
 

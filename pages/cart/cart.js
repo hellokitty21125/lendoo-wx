@@ -1,6 +1,7 @@
 Page({
 	data:{
 		carts: [
+			{cid:1008,title:'Zippo打火机',image:'https://img13.360buyimg.com/n7/jfs/t2191/334/2921047884/217714/eb1dd389/571f1329Ne4122e4c.jpg',num:'1',price:'6968.0',sum:'6968.0',selected:true},
 			{cid:1008,title:'Zippo打火机',image:'https://img12.360buyimg.com/n7/jfs/t2584/348/1423193442/572601/ae464607/573d5eb3N45589898.jpg',num:'1',price:'198.0',sum:'198.0',selected:true},
 			{cid:1012,title:'iPhone7 Plus',image:'https://img13.360buyimg.com/n7/jfs/t3235/100/1618018440/139400/44fd706e/57d11c33N5cd57490.jpg',num:'1',price:'7188.0',sum:'7188.0',selected:true},
 			{cid:1031,title:'得力订书机',image:'https://img10.360buyimg.com/n7/jfs/t2005/172/380624319/93846/b51b5345/5604bc5eN956aa615.jpg',num:'3',price:'15.0',sum:'45.0',selected:false},
