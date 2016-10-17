@@ -655,6 +655,8 @@ selectedAllStatus: false
 
 ```
 
+![图6-1](https://static.oschina.net/uploads/img/201610/17154657_V1CQ.png "结算按钮")
+
 1.4.3 立即结算显示目前所选的cid，以供提交到网络，商品数量应该是包括在cid中的，后端设计应该只关注cid与uid
 
 布局文件也埋一下toast，js只要改变toast的显示与否即可。
