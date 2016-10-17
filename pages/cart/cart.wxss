@@ -103,3 +103,9 @@
 .stepper .disabled{
 	color: #ccc;
 }
+
+/*复选框样式*/
+.carts-list icon {
+	margin-top: 60rpx;
+	margin-right: 20rpx;
+}

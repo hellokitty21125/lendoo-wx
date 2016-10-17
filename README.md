@@ -459,6 +459,7 @@ Page({
 ```
 
 js代码bindMinus、bindPlus分别改造为如下：
+
 ```
 bindMinus: function(e) {
 		var index = parseInt(e.currentTarget.dataset.index);
@@ -511,6 +512,50 @@ bindMinus: function(e) {
 修正手工改动数量保存到数组
 
 1.3 集成LXCheckboxGroup
+
+复制布局文件代码到wxml，这里需要判断一下已选状态，一般购物车勾选状态是记录在网络的。
+
+index值用于传值js，遍历之用。
+
+```
+		<!-- 复选框图标 -->
+		<icon wx:if="{{item.selected}}" type="success_circle" size="20" bindtap="bindCheckbox" data-index="{{index}}"/>
+		<icon wx:else type="circle" size="20" bindtap="bindCheckbox" data-index="{{index}}"/>
+		<view>
+```
+
+复选框居中
+
+```
+/*复选框样式*/
+.carts-list icon {
+	margin-top: 60rpx;
+	margin-right: 20rpx;
+}
+```
+
+绑定点击复选框事件，对选择状态做反选操作。
+
+```
+	bindCheckbox: function(e) {
+		/*绑定点击事件，将checkbox样式改变为选中与非选中*/
+		//拿到下标值，以在carts作遍历指示用
+		var index = parseInt(e.currentTarget.dataset.index);
+		//原始的icon状态
+		var selected = this.data.carts[index].selected;
+		var carts = this.data.carts;
+		// 对勾选状态取反
+		carts[index].selected = !selected;
+		// 写回经点击修改后的数组
+		this.setData({
+			carts: carts
+		});
+	}
+```
+
+效果图：
+
+![图5-1](https://static.oschina.net/uploads/img/201610/17102724_I5vQ.png "复选框")
 
 源码下载：关注下方的公众号->回复数字1007
 

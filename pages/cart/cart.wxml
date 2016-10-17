@@ -1,12 +1,19 @@
 <view class="container carts-list">
     <view wx:for="{{carts}}" class="carts-item">
+    	<!-- 复选框图标 -->
+		<icon wx:if="{{item.selected}}" type="success_circle" size="20" bindtap="bindCheckbox" data-index="{{index}}"/>
+		<icon wx:else type="circle" size="20" bindtap="bindCheckbox" data-index="{{index}}"/>
 		<view>
+		<!-- 缩略图 -->
 		  <image class="carts-image" src="{{item.image}}" mode="aspectFill"/>
 		</view>
       <view class="carts-text">
+      	<!-- 商品标题 -->
         <text class="carts-title">{{item.title}}</text>
         <view class="carts-subtitle">
+        <!-- 价格 -->
           <text class="carts-price">{{item.sum}}</text>
+          <!-- 数量加减 -->
           <view>
 	          <view class="stepper">
 				<!-- 减号 -->
