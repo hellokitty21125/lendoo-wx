@@ -706,6 +706,8 @@ selectedAllStatus: false
 	border-top: 1px solid #eee;
 ```
 
+![图6-1](https://static.oschina.net/uploads/img/201610/17163555_PUmd.png "底部悬浮")
+
 正文完
 
 源码下载：关注下方的公众号->回复数字1007
