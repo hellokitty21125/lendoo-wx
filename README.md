@@ -510,6 +510,8 @@ bindMinus: function(e) {
 
 修正手工改动数量保存到数组
 
+1.3 集成LXCheckboxGroup
+
 源码下载：关注下方的公众号->回复数字1007
 
 对小程序开发有趣的朋友关注公众号: huangxiujie85，QQ群: 575136499，微信: small_application，陆续还将推出更多作品。
