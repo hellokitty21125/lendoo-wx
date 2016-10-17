@@ -109,3 +109,36 @@
 	margin-top: 60rpx;
 	margin-right: 20rpx;
 }
+
+/*底部按钮*/
+.carts-bottom {
+	width: 100%;
+	height: 80rpx;
+	display: flex;
+	flex-direction: row;
+	align-items: left;
+	justify-content: flex-end;
+}
+
+/*复选框*/
+.carts-bottom icon {
+	margin-left: 20rpx;
+}
+/*全选字样*/
+.carts-bottom text {
+	font-size: 30rpx;
+	margin-left: 8rpx;
+	line-height: 10rpx;
+}
+
+
+/*立即结算按钮*/
+.carts-bottom button {
+	width:220rpx;
+	height: 80rpx;
+	background-color: #f60;
+	color: white;
+	font-size: 36rpx;
+	border-radius: 0;
+	border: 0;
+}

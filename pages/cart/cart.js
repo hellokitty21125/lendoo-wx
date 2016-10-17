@@ -7,7 +7,8 @@ Page({
 			{cid:1054,title:'康师傅妙芙蛋糕',image:'https://img14.360buyimg.com/n7/jfs/t2614/323/914471624/300618/d60b89b6/572af106Nea021684.jpg',num:'2',price:'15.2',sum:'30.4',selected:false},
 			{cid:1063,title:'英雄钢笔',image:'https://img10.360buyimg.com/n7/jfs/t1636/60/1264801432/53355/bb6a3fd1/55c180ddNbe50ad4a.jpg',num:'1',price:'122.0',sum:'122.0',selected:true},
 		],
-		minusStatuses: ['disabled', 'disabled', 'normal', 'normal', 'disabled']
+		minusStatuses: ['disabled', 'disabled', 'normal', 'normal', 'disabled'],
+		selectedAllStatus: false
 	},
 	bindMinus: function(e) {
 		var index = parseInt(e.currentTarget.dataset.index);
@@ -71,6 +72,22 @@ Page({
 		carts[index].selected = !selected;
 		// 写回经点击修改后的数组
 		this.setData({
+			carts: carts
+		});
+	},
+	bindSelectAll: function() {
+		// 环境中目前已选状态
+		var selectedAllStatus = this.data.selectedAllStatus;
+		// 取反操作
+		selectedAllStatus = !selectedAllStatus;
+		// 购物车数据，关键是处理selected值
+		var carts = this.data.carts;
+		// 遍历
+		for (var i = 0; i < carts.length; i++) {
+			carts[i].selected = selectedAllStatus;
+		}
+		this.setData({
+			selectedAllStatus: selectedAllStatus,
 			carts: carts
 		});
 	}

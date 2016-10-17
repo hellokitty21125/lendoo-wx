@@ -557,6 +557,52 @@ index值用于传值js，遍历之用。
 
 ![图5-1](https://static.oschina.net/uploads/img/201610/17102724_I5vQ.png "复选框")
 
+1.4 加入全选与立即结算按钮
+
+修改布局文件，实现上述按钮底部对齐，使用flex与固定高度来完成。
+
+减少为3行，看是否还在最底；此外，还要保证悬浮在底部，不被列表项的滚动而滚动。
+
+
+```
+
+```
+
+全选与全不选事件
+
+实现bindSelectAll事件，改变全选状态
+
+首先定义一个data值，以记录全选状态
+
+```
+selectedAllStatus: false
+
+```
+
+事件实现：
+
+```
+	bindSelectAll: function() {
+		// 环境中目前已选状态
+		var selectedAllStatus = this.data.selectedAllStatus;
+		// 取反操作
+		selectedAllStatus = !selectedAllStatus;
+		// 购物车数据，关键是处理selected值
+		var carts = this.data.carts;
+		// 遍历
+		for (var i = 0; i < carts.length; i++) {
+			carts[i].selected = selectedAllStatus;
+		}
+		this.setData({
+			selectedAllStatus: selectedAllStatus,
+			carts: carts
+		});
+	}
+
+```
+
+立即结算显示目前所选的cid，以供提交到网络，商品数量应该是包括在cid中的，后端设计应该只关注cid与uid
+
 源码下载：关注下方的公众号->回复数字1007
 
 对小程序开发有趣的朋友关注公众号: huangxiujie85，QQ群: 575136499，微信: small_application，陆续还将推出更多作品。
