@@ -8,7 +8,9 @@ Page({
 			{cid:1063,title:'英雄钢笔',image:'https://img10.360buyimg.com/n7/jfs/t1636/60/1264801432/53355/bb6a3fd1/55c180ddNbe50ad4a.jpg',num:'1',price:'122.0',sum:'122.0',selected:true},
 		],
 		minusStatuses: ['disabled', 'disabled', 'normal', 'normal', 'disabled'],
-		selectedAllStatus: false
+		selectedAllStatus: false,
+		toastHidden: true,
+		toastStr: ''
 	},
 	bindMinus: function(e) {
 		var index = parseInt(e.currentTarget.dataset.index);
@@ -89,6 +91,27 @@ Page({
 		this.setData({
 			selectedAllStatus: selectedAllStatus,
 			carts: carts
+		});
+	},
+	bindCheckout: function() {
+		// 初始化toastStr字符串
+		var toastStr = 'cid:';
+		// 遍历取出已勾选的cid
+		for (var i = 0; i < this.data.carts.length; i++) {
+			if (this.data.carts[i].selected) {
+				toastStr += this.data.carts[i].cid;
+				toastStr += ' ';
+			}
+		}
+		//存回data
+		this.setData({
+			toastHidden: false,
+			toastStr: toastStr
+		});
+	},
+	bindToastChange: function() {
+		this.setData({
+			toastHidden: true
 		});
 	}
 })

@@ -655,9 +655,45 @@ selectedAllStatus: false
 
 ```
 
-立即结算显示目前所选的cid，以供提交到网络，商品数量应该是包括在cid中的，后端设计应该只关注cid与uid
+1.4.3 立即结算显示目前所选的cid，以供提交到网络，商品数量应该是包括在cid中的，后端设计应该只关注cid与uid
+
+布局文件也埋一下toast，js只要改变toast的显示与否即可。
+
+```
+<toast hidden="{{toastHidden}}" bindchange="bindToastChange">
+	{{toastStr}}
+</toast>
+```
+
+为立即结算绑定事件bindCheckout，弹出cid弹窗
+
+```
+	bindCheckout: function() {
+		// 初始化toastStr字符串
+		var toastStr = 'cid:';
+		// 遍历取出已勾选的cid
+		for (var i = 0; i < this.data.carts.length; i++) {
+			if (this.data.carts[i].selected) {
+				toastStr += this.data.carts[i].cid;
+				toastStr += ' ';
+			}
+		}
+		//存回data
+		this.setData({
+			toastHidden: false,
+			toastStr: toastStr
+		});
+	},
+	bindToastChange: function() {
+		this.setData({
+			toastHidden: true
+		});
+	}
+```
 
 源码下载：关注下方的公众号->回复数字1007
+
+正文完
 
 对小程序开发有趣的朋友关注公众号: huangxiujie85，QQ群: 575136499，微信: small_application，陆续还将推出更多作品。
 
