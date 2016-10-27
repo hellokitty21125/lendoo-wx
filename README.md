@@ -2,8 +2,7 @@
 
 >翻看了个文档，微信没有提供现成的组件，于是写了这个小widget。
 
-![图0](https://static.oschina.net/uploads/img/201610/10213214_MTmK.gif "效果图")
-
+![git](https://static.oschina.net/uploads/img/201610/27155649_MeBK.gif "效果展示")
 总体思路：
 
 最左边框，最右边框由最后外层的容器的border-left与border-right设定；中间2段由input来设定；左右按钮不设边框，圆角效果由最外面容器来设定，这样刚好实现了一个耳熟能详的stepper样式。
