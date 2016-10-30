@@ -1,7 +1,8 @@
 {
     "pages":[
-        "pages/cart/cart",
+        "pages/category/category",
         "pages/index/index",
+        "pages/cart/cart",
         "pages/demo/stepper/stepper",
         "pages/demo/checkbox/checkbox"
     ],
@@ -14,6 +15,11 @@
         "selectedColor": "#3cc51f",
         "list":[{
                 "pagePath":"pages/index/index",
+                "iconPath":"image/icon_API.png",
+                "selectedIconPath":"image/icon_API_HL.png",
+                "text":"首页"
+            },{
+                "pagePath":"pages/category/category",
                 "iconPath":"image/icon_API.png",
                 "selectedIconPath":"image/icon_API_HL.png",
                 "text":"首页"

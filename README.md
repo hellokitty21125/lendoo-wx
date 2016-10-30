@@ -741,7 +741,98 @@ total: ''
 
 ![图6-3](https://static.oschina.net/uploads/img/201610/17195800_Xq64.png "价格汇总")
 
-正文完
+[2016-10-30]
+
+#基于LeanCloud实现访问网络与数据存储
+
+##目标
+
+使用LeanCloud JS_SDK读取电商系统的商品分类
+
+##准备
+
+在https://www.leancloud.cn上注册帐号，创建仓库，建Category表，建title字段
+
+##下载JS_SDK
+
+https://unpkg.com/leancloud-storage@2.0.0-beta.2/dist/av-weapp.js
+
+文档出处：https://leancloud.cn/docs/weapp.html
+
+##安装
+
+将上面的js文件保存此util目录
+
+##使用
+
+在category.js中引入
+
+const AV = require('../../utils/av-weapp.js')
+
+连接数据仓库，取查询所有分类
+
+```
+Page({
+    onLoad: function(){
+        AV.init({ 
+        appId: "SgHcsYqoLaFTG0XDMD3Gtm0I-gzGzoHsz", 
+        appKey: "xdv2nwjUK5waNglFoFXkQcxP",
+        });
+        var query = new AV.Query('Category');
+        query.find().then(function (categories) {
+            for (var i = 0; i < categories.length; i++) {
+                var category = categories[i];
+                console.log(category.attributes.title);
+            }
+        }).catch(function(error) {
+            alert(JSON.stringify(error));
+        });
+    }
+})
+
+```
+
+这时控件台可以看到输出category所有分类
+
+潮流女装
+连衣裙
+针织开衫
+羽绒服
+时尚T恤
+家用电器
+电视
+空调
+
+##无限级分类建表结构
+
+建立字段parent，类型为Pointer，指向Category对象
+
+##条件查询获得顶级分类
+
+```
+query.equalTo('parent',null);
+```
+
+这时控件台可以看到输出category顶级分类
+
+潮流女装
+家用电器
+
+##Pointer方式查询二级分类
+
+```
+        // 查询父级分类下的所有子类
+        var parent = AV.Object.createWithoutData('Category', '581415bf2e958a005492150b');
+        query.equalTo('parent',parent);
+```
+这时控件台可以看到输出category潮流女装分类下的所有子类
+
+```
+连衣裙
+针织开衫
+羽绒服
+时尚T恤
+```
 
 源码下载：关注下方的公众号->回复数字1007
 
