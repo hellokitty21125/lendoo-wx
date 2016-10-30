@@ -22,7 +22,7 @@
                 "pagePath":"pages/category/category",
                 "iconPath":"image/icon_API.png",
                 "selectedIconPath":"image/icon_API_HL.png",
-                "text":"首页"
+                "text":"分类"
             },{
                 "pagePath":"pages/cart/cart",
                 "iconPath":"image/icon_component.png",

@@ -835,6 +835,160 @@ query.equalTo('parent',null);
 羽绒服
 时尚T恤
 ```
+##配合布局与js文件，实现分类页面
+
+wxml:
+
+```
+<view class="container">
+	<!-- 侧边栏 -->
+	<view class="sidebar">
+		<text wx:for="{{topCategories}}" wx:key="objectId" bindtap="tapTopCategory" data-object-id="{{item.objectId}}" data-index="{{index}}" class="{{highlight[index]}}">{{item.title}}</text>
+	</view>
+	<!-- GridView -->
+	<view class="gridview">
+		<dl wx:for="{{subCategories}}" wx:key="objectId">
+			<dt>
+				<image src="{{item.avatar.attributes.url}}" mode="scaleToFit" />
+			</dt>
+			<dd>
+				<text>{{item.title}}</text>
+			</dd>
+		</dl>
+	</view>
+</view>
+```
+
+wxss
+
+```
+/*页面背景*/
+page {
+	background-color: #f3f5f7;
+}
+
+/*容器总体布局为左右两列*/
+.container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+/*侧边栏顶级分类给予固定宽度*/
+.sidebar {
+	width: 120px;
+	border-top: 1px solid #e5e5e5;
+	height: 568px;
+}
+
+/*text块状布局独占一行*/
+.sidebar text {
+	display: block;
+	border: 1px solid #e5e5e5;
+	border-top: 0;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	color: #232626;
+	font-size: 14px;
+	background-color: #fff;
+}
+
+/*hight light*/
+.sidebar text.highlight {
+	background-color: #f3f5f7;
+	color: #f23131;
+	border-right: 0;
+}
+
+/*网格布局子类九宫格分布*/
+.gridview {
+	width: 100%;
+	background-color: #fff;
+	margin-left: 5px;
+}
+
+/*向左流动*/
+.gridview dl {
+	float: left;
+	margin: 5px;
+}
+
+/*图片*/
+.gridview dt image {
+	width: 60px;
+	height: 60px;
+}
+
+/*文字*/
+.gridview dd text {
+	color: #6c6c6c;
+	font-size: 12px;
+	text-align: center;
+	display: block;
+	line-height: 20px;
+}
+
+```
+
+js:
+
+```
+const AV = require('../../utils/av-weapp.js')
+
+Page({
+    data: {
+        topCategories: [],
+        subCategories: [],
+        highlight:['highlight','','']
+    },
+    onLoad: function(){
+        this.getCategory(null);
+        // hard code to read default category,maybe this is a recommend category later.
+        this.getCategory(AV.Object.createWithoutData('Category', '581415bf2e958a005492150b'));
+    },
+    tapTopCategory: function(e){
+        // 拿到objectId，作为访问子类的参数
+        var objectId = e.currentTarget.dataset.objectId;
+        // 查询父级分类下的所有子类
+        var parent = AV.Object.createWithoutData('Category', objectId);
+        this.getCategory(parent);
+        // 设定高亮状态
+        var index = parseInt(e.currentTarget.dataset.index);
+        this.setHighlight(index);
+
+    },
+    getCategory: function(parent){
+        var that = this;
+        var query = new AV.Query('Category');
+        // 查询顶级分类，设定查询条件parent为null
+        query.equalTo('parent',parent);
+        query.find().then(function (categories) {
+            if (parent){
+                that.setData({
+                    subCategories: categories
+                });
+            }else{
+                that.setData({
+                    topCategories: categories
+                });
+            }
+        }).catch(function(error) {
+        });
+    },
+    setHighlight: function(index){
+        var highlight = [];
+        for (var i = 0; i < this.data.topCategories; i++) {
+            highlight[i] = '';
+        }
+        console.log(index);
+        highlight[index] = 'highlight';
+        this.setData({
+            highlight: highlight
+        });
+    }
+})
+```
 
 源码下载：关注下方的公众号->回复数字1007
 

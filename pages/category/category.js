@@ -1,25 +1,54 @@
 const AV = require('../../utils/av-weapp.js')
 
 Page({
+    data: {
+        topCategories: [],
+        subCategories: [],
+        highlight:['highlight','','']
+    },
     onLoad: function(){
-        AV.init({ 
-        appId: "SgHcsYqoLaFTG0XDMD3Gtm0I-gzGzoHsz", 
-        appKey: "xdv2nwjUK5waNglFoFXkQcxP",
-        });
-        var query = new AV.Query('Category');
+        this.getCategory(null);
+        // hard code to read default category,maybe this is a recommend category later.
+        this.getCategory(AV.Object.createWithoutData('Category', '581415bf2e958a005492150b'));
+    },
+    tapTopCategory: function(e){
+        // 拿到objectId，作为访问子类的参数
+        var objectId = e.currentTarget.dataset.objectId;
         // 查询父级分类下的所有子类
-        var parent = AV.Object.createWithoutData('Category', '581415bf2e958a005492150b');
-        query.equalTo('parent',parent);
-        
+        var parent = AV.Object.createWithoutData('Category', objectId);
+        this.getCategory(parent);
+        // 设定高亮状态
+        var index = parseInt(e.currentTarget.dataset.index);
+        this.setHighlight(index);
+
+    },
+    getCategory: function(parent){
+        var that = this;
+        var query = new AV.Query('Category');
         // 查询顶级分类，设定查询条件parent为null
-        // query.equalTo('parent',null);
+        query.equalTo('parent',parent);
         query.find().then(function (categories) {
-            for (var i = 0; i < categories.length; i++) {
-                var category = categories[i];
-                console.log(category.attributes.title);
+            if (parent){
+                that.setData({
+                    subCategories: categories
+                });
+            }else{
+                that.setData({
+                    topCategories: categories
+                });
             }
         }).catch(function(error) {
-            alert(JSON.stringify(error));
+        });
+    },
+    setHighlight: function(index){
+        var highlight = [];
+        for (var i = 0; i < this.data.topCategories; i++) {
+            highlight[i] = '';
+        }
+        console.log(index);
+        highlight[index] = 'highlight';
+        this.setData({
+            highlight: highlight
         });
     }
 })
