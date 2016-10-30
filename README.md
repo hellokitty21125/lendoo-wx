@@ -753,6 +753,12 @@ total: ''
 
 在https://www.leancloud.cn上注册帐号，创建仓库，建Category表，建title字段
 
+##无限级分类建表结构
+
+建立字段parent，类型为Pointer，指向Category对象
+
+![](http://ac-sghcsyqo.clouddn.com/1bc613e1708e83647f25.png "数据")
+
 ##下载JS_SDK
 
 https://unpkg.com/leancloud-storage@2.0.0-beta.2/dist/av-weapp.js
@@ -802,10 +808,6 @@ Page({
 家用电器
 电视
 空调
-
-##无限级分类建表结构
-
-建立字段parent，类型为Pointer，指向Category对象
 
 ##条件查询获得顶级分类
 
