@@ -994,6 +994,6 @@ Page({
 
 源码下载：关注下方的公众号->回复数字1007
 
-对小程序开发有趣的朋友关注公众号: huangxiujie85，QQ群: 575136499，微信: small_application，陆续还将推出更多作品。
+对小程序开发有趣的朋友关注公众号: huangxiujie85，QQ群: 581513218，微信: small_application，陆续还将推出更多作品。
 
 ![公众号](https://static.oschina.net/uploads/img/201610/07111145_qD6d.jpg "二维码")
