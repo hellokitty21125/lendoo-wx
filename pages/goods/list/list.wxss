@@ -47,17 +47,6 @@
 	color: #48C23D;
 }
 
-/*商品列表*/
-.goodsList {
-	/*hack*/
-	margin-top:2px;
-	border: 2px dashed red;
-	height: 400px;
-	background-color: orange;
-	opacity: 0.5;
-	z-index:1;
-}
-
 /* 显示与隐藏 */
 .show {
 	display: block;
@@ -67,6 +56,91 @@
 	display: none;
 }
 
+/*商品列表*/
+.goodsList {
+	/*hack*/
+	margin-top:2px;
+/*	border: 2px dashed red;
+	height: 400px;
+	background-color: orange;
+	opacity: 0.5;*/
+	z-index:1;
+}
+
+/*销量与好评*/
+.goods-score {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.goods-score text {
+	display: block;
+	width: 100px;
+	font-size: 12px;
+	color: #999;
+	margin: 8px 4px;
+}
+
+/*整体列表*/
+.carts-list {
+	display: flex;
+	flex-direction: column;
+	padding: 0 40rpx;
+	margin-bottom: 80rpx;
+}
+
+/*每行单元格*/
+.carts-item {
+	display: flex;
+	flex-direction: row;
+	height:150rpx;
+	/*width属性解决标题文字太短而缩略图偏移*/
+	width:100%;
+	border-bottom: 1px solid #eee;
+	padding: 30rpx 0;
+}
+
+/*左部图片*/
+.carts-image {
+	width:150rpx;
+	height:150rpx;
+}
+
+
+/*右部描述*/
+.carts-text {
+	margin-left: 10rpx;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+/*右上部分标题*/
+.carts-title {
+	font-size: 28rpx;
+	color: #444;
+	line-height: 38rpx;
+}
+
+/*右下部分价格与数量*/
+.carts-subtitle {
+	font-size: 25rpx;
+	color:darkgray;
+	padding: 0 20rpx;
+	display: flex;
+	flex-direction: row;
+	justify-content:space-between;
+}
+
+/*价格*/
+.carts-price {
+	color: #f60;
+	font-size:14px;
+	line-height: 22px;
+}
 /*一级菜单高亮的颜色：eeeeee*/
 /*还需要一个三角形，动画旋转，下拉时背景渐渐变暗*/
 /*左边一条灰边，右边还有空缺，是由于33%的缘故*/

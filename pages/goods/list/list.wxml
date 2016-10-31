@@ -26,5 +26,22 @@
 	</dd>
 </dl>
 
-<view class="goodsList">
+<view class="goodsList carts-list">
+	<view wx:for="{{goods}}" class="carts-item">
+		<view>
+		<!-- 缩略图 -->
+		  <image class="carts-image" src="{{item.avatar}}" mode="aspectFill"/>
+		</view>
+      <view class="carts-text">
+      	<!-- 商品标题 -->
+        <text class="carts-title">{{item.title}}</text>
+        <!-- 价格 -->
+          <text class="carts-price">￥{{item.price}}元</text>
+		<!-- 销量与评价 -->
+		<view class="goods-score">
+			<text>已售N件</text>
+			<text>好评率 99%</text>
+		</view>
+      </view>
+    </view>
 </view>
