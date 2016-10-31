@@ -38,6 +38,12 @@ Page({
         }).catch(function(error) {
         });
 	},
+	tapGoods: function(e) {
+		var objectId = e.currentTarget.dataset.objectId;
+		wx.navigateTo({
+			url:"../../../../../detail/detail?objectId="+objectId
+		});
+	},
 	tapMainMenu: function(e) {
 //		获取当前显示的一级菜单标识
 		var index = parseInt(e.currentTarget.dataset.index);

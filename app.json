@@ -4,6 +4,7 @@
         "pages/index/index",
         "pages/cart/cart",
         "pages/goods/list/list",
+        "pages/goods/detail/detail",
         "pages/demo/stepper/stepper",
         "pages/demo/checkbox/checkbox"
     ],
