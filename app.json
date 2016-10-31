@@ -3,6 +3,7 @@
         "pages/category/category",
         "pages/index/index",
         "pages/cart/cart",
+        "pages/goods/list/list",
         "pages/demo/stepper/stepper",
         "pages/demo/checkbox/checkbox"
     ],

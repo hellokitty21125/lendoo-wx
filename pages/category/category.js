@@ -50,5 +50,12 @@ Page({
         this.setData({
             highlight: highlight
         });
+    },
+    avatarTap: function(e){
+        // 拿到objectId，作为访问子类的参数
+        var objectId = e.currentTarget.dataset.objectId;
+        wx.navigateTo({
+            url: "../../../../goods/list/list?categoryId="+objectId
+        });
     }
 })
