@@ -745,6 +745,8 @@ total: ''
 
 #基于LeanCloud实现访问网络与数据存储
 
+![](https://static.oschina.net/uploads/img/201610/30171911_bYLF.gif "效果图")
+
 ##目标
 
 使用LeanCloud JS_SDK读取电商系统的商品分类
@@ -757,7 +759,7 @@ total: ''
 
 建立字段parent，类型为Pointer，指向Category对象
 
-![](http://ac-sghcsyqo.clouddn.com/1bc613e1708e83647f25.png "数据")
+![输入图片说明](https://static.oschina.net/uploads/img/201610/30171856_qPiR.png "数据")
 
 ##下载JS_SDK
 
