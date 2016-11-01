@@ -1,5 +1,5 @@
 <view class="container carts-list">
-    <view wx:for="{{carts}}" class="carts-item">
+    <view wx:for="{{carts}}" wx:key="index" class="carts-item">
     	<!-- 复选框图标 -->
 		<icon wx:if="{{item.selected}}" type="success_circle" size="20" bindtap="bindCheckbox" data-index="{{index}}"/>
 		<icon wx:else type="circle" size="20" bindtap="bindCheckbox" data-index="{{index}}"/>

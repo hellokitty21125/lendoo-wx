@@ -45,7 +45,6 @@ Page({
         for (var i = 0; i < this.data.topCategories; i++) {
             highlight[i] = '';
         }
-        console.log(index);
         highlight[index] = 'highlight';
         this.setData({
             highlight: highlight

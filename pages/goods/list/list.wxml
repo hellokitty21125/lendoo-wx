@@ -27,7 +27,7 @@
 </dl>
 
 <view class="goodsList carts-list">
-	<view wx:for="{{goods}}" class="carts-item" data-object-id="{{item.objectId}}" bindtap="tapGoods">
+	<view wx:for="{{goods}}" wx:key="objectId" class="carts-item" data-object-id="{{item.objectId}}" bindtap="tapGoods">
 		<view>
 		<!-- 缩略图 -->
 		  <image class="carts-image" src="{{item.avatar}}" mode="aspectFill"/>

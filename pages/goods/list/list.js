@@ -22,7 +22,6 @@ Page({
 		var categoryId = options.categoryId;
 		// 生成Category对象
         var category = AV.Object.createWithoutData('Category', categoryId);
-        console.log(category);
         this.getGoods(category);
 	},
 	getGoods: function(category){
@@ -31,7 +30,6 @@ Page({
         // 查询顶级分类，设定查询条件parent为null
         query.equalTo('category',category);
         query.find().then(function (goods) {
-        	console.log(goods);
             that.setData({
                 goods: goods
             });
