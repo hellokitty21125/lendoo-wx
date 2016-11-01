@@ -9,7 +9,7 @@ Page({
     onLoad: function(){
         this.getCategory(null);
         // hard code to read default category,maybe this is a recommend category later.
-        this.getCategory(AV.Object.createWithoutData('Category', '581415bf2e958a005492150b'));
+        this.getCategory(AV.Object.createWithoutData('Category', '5815b0d5d203090055c24a19'));
     },
     tapTopCategory: function(e){
         // 拿到objectId，作为访问子类的参数
@@ -27,6 +27,7 @@ Page({
         var query = new AV.Query('Category');
         // 查询顶级分类，设定查询条件parent为null
         query.equalTo('parent',parent);
+        query.ascending('index');
         query.find().then(function (categories) {
             if (parent){
                 that.setData({
