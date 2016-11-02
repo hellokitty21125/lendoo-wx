@@ -9,7 +9,7 @@
 		</view>
       <view class="carts-text">
       	<!-- 商品标题 -->
-        <text class="carts-title">{{item.title}}</text>
+        <text class="carts-title">{{goodsList[index].title}}</text>
         <view class="carts-subtitle">
         <!-- 价格 -->
           <text class="carts-price">{{item.sum}}</text>
@@ -19,7 +19,7 @@
 				<!-- 减号 -->
 				<text class="{{minusStatuses[index]}}" data-index="{{index}}" bindtap="bindMinus">-</text>
 				<!-- 数值 -->
-				<input type="number" data-index="{{index}}" bindchange="bindManual" value="{{item.num}}" />
+				<input type="number" data-index="{{index}}" bindchange="bindManual" value="{{item.quantity}}" />
 				<!-- 加号 -->
 				<text class="normal" data-index="{{index}}" bindtap="bindPlus">+</text>
 			  </view>
@@ -37,6 +37,3 @@
 	</view>
 	<view class="button" bindtap="bindCheckout">立即结算</view>
 </view>
-<toast hidden="{{toastHidden}}" bindchange="bindToastChange">
-	{{toastStr}}
-</toast>

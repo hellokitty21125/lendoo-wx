@@ -26,15 +26,14 @@ Page({
 		this.verifyLogin(function(){
 			// buy now
 			var user = AV.User.current();
-			var Buy = AV.Object.extend('Buy');
-			var buy = new Buy();
+			var buy = new AV.Object('Buy');
+			// var buy = new Buy();
 			buy.set('goods', that.data.goods);
 			buy.set('user', user);
 			buy.set('quantity', 1);
 			// init order and save
-			var Order = AV.Object.extend('Order');
-			var order = new Order();
-			order.set('cart', [buy]);
+			var order = new AV.Object('Order');
+			order.set('buys', [buy]);
 			order.set('user', user);
 			order.set('status', 0);
 			order.save().then(function (order) {
@@ -63,8 +62,7 @@ Page({
 			query.count().then(function (count) {
 				if (count <= 0) {
 					// if didn't exsit, then create new one
-					var Cart = AV.Object.extend('Cart');
-					var cart = new Cart();
+					var cart = AV.Object('Cart');
 					cart.set('user', user);
 					cart.set('quantity', 1);
 					cart.set('goods', that.data.goods);
@@ -135,6 +133,10 @@ Page({
 			title: '已加入购物车',
 			icon: 'success',
 			duration: 1000
-		})
+		});
+		wx.navigateTo({
+			url: '../../../../../../cart/cart'
+		});
+
 	}
 });
