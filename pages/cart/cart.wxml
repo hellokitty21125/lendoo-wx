@@ -5,7 +5,7 @@
 		<icon wx:else type="circle" size="20" bindtap="bindCheckbox" data-index="{{index}}"/>
 		<view>
 		<!-- 缩略图 -->
-		  <image class="carts-image" src="{{item.image}}" mode="aspectFill"/>
+		  <image class="carts-image" src="{{goodsList[index].avatar}}" mode="aspectFill"/>
 		</view>
       <view class="carts-text">
       	<!-- 商品标题 -->
