@@ -1,0 +1,3 @@
+<view wx:for="{{address}}" wx:key="">
+	{{item}}
+</view>

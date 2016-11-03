@@ -55,11 +55,11 @@ Page({
 		order.set('buys', buys);
 		order.set('status', 0);
 		order.set('amount', this.data.amount);
-		order.save().then(function () {
+		order.save().then(function (order) {
 			console.log('pay me from carts...');
-			// wx.navigateTo({
-			// 	url: 'checkout/checkout'
-			// });
+			wx.navigateTo({
+				url: '/pages/order/payment/payment?orderId=' + order.get('objectId')
+			});
 		}, function () {
 		});
 
