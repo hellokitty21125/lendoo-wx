@@ -25,26 +25,29 @@ Page({
 		var that = this;
 		this.verifyLogin(function(){
 			// buy now
-			var user = AV.User.current();
-			var buy = new AV.Object('Buy');
-			// var buy = new Buy();
-			buy.set('goods', that.data.goods);
-			buy.set('user', user);
-			buy.set('quantity', 1);
-			// init order and save
-			var order = new AV.Object('Order');
-			order.set('buys', [buy]);
-			order.set('user', user);
-			order.set('status', 0);
-			order.save().then(function (order) {
-				wx.showToast({
-					title: 'order created!',
-					icon: 'success',
-					duration: 1000
-				})
-			}, function (error) {
-				console.log(error);
+			// var user = AV.User.current();
+			// var buy = new AV.Object('Buy');
+			// // var buy = new Buy();
+			// buy.set('goods', that.data.goods);
+			// buy.set('user', user);
+			// buy.set('quantity', 1);
+			wx.navigateTo({
+				url: '../../../../../../order/checkout/checkout?goodsId=' + that.data.goods.get('objectId')
 			});
+			// init order and save
+			// var order = new AV.Object('Order');
+			// order.set('buys', [buy]);
+			// order.set('user', user);
+			// order.set('status', 0);
+			// order.save().then(function (order) {
+			// 	wx.showToast({
+			// 		title: 'order created!',
+			// 		icon: 'success',
+			// 		duration: 1000
+			// 	})
+			// }, function (error) {
+			// 	console.log(error);
+			// });
 		});
 	},
 	addCart: function() {

@@ -1,0 +1,2 @@
+<view>实付款: {{amount}}</view>
+<button bindtap="confirmOrder">提交订单</button>

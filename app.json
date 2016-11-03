@@ -5,6 +5,7 @@
         "pages/index/index",
         "pages/goods/list/list",
         "pages/goods/detail/detail",
+        "pages/order/checkout/checkout",
         "pages/demo/stepper/stepper",
         "pages/demo/checkbox/checkbox"
     ],

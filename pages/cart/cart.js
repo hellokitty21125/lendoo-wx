@@ -104,33 +104,40 @@ Page({
 	},
 	bindCheckout: function() {
 		// 遍历取出已勾选的cid
-		var buys = [];
+		// var buys = [];
+		var cartIds = '';
 		for (var i = 0; i < this.data.carts.length; i++) {
 			if (this.data.carts[i].get('selected')) {
 				// 移动到Buy对象里去
-				var buy = new AV.Object('Buy');
-				var cart = this.data.carts[i];
-				buy.set('goods', cart.get('goods'));
-				buy.set('quantity', cart.get('quantity'));
-				buy.set('user', cart.get('user'));
-				buys[i] = buy;
+				cartIds += ',';
+				cartIds += this.data.carts[i].get('objectId');
+				// var buy = new AV.Object('Buy');
+				// var cart = this.data.carts[i];
+				// buy.set('goods', cart.get('goods'));
+				// buy.set('quantity', cart.get('quantity'));
+				// buy.set('user', cart.get('user'));
+				// buys[i] = buy;
 				// delete carts from carts list
-				cart.destroy();
+				// cart.destroy();
 			}
 		}
-		var that = this;
-		// create order
-		var user = AV.User.current();
-		var order = new AV.Object('Order');
-		order.set('user', user);
-		order.set('buys', buys);
-		order.set('status', 0);
-		order.save().then(function () {
-			wx.navigateTo({
-				url: '../../../../../../checkout/checkout'
-			});
-		}, function () {
+		cartIds = cartIds.substring(1);
+		wx.navigateTo({
+			url: '../../../../order/checkout/checkout?cartIds=' + cartIds + '&amount=' + this.data.total
 		});
+		// create order
+		// var that = this;
+		// var user = AV.User.current();
+		// var order = new AV.Object('Order');
+		// order.set('user', user);
+		// order.set('buys', buys);
+		// order.set('status', 0);
+		// order.save().then(function () {
+		// 	wx.navigateTo({
+		// 		url: '../../../../../../checkout/checkout'
+		// 	});
+		// }, function () {
+		// });
 	},
 	onLoad: function() {
 		var that = this;
@@ -169,7 +176,7 @@ Page({
 		// 写回经点击修改后的数组
 		this.setData({
 			carts: carts,
-			total: '￥' + total
+			total: total
 		});
 	}
 })
