@@ -1,0 +1,4 @@
+<view wx:for="{{address}}" wx:key="">
+	{{item}}
+</view>
+<button bindtap="add" type="primary">add</button>

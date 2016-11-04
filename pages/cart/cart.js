@@ -105,39 +105,26 @@ Page({
 	bindCheckout: function() {
 		// 遍历取出已勾选的cid
 		// var buys = [];
-		var cartIds = '';
+		var cartIds = [];
 		for (var i = 0; i < this.data.carts.length; i++) {
 			if (this.data.carts[i].get('selected')) {
 				// 移动到Buy对象里去
-				cartIds += ',';
-				cartIds += this.data.carts[i].get('objectId');
-				// var buy = new AV.Object('Buy');
-				// var cart = this.data.carts[i];
-				// buy.set('goods', cart.get('goods'));
-				// buy.set('quantity', cart.get('quantity'));
-				// buy.set('user', cart.get('user'));
-				// buys[i] = buy;
-				// delete carts from carts list
-				// cart.destroy();
+				// cartIds += ',';
+				cartIds.push(this.data.carts[i].get('objectId'));
 			}
 		}
-		cartIds = cartIds.substring(1);
+		if (cartIds.length <= 0) {
+			wx.showToast({
+				title: '请勾选商品',
+				icon: 'success',
+				duration: 1000
+			})
+			return;
+		}
+		cartIds = cartIds.join(',');
 		wx.navigateTo({
 			url: '../../../../order/checkout/checkout?cartIds=' + cartIds + '&amount=' + this.data.total
 		});
-		// create order
-		// var that = this;
-		// var user = AV.User.current();
-		// var order = new AV.Object('Order');
-		// order.set('user', user);
-		// order.set('buys', buys);
-		// order.set('status', 0);
-		// order.save().then(function () {
-		// 	wx.navigateTo({
-		// 		url: '../../../../../../checkout/checkout'
-		// 	});
-		// }, function () {
-		// });
 	},
 	onLoad: function() {
 		var that = this;

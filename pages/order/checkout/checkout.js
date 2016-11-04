@@ -58,7 +58,7 @@ Page({
 		order.save().then(function (order) {
 			console.log('pay me from carts...');
 			wx.navigateTo({
-				url: '/pages/order/payment/payment?orderId=' + order.get('objectId')
+				url: '../../../../../payment/payment?orderId=' + order.get('objectId')
 			});
 		}, function () {
 		});

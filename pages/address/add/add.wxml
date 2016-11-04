@@ -1,0 +1,19 @@
+<form bindsubmit="formSubmit">
+	<picker bindchange="bindPickerChange" value="{{index}}" range="{{province}}">
+		<view class="picker">
+			省：{{province[index]}}
+		</view>
+	</picker>
+	<picker bindchange="bindPickerChange" value="{{index}}" range="{{province}}">
+		<view class="picker">
+			市：{{city[index]}}
+		</view>
+	</picker>
+	<picker bindchange="bindPickerChange" value="{{index}}" range="{{province}}">
+		<view class="picker">
+			区/县：{{region[index]}}
+		</view>
+	</picker>
+	<input name="detail" placeholder="详情地址" />
+	<button formType="submit" type="primary">Submit</button>
+</form>
