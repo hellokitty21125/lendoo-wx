@@ -4,12 +4,14 @@ Page({
 		var detail = e.detail.value.detail;
 		// save address to leanCloud
 		var address = new AV.Object('Address');
-		address.set('detail', this.data.detail);
+		address.set('detail', detail);
 		// set province city region
 		address.set('province', this.data.province[this.data.provinceIndex]);
 		address.set('city', this.data.city[this.data.cityIndex]);
 		address.set('region', this.data.region[this.data.regionIndex]);
+		address.set('user', AV.User.current());
 		address.save().then(function (address) {
+			console.log(address);
 			wx.showToast({
 				title: 'Add Success'
 			});
@@ -91,5 +93,6 @@ Page({
 				provinceObjects: area
 			});
 		});
+		// TODO:load default city...
 	}
 })

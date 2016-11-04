@@ -1,1 +1,2 @@
 <view bindtap="navigateToAddress">收货地址</view>
+<button bindtap="logout" type="warn">退出</button>

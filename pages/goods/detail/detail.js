@@ -21,35 +21,6 @@ Page({
 		// 异常处理
 		});
 	},
-	buyNow: function() {
-		var that = this;
-		this.verifyLogin(function(){
-			// buy now
-			// var user = AV.User.current();
-			// var buy = new AV.Object('Buy');
-			// // var buy = new Buy();
-			// buy.set('goods', that.data.goods);
-			// buy.set('user', user);
-			// buy.set('quantity', 1);
-			wx.navigateTo({
-				url: '../../../../../../order/checkout/checkout?goodsId=' + that.data.goods.get('objectId')
-			});
-			// init order and save
-			// var order = new AV.Object('Order');
-			// order.set('buys', [buy]);
-			// order.set('user', user);
-			// order.set('status', 0);
-			// order.save().then(function (order) {
-			// 	wx.showToast({
-			// 		title: 'order created!',
-			// 		icon: 'success',
-			// 		duration: 1000
-			// 	})
-			// }, function (error) {
-			// 	console.log(error);
-			// });
-		});
-	},
 	addCart: function() {
 		var that = this;
 		this.verifyLogin(function(){
@@ -113,19 +84,27 @@ Page({
 				// }, function (e) {
 
 				// });
-				  // 新建 AVUser 对象实例
-				var user = new AV.User();
-				// 设置用户名
-				user.setUsername(userInfo.nickName);
-				// 设置密码
-				user.setPassword('123456');
-				// 应该还要设置过期时间，从console.log中反应出默认是一天
-				user.signUp().then(function (loginedUser) {
-				  console.log(loginedUser);
-				  cb();
-				}, function (error) {
-					console.log(error);
-				});
+				// 先判断用户是否已经存在
+				 AV.User.logIn(userInfo.nickName, '123456').then(function (loginedUser) {
+				 	console.log(loginedUser);
+				 	cb();
+				 }, function (error) {
+				 	// new user
+				 	// 新建 AVUser 对象实例
+					var user = new AV.User();
+					// 设置用户名
+					user.setUsername(userInfo.nickName);
+					// 设置密码
+					user.setPassword('123456');
+					// 应该还要设置过期时间，从console.log中反应出默认是一天
+					user.signUp().then(function (loginedUser) {
+					  console.log(loginedUser);
+					  cb();
+					}, function (error) {
+						console.log(error);
+					});
+				 });
+
 			});
 		} else {
 			cb();
