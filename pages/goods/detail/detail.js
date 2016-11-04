@@ -70,7 +70,7 @@ Page({
 		if (!currentUser) {
 			// login via wechat
 			var app = getApp();
-			app.getUserInfo(function(userInfo) {
+			app.getUserInfo(function(openid) {
 				// console.log(userInfo);
 				// login AV——接口非signUpOrlogInWithAuthData，新接口还有待提供
 				// no appid, hard coding instead
@@ -85,25 +85,37 @@ Page({
 
 				// });
 				// 先判断用户是否已经存在
-				 AV.User.logIn(userInfo.nickName, '123456').then(function (loginedUser) {
-				 	console.log(loginedUser);
-				 	cb();
-				 }, function (error) {
-				 	// new user
-				 	// 新建 AVUser 对象实例
-					var user = new AV.User();
-					// 设置用户名
-					user.setUsername(userInfo.nickName);
-					// 设置密码
-					user.setPassword('123456');
-					// 应该还要设置过期时间，从console.log中反应出默认是一天
-					user.signUp().then(function (loginedUser) {
-					  console.log(loginedUser);
-					  cb();
-					}, function (error) {
-						console.log(error);
-					});
-				 });
+				var query = new AV.Query('_User');
+				query.equalTo('username', openid);
+				query.count().then(function (count) {
+					if (count > 0) {
+						// login
+						AV.User.logIn(openid, '123456').then(function (loginedUser) {
+						 	// console.log(loginedUser);
+						 	cb();
+						}, function (error) {
+						 	
+						});
+						// console.log('user exsit');
+					} else {
+						// regist
+						// 新建 AVUser 对象实例
+						var user = new AV.User();
+						// 设置用户名
+						user.setUsername(openid);
+						// 设置密码
+						user.setPassword('123456');
+						// 应该还要设置过期时间，从console.log中反应出默认是一天
+						user.signUp().then(function (loginedUser) {
+						  console.log(loginedUser);
+						  cb();
+						}, function (error) {
+							console.log(error);
+						});
+					}
+				});
+				// return;
+
 
 			});
 		} else {
