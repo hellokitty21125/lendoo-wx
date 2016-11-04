@@ -5,6 +5,10 @@ Page({
 		// save address to leanCloud
 		var address = new AV.Object('Address');
 		address.set('detail', this.data.detail);
+		// set province city region
+		address.set('province', this.data.province[this.data.provinceIndex]);
+		address.set('city', this.data.city[this.data.cityIndex]);
+		address.set('region', this.data.region[this.data.regionIndex]);
 		address.save().then(function (address) {
 			wx.showToast({
 				title: 'Add Success'
@@ -16,7 +20,10 @@ Page({
 	data: {
 		province: [],
 		city: [],
-		region: []
+		region: [],
+		provinceObjects: [],
+		cityObjects: [],
+		regionObjects: []
 	},
 	getArea: function (pid, cb) {
 		var that = this;
@@ -32,22 +39,56 @@ Page({
 			
 		});
 	},
-	bindPickerChange: function(e) {
-	    console.log('picker发送选择改变，携带值为', e.detail.value)
+	bindProvincePickerChange: function(e) {
+		var that = this;
+		// load city
 	    this.setData({
-	    	index: e.detail.value
+	    	provinceIndex: e.detail.value
+	    })
+	    this.getArea(this.data.provinceObjects[e.detail.value].get('aid'), function (area) {
+	    	var array = [];
+			for (var i = 0; i < area.length; i++) {
+				array[i] = area[i].get('name');
+			}
+			that.setData({
+				city: array,
+				cityObjects: area
+			});
+	    });
+	},
+	bindCityPickerChange: function(e) {
+		var that = this;
+		// load city
+	    this.setData({
+	    	cityIndex: e.detail.value
+	    })
+	    this.getArea(this.data.cityObjects[e.detail.value].get('aid'), function (area) {
+	    	var array = [];
+			for (var i = 0; i < area.length; i++) {
+				array[i] = area[i].get('name');
+			}
+			that.setData({
+				region: array,
+				regionObjects: area
+			});
+	    });
+	},
+	bindRegionPickerChange: function(e) {
+	    this.setData({
+	    	regionIndex: e.detail.value
 	    })
 	},
 	onLoad: function () {
 		var that = this;
 		// load province
 		this.getArea(0, function (area) {
-			var province = [];
+			var array = [];
 			for (var i = 0; i < area.length; i++) {
-				province[i] = area[i].get('name');
+				array[i] = area[i].get('name');
 			}
 			that.setData({
-				province: province
+				province: array,
+				provinceObjects: area
 			});
 		});
 	}
