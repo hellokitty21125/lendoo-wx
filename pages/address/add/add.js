@@ -1,7 +1,14 @@
 const AV = require('../../../utils/av-weapp.js')
 Page({
 	formSubmit: function(e) {
+		// user 
+		var user = AV.User.current();
+		// detail
 		var detail = e.detail.value.detail;
+		// realname
+		var realname = e.detail.value.realname;
+		// mobile
+		var mobile = e.detail.value.mobile;
 		// save address to leanCloud
 		var address = new AV.Object('Address');
 		address.set('detail', detail);
@@ -9,7 +16,9 @@ Page({
 		address.set('province', this.data.province[this.data.provinceIndex]);
 		address.set('city', this.data.city[this.data.cityIndex]);
 		address.set('region', this.data.region[this.data.regionIndex]);
-		address.set('user', AV.User.current());
+		address.set('user', user);
+		address.set('realname', realname);
+		address.set('mobile', mobile);
 		address.save().then(function (address) {
 			console.log(address);
 			wx.showToast({
@@ -17,6 +26,8 @@ Page({
 			});
 			// navi back
 			wx.navigateBack();
+		}, function (error) {
+			console.log(error);
 		});
 	},
 	data: {
@@ -34,9 +45,6 @@ Page({
 		query.equalTo('pid', pid);
 		query.find().then(function (area) {
 			cb(area);
-			// that.setData({
-			// 	area: area
-			// });
 		}, function (err) {
 			
 		});
