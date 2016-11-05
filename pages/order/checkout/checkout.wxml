@@ -1,2 +1,7 @@
+<picker bindchange="bindPickerChange" value="{{index}}" range="{{addressList}}">
+	<view class="picker">
+		地址：{{province[provinceIndex]}}
+	</view>
+</picker>
 <view>实付款: {{amount}}</view>
 <button bindtap="confirmOrder">提交订单</button>

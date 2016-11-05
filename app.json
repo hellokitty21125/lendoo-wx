@@ -1,9 +1,9 @@
 {
     "pages":[
-        "pages/member/index/index",
-        "pages/category/category",
-        "pages/address/add/add",
         "pages/cart/cart",
+        "pages/category/category",
+        "pages/member/index/index",
+        "pages/address/add/add",
         "pages/index/index",
         "pages/goods/list/list",
         "pages/goods/detail/detail",

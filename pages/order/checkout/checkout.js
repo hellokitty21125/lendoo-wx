@@ -2,10 +2,12 @@ const AV = require('../../../utils/av-weapp.js')
 Page({
 	data: {
 		amount : 0,
-		carts: []
+		carts: [],
+		addressList: []
 	},
 	onLoad: function (options) {
 		this.readCarts(options);
+		this.loadAddress();
 	},
 	readCarts: function (options) {
 		// from carts
@@ -62,6 +64,20 @@ Page({
 			});
 		}, function () {
 		});
-
+	},
+	loadAddress: function () {
+		var that = this;
+		var user = AV.User.current();
+		var query = new AV.Query('Address');
+		query.equalTo('user', user);
+		query.find().then(function (address) {
+			var addressList = [];
+			for (var i = 0; i < address.length; i ++) {
+				addressList.push(address[i].get('detail'));
+			}
+			that.setData({
+				addressList: addressList
+			});
+		});
 	}
 })
