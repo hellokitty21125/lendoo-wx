@@ -1,5 +1,6 @@
 const AV = require('../../../utils/av-weapp.js')
 Page({
+	isDefault: false,
 	formSubmit: function(e) {
 		// user 
 		var user = AV.User.current();
@@ -11,6 +12,8 @@ Page({
 		var mobile = e.detail.value.mobile;
 		// save address to leanCloud
 		var address = new AV.Object('Address');
+		// if isDefault address
+		address.set('isDefault', this.isDefault);
 		address.set('detail', detail);
 		// set province city region
 		address.set('province', this.data.province[this.data.provinceIndex]);
@@ -101,6 +104,20 @@ Page({
 				provinceObjects: area
 			});
 		});
+		// if isDefault, address is empty
+		this.setDefault();
 		// TODO:load default city...
+	},
+	setDefault: function () {
+		var that = this;
+		var user = AV.User.current();
+		// if user has no address, set the address for default
+		var query = new AV.Query('Address');
+		query.equalTo('user', user);
+		query.count().then(function (count) {
+			if (count <= 0) {
+				that.isDefault = true;
+			}
+		});
 	}
 })
