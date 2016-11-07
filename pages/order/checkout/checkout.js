@@ -60,7 +60,7 @@ Page({
 		order.set('buys', buys);
 		order.set('status', 0);
 		order.set('amount', this.data.amount);
-		// get address
+		// set address
 		var address = this.addressObjects[this.data.addressIndex];
 		order.set('address', address);
 		order.save().then(function (order) {
@@ -80,6 +80,12 @@ Page({
 			var addressList = [];
 			var addressObjects = [];
 			for (var i = 0; i < address.length; i ++) {
+				// find the default address
+				if (address[i].get('isDefault') == true) {
+					that.setData({
+						addressIndex : i
+					});
+				}
 				addressList.push(address[i].get('detail'));
 			}
 			that.setData({
