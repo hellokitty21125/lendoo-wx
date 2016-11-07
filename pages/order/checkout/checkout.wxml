@@ -1,6 +1,6 @@
 <picker bindchange="bindPickerChange" value="{{index}}" range="{{addressList}}">
 	<view class="picker">
-		地址：{{province[provinceIndex]}}
+		地址：{{addressList[addressIndex]}}
 	</view>
 </picker>
 <view>实付款: {{amount}}</view>

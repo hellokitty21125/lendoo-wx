@@ -3,8 +3,10 @@ Page({
 	data: {
 		amount : 0,
 		carts: [],
-		addressList: []
+		addressList: [],
+		addressIndex: 0
 	},
+	addressObjects: [],
 	onLoad: function (options) {
 		this.readCarts(options);
 		this.loadAddress();
@@ -36,6 +38,7 @@ Page({
 		});
 	},
 	confirmOrder: function () {
+		// submit order
 		var carts = this.data.carts;
 		var buys = [];
 		for (var i = 0; i < carts.length; i++) {
@@ -57,6 +60,9 @@ Page({
 		order.set('buys', buys);
 		order.set('status', 0);
 		order.set('amount', this.data.amount);
+		// get address
+		var address = this.addressObjects[this.data.addressIndex];
+		order.set('address', address);
 		order.save().then(function (order) {
 			console.log('pay me from carts...');
 			wx.navigateTo({
@@ -72,12 +78,19 @@ Page({
 		query.equalTo('user', user);
 		query.find().then(function (address) {
 			var addressList = [];
+			var addressObjects = [];
 			for (var i = 0; i < address.length; i ++) {
 				addressList.push(address[i].get('detail'));
 			}
 			that.setData({
 				addressList: addressList
 			});
+			that.addressObjects = address;
 		});
+	},
+	bindPickerChange: function (e) {
+		this.setData({
+	    	addressIndex: e.detail.value
+	    })
 	}
 })
