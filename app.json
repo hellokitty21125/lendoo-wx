@@ -22,23 +22,23 @@
         "selectedColor": "#3cc51f",
         "list":[{
                 "pagePath":"pages/index/index",
-                "iconPath":"image/icon_API.png",
-                "selectedIconPath":"image/icon_API_HL.png",
+                "iconPath":"images/icon_home.png",
+                "selectedIconPath":"images/icon_home_selected.png",
                 "text":"首页"
             },{
                 "pagePath":"pages/category/category",
-                "iconPath":"image/icon_API.png",
-                "selectedIconPath":"image/icon_API_HL.png",
+                "iconPath":"images/icon_cate.png",
+                "selectedIconPath":"images/icon_cate_selected.png",
                 "text":"分类"
             },{
                 "pagePath":"pages/cart/cart",
-                "iconPath":"image/icon_component.png",
-                "selectedIconPath":"image/icon_component_HL.png",
+                "iconPath":"images/icon_cart.png",
+                "selectedIconPath":"images/icon_cart_selected.png",
                 "text":"购物车"
             },{
                 "pagePath":"pages/member/index/index",
-                "iconPath":"image/icon_component.png",
-                "selectedIconPath":"image/icon_component_HL.png",
+                "iconPath":"images/icon_member.png",
+                "selectedIconPath":"images/icon_member_selected.png",
                 "text":"我"
             }]
     }
