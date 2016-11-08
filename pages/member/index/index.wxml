@@ -2,5 +2,22 @@
 	<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
 	<text class="userinfo-nickname">{{userInfo.nickName}}</text>
 </view>
-<view bindtap="navigateToAddress" class="tableviewcell">收货地址</view>
+<view class="order-area">
+	<view bindtap="navigateToAddress" class="order">
+		<image src="../../../images/icon_order.png" />
+		<text>待付款</text>
+	</view>
+	<view bindtap="navigateToAddress" class="order">
+		<image src="../../../images/icon_order.png" />
+		<text>待发货</text>
+	</view>
+	<view bindtap="navigateToAddress" class="order">
+		<image src="../../../images/icon_order.png" />
+		<text>已完成</text>
+	</view>
+</view>
+<view bindtap="navigateToAddress" class="tableviewcell">
+	<image src="../../../images/icon_address.png" />
+	<text>收货地址</text>
+</view>
 <button bindtap="logout" type="warn" class="logout">退出</button>

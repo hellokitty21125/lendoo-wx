@@ -19,13 +19,48 @@
 
 /*menu list*/
 .tableviewcell {
-	padding: 20rpx;
+	padding: 20rpx 40rpx;
 	margin: 10rpx;
 	border-bottom: 1rpx solid #ddd;
 	color: #666;
 }
 
+/*icon*/
+.tableviewcell image {
+	width: 60rpx;
+	height: 60rpx;
+}
+
+/*text*/
+.tableviewcell text {
+	line-height:40rpx;
+}
+
 /*button*/
 .logout {
 	margin: 30rpx;
+}
+
+/*order*/
+.order-area {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.order {
+	width: 33.3%;
+	text-align: center;
+}
+
+.order image {
+	width: 90rpx;
+	height: 90rpx;
+}
+
+.order text{
+	display: block;
+	font-size: 30rpx;
+	color: #333;
 }
