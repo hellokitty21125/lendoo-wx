@@ -1,2 +1,6 @@
-<view bindtap="navigateToAddress" style="padding: 30rpx;">收货地址</view>
-<button bindtap="logout" type="warn">退出</button>
+<view class="userinfo">
+	<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+	<text class="userinfo-nickname">{{userInfo.nickName}}</text>
+</view>
+<view bindtap="navigateToAddress" class="tableviewcell">收货地址</view>
+<button bindtap="logout" type="warn" class="logout">退出</button>

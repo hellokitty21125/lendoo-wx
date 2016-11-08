@@ -1,4 +1,5 @@
 const AV = require('../../../utils/av-weapp.js')
+var app = getApp()
 Page({
 	navigateToAddress: function () {
 		wx.navigateTo({
@@ -16,5 +17,13 @@ Page({
 				'title': '请先登录'
 			});
 		}
+	},
+	onShow: function () {
+		var that = this;
+		app.getUserInfo(function (openid) {
+			that.setData({
+				userInfo: app.globalData.userInfo
+			});
+		});
 	}
 })

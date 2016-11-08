@@ -22,18 +22,20 @@ App({
                 		      'Content-Type': 'application/json'
                 		 },
                 		success: function (res) {
-                            typeof cb == "function" && cb(res.data.openid)
-                		}
-                	});
-                    // wx.getUserInfo({
-                    //     success: function (res) {
-                    //       that.globalData.userInfo = res.userInfo;
-                    //       typeof cb == "function" && cb(that.globalData.userInfo)
-                    //     }
-                    // })
+                            wx.getUserInfo({
+                                success: function (r) {
+                                    that.globalData.userInfo = r.userInfo;
+                                    typeof cb == "function" && cb(res.data.openid)
+                                }
+                            })
+                        }
+                    });
                 }
             });
         }
     },
-    openid: ''
+    openid: '',
+    globalData:{
+        userInfo:null
+    }
 })
