@@ -1,10 +1,14 @@
 const AV = require('../../utils/av-weapp.js')
 Page({
 	data: {
-		banner: []
-
+		banner: [],
+		goods: []
 	},
 	onLoad: function () {
+		this.loadBanner();
+		this.loadMainGoods();
+	},
+	loadBanner: function () {
 		var that = this;
 		var query = new AV.Query('Banner');
 		// query.include('image');
@@ -15,6 +19,16 @@ Page({
 			}
 			that.setData({
 				banner: banner
+			});
+		});
+	},
+	loadMainGoods: function () {
+		var that = this;
+		var query = new AV.Query('Goods');
+		query.equalTo('isHot', true);
+		query.find().then(function (goodsObjects) {
+			that.setData({
+				goods: goodsObjects
 			});
 		});
 	}
