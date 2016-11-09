@@ -1,3 +1,35 @@
 button {
 	margin: 20rpx;
 }
+
+/*功能区*/
+.func-area {
+	display: flex;
+	flex-direction: row;
+	margin: 30rpx 0;
+}
+
+.func-area view {
+	width: 50%;
+	text-align: center;
+}
+
+.func-area text{
+	display: block;
+	color: #333;
+	font-size: 36rpx;
+	line-height: 90rpx;
+}
+
+.func-area image {
+	width: 100rpx;
+	height: 100rpx;
+}
+
+.orange {
+	background: #f60;
+}
+
+.blue {
+	background: #09f;
+}

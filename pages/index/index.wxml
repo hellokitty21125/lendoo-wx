@@ -6,3 +6,13 @@
     </swiper-item>
   </block>
 </swiper>
+<view class="func-area">
+	<view>
+		<image src="../../images/icon_all.png" mode="aspectFill" class="orange" />
+		<text>全部分类</text>
+	</view>
+	<view>
+		<image src="../../images/icon_shopping.png" mode="aspectFill" class="blue" />
+		<text>我的订单</text>
+	</view>
+</view>
