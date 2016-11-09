@@ -33,3 +33,48 @@ button {
 .blue {
 	background: #09f;
 }
+
+/*主商品区*/
+.main-goods {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.main-goods .single-goods {
+	width: 50%;
+}
+
+.main-goods image {
+	width: 220rpx;
+	height: 220rpx;
+	display: block;
+	margin: 20rpx auto;
+}
+
+.main-goods .title {
+	display: block;
+	color: #999;
+	font-size: 28rpx;
+	margin: 10rpx 6rpx;
+}
+
+.main-goods .summary {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.main-goods .summary text {
+	font-size: 28rpx;
+	margin: 10rpx 20rpx;
+}
+
+.main-goods .summary .price {
+	color: red;
+}
+
+.main-goods .summary .sale {
+	color: gray;
+}
+

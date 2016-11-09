@@ -16,3 +16,22 @@
 		<text>我的订单</text>
 	</view>
 </view>
+<!-- hot goods -->
+<view class="main-goods">
+	<view class="single-goods">
+		<image class="avatar" src="http://img11.360buyimg.com/n7/jfs/t1900/343/2546249675/321998/2e04d46e/56e220cdN3720417f.jpg" mode="aspectFill" />
+		<text class="title">荣耀 畅玩5X 落日金 移动联通4G手机 双卡双待</text>
+		<view class="summary">
+			<text class="price">￥1099</text>
+			<text class="sale">已售99件</text>
+		</view>
+	</view>
+	<view class="single-goods">
+		<image class="avatar" src="http://img11.360buyimg.com/n7/jfs/t1900/343/2546249675/321998/2e04d46e/56e220cdN3720417f.jpg" mode="aspectFill" />
+		<text class="title">荣耀 畅玩5X 落日金 移动联通4G手机 双卡双待</text>
+		<view class="summary">
+			<text class="price">￥1099</text>
+			<text class="sale">已售99件</text>
+		</view>
+	</view>
+</view>
