@@ -1,16 +1,14 @@
 {
     "pages":[
+        "pages/index/index",
         "pages/member/index/index",
         "pages/cart/cart",
         "pages/category/category",
         "pages/address/add/add",
-        "pages/index/index",
         "pages/goods/list/list",
         "pages/goods/detail/detail",
         "pages/order/checkout/checkout",
         "pages/order/payment/payment",
-        "pages/demo/stepper/stepper",
-        "pages/demo/checkbox/checkbox",
         "pages/address/list/list"
     ],
     "window": {

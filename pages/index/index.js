@@ -1,12 +1,21 @@
+const AV = require('../../utils/av-weapp.js')
 Page({
-	 naviToStepper: function(){
-	      wx.navigateTo({
-	          url: '../demo/stepper/stepper'
-	        })
-	 },
-	naviToCheckbox: function(){
-		wx.navigateTo({
-			url: '../demo/checkbox/checkbox'
-		})
+	data: {
+		banner: []
+
+	},
+	onLoad: function () {
+		var that = this;
+		var query = new AV.Query('Banner');
+		// query.include('image');
+		query.find().then(function (bannerObjects) {
+			var banner = [];
+			for (var i = 0; i < bannerObjects.length; i++) {
+				banner.push(bannerObjects[i].get('image').get('url'));
+			}
+			that.setData({
+				banner: banner
+			});
+		});
 	}
 })

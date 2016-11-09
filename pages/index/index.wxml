@@ -1,2 +1,8 @@
-<button bindtap="naviToStepper">WXStepper 实例</button>
-<button bindtap="naviToCheckbox">LXCheckboxGroup 实例</button>
+<swiper indicator-dots="true"
+  autoplay="true" interval="5000" duration="1000" style="height:120px;">
+  <block wx:for="{{banner}}" wx:key="">
+    <swiper-item>
+      <image src="{{item}}" mode="aspectFill" class="swiper-image"/>
+    </swiper-item>
+  </block>
+</swiper>
