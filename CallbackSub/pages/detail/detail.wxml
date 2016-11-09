@@ -1,0 +1,2 @@
+<input placeholder="输入一些值" auto-focus bindchange="bindchange" />
+<button type="primary">Submit</button>

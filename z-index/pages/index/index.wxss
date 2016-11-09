@@ -1,0 +1,47 @@
+/**index.wxss**/
+/*position*/
+/*.parent {
+  border : 1px solid red;
+  width: 100px;
+  height:100px;
+}
+
+.child {
+  position: absolute;
+  top:30px;
+  left:20px;
+  border : 1px solid green;
+  width: 100px;
+  height:100px;
+}*/
+
+/*z-index*/
+.sub1 {
+  width: 100px;
+  height:100px;
+  background: red;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.sub2 {
+  position: relative;
+  top:30px;
+  left:30px;
+  width: 100px;
+  height:100px;
+  background: green;
+  opacity: 0.5;
+  z-index: 99;
+}
+
+.sub3 {
+  position: absolute;
+  top:30px;
+  left:30px;
+  width: 100px;
+  height:100px;
+  background: orange;
+  opacity: 0.5;
+  z-index: 99;
+}

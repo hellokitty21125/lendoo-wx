@@ -1,0 +1,14 @@
+{
+  "pages":[
+    "pages/index/index"
+    ,
+    "pages/item/item"
+    
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#2297f1",
+    "navigationBarTitleText": "灵犀账本",
+    "navigationBarTextStyle":"white"
+  }
+}

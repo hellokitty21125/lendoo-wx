@@ -1,0 +1,10 @@
+<view class="container">
+   <block wx:for="{{result}}">
+       <view>{{item.cityname}}</view>
+      
+        <block wx:for="{{item.campusList}}">
+           <view>{{item.campusName}}</view> 
+       </block>  
+   </block>
+
+</view>
