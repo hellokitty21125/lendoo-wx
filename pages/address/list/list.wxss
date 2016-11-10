@@ -1,0 +1,46 @@
+/*page background*/
+page {
+	background: #eee;
+}
+
+/*that means a record*/
+.item {
+	margin-bottom: 20rpx;
+	background: #fff;
+	padding: 20rpx;
+}
+
+.item .header {
+	font-size: 42rpx;
+	color: #333;
+	line-height: 86rpx;
+}
+
+.item .header text {
+	margin-right: 40rpx;
+}
+
+.item .summary {
+	color: #999;
+	font-size: 38rpx;
+	line-height: 70rpx;
+}
+
+.item .footer {
+	border-top: 1px solid #ccc;
+	font-size: 30rpx;
+	color: #999;
+	padding-left: 10rpx;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.item .footer .operation {
+	width: 250rpx;
+}
+
+.item .footer .operation image {
+	width: 60rpx;
+	height: 60rpx;
+}

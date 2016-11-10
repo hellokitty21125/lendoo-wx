@@ -1,4 +1,24 @@
-<view wx:for="{{address}}" wx:key="">
-	{{item}}
+<view class="item" wx:for="{{address}}" wx:key="">
+	<!-- first row -->
+	<view class="header">
+		<text class="realname">{{item.realname}}</text>
+		<text class="mobile">{{item.mobile}}</text>
+	</view>
+	<!-- second row -->
+	<view class="summary">{{item.detail}}</view>
+	<!-- third row -->
+	<view class="footer">
+		<!-- is default switch -->
+		<view>
+			<!-- circle or success type -->
+			<icon type="circle"/>
+			<text>默认地址</text>
+		</view>
+		<!-- edit and delete button -->
+		<view class="operation">
+			<image src="../../../images/icon_edit.png" /><text>编辑</text>
+			<image src="../../../images/icon_delete.png" /><text>删除</text>
+		</view>
+	</view>
 </view>
-<button bindtap="add" type="primary">add</button>
+<button bindtap="add" type="primary">添加</button>
