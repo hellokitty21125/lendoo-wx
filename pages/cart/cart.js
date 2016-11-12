@@ -127,32 +127,30 @@ Page({
 			url: '../../../../order/checkout/checkout?cartIds=' + cartIds + '&amount=' + this.data.total
 		});
 	},
-	onLoad: function() {
+	onShow: function() {
 		// auto login
-		app.getUserInfo(function () {
-			var that = this;
-			var user = AV.User.current();
-			var query = new AV.Query('Cart');
-			var minusStatuses = [];
-			query.equalTo('user',user);
-			query.include('goods');
-			query.find().then(function (carts) {
-				// set goods data
-				var goodsList = [];
-				for(var i = 0; i < carts.length; i++){
-					var goods = carts[i].get('goods');
-					goodsList[i] = goods;
-					minusStatuses[i] = carts[i].get('quantity') <= 1 ? 'disabled' : 'normal';
-				}
-				// console.log(carts);
-				that.setData({
-					carts: carts,
-					goodsList: goodsList,
-					minusStatuses: minusStatuses
-				});
-				// sum
-				that.sum();
+		var that = this;
+		var user = AV.User.current();
+		var query = new AV.Query('Cart');
+		var minusStatuses = [];
+		query.equalTo('user',user);
+		query.include('goods');
+		query.find().then(function (carts) {
+			// set goods data
+			var goodsList = [];
+			for(var i = 0; i < carts.length; i++){
+				var goods = carts[i].get('goods');
+				goodsList[i] = goods;
+				minusStatuses[i] = carts[i].get('quantity') <= 1 ? 'disabled' : 'normal';
+			}
+			// console.log(carts);
+			that.setData({
+				carts: carts,
+				goodsList: goodsList,
+				minusStatuses: minusStatuses
 			});
+			// sum
+			that.sum();
 		});
 
 	},

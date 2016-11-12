@@ -325,158 +325,166 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         module.exports = crypt;
       })();
     }, {}], 5: [function (require, module, exports) {
+      (function (process) {
 
-      /**
-       * This is the web browser implementation of `debug()`.
-       *
-       * Expose `debug()` as the module.
-       */
+        /**
+         * This is the web browser implementation of `debug()`.
+         *
+         * Expose `debug()` as the module.
+         */
 
-      exports = module.exports = require('./debug');
-      exports.log = log;
-      exports.formatArgs = formatArgs;
-      exports.save = save;
-      exports.load = load;
-      exports.useColors = useColors;
-      exports.storage = 'undefined' != typeof chrome && 'undefined' != typeof chrome.storage ? chrome.storage.local : localstorage();
+        exports = module.exports = require('./debug');
+        exports.log = log;
+        exports.formatArgs = formatArgs;
+        exports.save = save;
+        exports.load = load;
+        exports.useColors = useColors;
+        exports.storage = 'undefined' != typeof chrome && 'undefined' != typeof chrome.storage ? chrome.storage.local : localstorage();
 
-      /**
-       * Colors.
-       */
+        /**
+         * Colors.
+         */
 
-      exports.colors = ['lightseagreen', 'forestgreen', 'goldenrod', 'dodgerblue', 'darkorchid', 'crimson'];
+        exports.colors = ['lightseagreen', 'forestgreen', 'goldenrod', 'dodgerblue', 'darkorchid', 'crimson'];
 
-      /**
-       * Currently only WebKit-based Web Inspectors, Firefox >= v31,
-       * and the Firebug extension (any Firefox version) are known
-       * to support "%c" CSS customizations.
-       *
-       * TODO: add a `localStorage` variable to explicitly enable/disable colors
-       */
+        /**
+         * Currently only WebKit-based Web Inspectors, Firefox >= v31,
+         * and the Firebug extension (any Firefox version) are known
+         * to support "%c" CSS customizations.
+         *
+         * TODO: add a `localStorage` variable to explicitly enable/disable colors
+         */
 
-      function useColors() {
-        // is webkit? http://stackoverflow.com/a/16459606/376773
-        // document is undefined in react-native: https://github.com/facebook/react-native/pull/1632
-        return typeof document !== 'undefined' && 'WebkitAppearance' in document.documentElement.style ||
-        // is firebug? http://stackoverflow.com/a/398120/376773
-        window.console && (console.firebug || console.exception && console.table) ||
-        // is firefox >= v31?
-        // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
-        navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31;
-      }
+        function useColors() {
+          // is webkit? http://stackoverflow.com/a/16459606/376773
+          // document is undefined in react-native: https://github.com/facebook/react-native/pull/1632
+          return typeof document !== 'undefined' && 'WebkitAppearance' in document.documentElement.style ||
+          // is firebug? http://stackoverflow.com/a/398120/376773
+          window.console && (console.firebug || console.exception && console.table) ||
+          // is firefox >= v31?
+          // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
+          navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31;
+        }
 
-      /**
-       * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
-       */
+        /**
+         * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
+         */
 
-      exports.formatters.j = function (v) {
-        return JSON.stringify(v);
-      };
+        exports.formatters.j = function (v) {
+          return JSON.stringify(v);
+        };
 
-      /**
-       * Colorize log arguments if enabled.
-       *
-       * @api public
-       */
+        /**
+         * Colorize log arguments if enabled.
+         *
+         * @api public
+         */
 
-      function formatArgs() {
-        var args = arguments;
-        var useColors = this.useColors;
+        function formatArgs() {
+          var args = arguments;
+          var useColors = this.useColors;
 
-        args[0] = (useColors ? '%c' : '') + this.namespace + (useColors ? ' %c' : ' ') + args[0] + (useColors ? '%c ' : ' ') + '+' + exports.humanize(this.diff);
+          args[0] = (useColors ? '%c' : '') + this.namespace + (useColors ? ' %c' : ' ') + args[0] + (useColors ? '%c ' : ' ') + '+' + exports.humanize(this.diff);
 
-        if (!useColors) return args;
+          if (!useColors) return args;
 
-        var c = 'color: ' + this.color;
-        args = [args[0], c, 'color: inherit'].concat(Array.prototype.slice.call(args, 1));
+          var c = 'color: ' + this.color;
+          args = [args[0], c, 'color: inherit'].concat(Array.prototype.slice.call(args, 1));
 
-        // the final "%c" is somewhat tricky, because there could be other
-        // arguments passed either before or after the %c, so we need to
-        // figure out the correct index to insert the CSS into
-        var index = 0;
-        var lastC = 0;
-        args[0].replace(/%[a-z%]/g, function (match) {
-          if ('%%' === match) return;
-          index++;
-          if ('%c' === match) {
-            // we only are interested in the *last* %c
-            // (the user may have provided their own)
-            lastC = index;
+          // the final "%c" is somewhat tricky, because there could be other
+          // arguments passed either before or after the %c, so we need to
+          // figure out the correct index to insert the CSS into
+          var index = 0;
+          var lastC = 0;
+          args[0].replace(/%[a-z%]/g, function (match) {
+            if ('%%' === match) return;
+            index++;
+            if ('%c' === match) {
+              // we only are interested in the *last* %c
+              // (the user may have provided their own)
+              lastC = index;
+            }
+          });
+
+          args.splice(lastC, 0, c);
+          return args;
+        }
+
+        /**
+         * Invokes `console.log()` when available.
+         * No-op when `console.log` is not a "function".
+         *
+         * @api public
+         */
+
+        function log() {
+          // this hackery is required for IE8/9, where
+          // the `console.log` function doesn't have 'apply'
+          return 'object' === (typeof console === "undefined" ? "undefined" : _typeof(console)) && console.log && Function.prototype.apply.call(console.log, console, arguments);
+        }
+
+        /**
+         * Save `namespaces`.
+         *
+         * @param {String} namespaces
+         * @api private
+         */
+
+        function save(namespaces) {
+          try {
+            if (null == namespaces) {
+              exports.storage.removeItem('debug');
+            } else {
+              exports.storage.debug = namespaces;
+            }
+          } catch (e) {}
+        }
+
+        /**
+         * Load `namespaces`.
+         *
+         * @return {String} returns the previously persisted debug modes
+         * @api private
+         */
+
+        function load() {
+          var r;
+          try {
+            r = exports.storage.debug;
+          } catch (e) {}
+
+          // If debug isn't set in LS, and we're in Electron, try to load $DEBUG
+          if ('env' in (typeof process === 'undefined' ? {} : process)) {
+            r = process.env.DEBUG;
           }
-        });
 
-        args.splice(lastC, 0, c);
-        return args;
-      }
+          return r;
+        }
 
-      /**
-       * Invokes `console.log()` when available.
-       * No-op when `console.log` is not a "function".
-       *
-       * @api public
-       */
+        /**
+         * Enable namespaces listed in `localStorage.debug` initially.
+         */
 
-      function log() {
-        // this hackery is required for IE8/9, where
-        // the `console.log` function doesn't have 'apply'
-        return 'object' === (typeof console === "undefined" ? "undefined" : _typeof(console)) && console.log && Function.prototype.apply.call(console.log, console, arguments);
-      }
+        exports.enable(load());
 
-      /**
-       * Save `namespaces`.
-       *
-       * @param {String} namespaces
-       * @api private
-       */
+        /**
+         * Localstorage attempts to return the localstorage.
+         *
+         * This is necessary because safari throws
+         * when a user disables cookies/localstorage
+         * and you attempt to access it.
+         *
+         * @return {LocalStorage}
+         * @api private
+         */
 
-      function save(namespaces) {
-        try {
-          if (null == namespaces) {
-            exports.storage.removeItem('debug');
-          } else {
-            exports.storage.debug = namespaces;
-          }
-        } catch (e) {}
-      }
-
-      /**
-       * Load `namespaces`.
-       *
-       * @return {String} returns the previously persisted debug modes
-       * @api private
-       */
-
-      function load() {
-        var r;
-        try {
-          r = exports.storage.debug;
-        } catch (e) {}
-        return r;
-      }
-
-      /**
-       * Enable namespaces listed in `localStorage.debug` initially.
-       */
-
-      exports.enable(load());
-
-      /**
-       * Localstorage attempts to return the localstorage.
-       *
-       * This is necessary because safari throws
-       * when a user disables cookies/localstorage
-       * and you attempt to access it.
-       *
-       * @return {LocalStorage}
-       * @api private
-       */
-
-      function localstorage() {
-        try {
-          return window.localStorage;
-        } catch (e) {}
-      }
-    }, { "./debug": 6 }], 6: [function (require, module, exports) {
+        function localstorage() {
+          try {
+            return window.localStorage;
+          } catch (e) {}
+        }
+      }).call(this, require('_process'));
+    }, { "./debug": 6, "_process": 15 }], 6: [function (require, module, exports) {
 
       /**
        * This is the common logic for both the Node.js and web browser
@@ -561,7 +569,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (null == self.useColors) self.useColors = exports.useColors();
           if (null == self.color && self.useColors) self.color = selectColor();
 
-          var args = Array.prototype.slice.call(arguments);
+          var args = new Array(arguments.length);
+          for (var i = 0; i < args.length; i++) {
+            args[i] = arguments[i];
+          }
 
           args[0] = exports.coerce(args[0]);
 
@@ -588,9 +599,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             return match;
           });
 
-          if ('function' === typeof exports.formatArgs) {
-            args = exports.formatArgs.apply(self, args);
-          }
+          // apply env-specific formatting
+          args = exports.formatArgs.apply(self, args);
+
           var logFn = enabled.log || exports.log || console.log.bind(console);
           logFn.apply(self, args);
         }
@@ -9553,7 +9564,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             get: function get(attrName) {
               switch (attrName) {
                 case 'objectId':
-                case 'id':
                   return this.id;
                 case 'url':
                 case 'name':
@@ -10271,6 +10281,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       var AVRequest = require('./request').request;
       var utils = require('./utils');
 
+      var RESERVED_KEYS = ['objectId', 'createdAt', 'updatedAt'];
+      var checkReservedKey = function checkReservedKey(key) {
+        if (RESERVED_KEYS.indexOf(key) !== -1) {
+          throw new Error("key[" + key + "] is reserved");
+        }
+      };
+
       // AV.Object is analogous to the Java AVObject.
       // It also implements the same interface as a Backbone model.
 
@@ -10311,6 +10328,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           attributes = attributes || {};
           if (options && options.parse) {
             attributes = this.parse(attributes);
+            attributes = this._mergeMagicFields(attributes);
           }
           var defaults = AV._getValue(this, 'defaults');
           if (defaults) {
@@ -10558,7 +10576,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           get: function get(attr) {
             switch (attr) {
               case 'objectId':
-              case 'id':
                 return this.id;
               case 'createdAt':
               case 'updatedAt':
@@ -10624,7 +10641,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           _mergeMagicFields: function _mergeMagicFields(attrs) {
             // Check for changes of magic fields.
             var model = this;
-            var specialFields = ["id", "objectId", "createdAt", "updatedAt"];
+            var specialFields = ["objectId", "createdAt", "updatedAt"];
             AV._arrayEach(specialFields, function (attr) {
               if (attrs[attr]) {
                 if (attr === "objectId") {
@@ -10637,6 +10654,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 delete attrs[attr];
               }
             });
+            return attrs;
           },
 
           /**
@@ -10870,11 +10888,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             if (_.isObject(key) || utils.isNullOrUndefined(key)) {
               attrs = key;
               AV._objectEach(attrs, function (v, k) {
+                checkReservedKey(k);
                 attrs[k] = AV._decode(k, v);
               });
               options = value;
             } else {
               attrs = {};
+              checkReservedKey(key);
               attrs[key] = AV._decode(key, value);
             }
 
@@ -10908,8 +10928,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             // Run validation.
             this._validate(attrs, options);
-
-            this._mergeMagicFields(attrs);
 
             options.changes = {};
             var escaped = this._escapedAttributes;
@@ -14615,6 +14633,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       var _ = require('underscore');
       var AVError = require('./error');
       var AVRequest = require('./request').request;
+      var Promise = require('./promise');
+
+      var getWeappLoginCode = function getWeappLoginCode() {
+        if (typeof wx === 'undefined' || typeof wx.login !== 'function') {
+          throw new Error('Weapp Login is only available in Weapp');
+        }
+        return new Promise(function (resolve, reject) {
+          wx.login({
+            success: function success(_ref2) {
+              var code = _ref2.code,
+                  errMsg = _ref2.errMsg;
+
+              if (code) {
+                resolve(code);
+              } else {
+                reject(new Error(errMsg));
+              }
+            }
+          });
+        });
+      };
 
       module.exports = function (AV) {
         /**
@@ -14721,9 +14760,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               // Some old version of leanengine-node-sdk will overwrite
               // AV.User._saveCurrentUser which returns no Promise.
               // So we need a Promise wrapper.
-              return AV.Promise.resolve(AV.User._saveCurrentUser(this));
+              return Promise.resolve(AV.User._saveCurrentUser(this));
             } else {
-              return AV.Promise.resolve();
+              return Promise.resolve();
             }
           },
 
@@ -14758,17 +14797,32 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           },
 
           /**
+           * 将用户与小程序用户进行关联。适用于为已经在用户系统中存在的用户关联当前使用小程序的微信帐号。
+           * 仅在小程序中可用。
+           *
+           * @return {AV.User}
+           */
+          linkWithWeapp: function linkWithWeapp() {
+            var _this11 = this;
+
+            return getWeappLoginCode().then(function (code) {
+              return _this11._linkWith('lc_weapp', { code: code });
+            });
+          },
+
+
+          /**
            * Unlinks a user from a service.
            * @private
            */
           _unlinkFrom: function _unlinkFrom(provider) {
-            var _this11 = this;
+            var _this12 = this;
 
             if (_.isString(provider)) {
               provider = AV.User._authProviders[provider];
             }
             return this._linkWith(provider, null).then(function (model) {
-              _this11._synchronizeAuthData(provider);
+              _this12._synchronizeAuthData(provider);
               return model;
             });
           },
@@ -15121,11 +15175,36 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           /**
            * Checks whether this user is the current user and has been authenticated.
+           * @deprecated 如果要判断当前用户的登录状态是否有效，请使用 currentUser.isAuthenticated().then()，
+           * 如果要判断该用户是否是当前登录用户，请使用 user.id === currentUser.id
            * @return (Boolean) whether this user is the current user and is logged in.
            */
           authenticated: function authenticated() {
+            console.warn('DEPRECATED: 如果要判断当前用户的登录状态是否有效，请使用 currentUser.isAuthenticated().then()，如果要判断该用户是否是当前登录用户，请使用 user.id === currentUser.id。');
             return !!this._sessionToken && !AV._config.disableCurrentUser && AV.User.current() && AV.User.current().id === this.id;
           },
+
+          /**
+           * 检查该用户的登录状态是否有效，请注意该方法会校验 sessionToken 的有效性，是个异步方法。
+           *
+           * @since 2.0.0
+           * @return Promise.<Boolean>
+           */
+          isAuthenticated: function isAuthenticated() {
+            var _this13 = this;
+
+            return Promise.resolve().then(function () {
+              return !!_this13._sessionToken && AV.User._fetchUserBySessionToken(_this13._sessionToken).then(function () {
+                return true;
+              }, function (error) {
+                if (error.code === 211) {
+                  return false;
+                }
+                throw error;
+              });
+            });
+          },
+
 
           /**
            * Get sessionToken of current user.
@@ -15312,6 +15391,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
           /**
+           * 使用当前使用小程序的微信用户身份注册或登录，成功后用户的 session 会在设备上持久化保存，之后可以使用 AV.User.current() 获取当前登录用户。
+           * 仅在小程序中可用。
+           *
+           * @since 2.0.0
+           * @return {AV.User}
+           */
+          loginWithWeapp: function loginWithWeapp() {
+            var _this14 = this;
+
+            return getWeappLoginCode().then(function (code) {
+              return _this14.signUpOrlogInWithAuthData({ code: code }, 'lc_weapp');
+            });
+          },
+
+
+          /**
            * Associate a user with a third party auth data(AccessToken).
            *
            * @param {AV.User} userObj A user which you want to associate.
@@ -15341,7 +15436,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           logOut: function logOut() {
             if (AV._config.disableCurrentUser) {
               console.warn('AV.User.current() was disabled in multi-user environment, call logOut() from user object instead https://leancloud.cn/docs/leanengine-node-sdk-upgrade-1.html');
-              return AV.Promise.resolve(null);
+              return Promise.resolve(null);
             }
 
             if (AV.User._currentUser !== null) {
@@ -15494,16 +15589,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           currentAsync: function currentAsync() {
             if (AV._config.disableCurrentUser) {
               console.warn('AV.User.currentAsync() was disabled in multi-user environment, access user from request instead https://leancloud.cn/docs/leanengine-node-sdk-upgrade-1.html');
-              return AV.Promise.resolve(null);
+              return Promise.resolve(null);
             }
 
             if (AV.User._currentUser) {
-              return AV.Promise.resolve(AV.User._currentUser);
+              return Promise.resolve(AV.User._currentUser);
             }
 
             if (AV.User._currentUserMatchesDisk) {
 
-              return AV.Promise.resolve(AV.User._currentUser);
+              return Promise.resolve(AV.User._currentUser);
             }
 
             return AV.localStorage.getItemAsync(AV._getAVPath(AV.User._CURRENT_USER_KEY)).then(function (userData) {
@@ -15586,7 +15681,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             if (AV.User._currentUser !== user) {
               promise = AV.User.logOut();
             } else {
-              promise = AV.Promise.resolve();
+              promise = Promise.resolve();
             }
             return promise.then(function () {
               user._isCurrentUser = true;
@@ -15616,7 +15711,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         });
       };
-    }, { "./error": 34, "./request": 49, "underscore": 21 }], 57: [function (require, module, exports) {
+    }, { "./error": 34, "./promise": 45, "./request": 49, "underscore": 21 }], 57: [function (require, module, exports) {
       var _ = require('underscore');
 
       // Helper function to check null or undefined.
@@ -15649,6 +15744,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         getSessionToken: getSessionToken
       };
     }, { "underscore": 21 }], 58: [function (require, module, exports) {
-      module.exports = 'js2.0.0-beta.3';
+      module.exports = 'js2.0.0-beta.4';
     }, {}] }, {}, [38])(38);
 });

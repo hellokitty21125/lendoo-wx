@@ -7,35 +7,9 @@ AV.init({
 
 // 授权登录
 App({
-    getUserInfo:function(cb){
+    onLaunch: function () {
+        // auto login via SDK
         var that = this;
-        if(this.openid){
-          typeof cb == "function" && cb(this.openid)
-        }else{
-          //调用登录接口
-            wx.login({
-                success: function (response) {
-                	//get openid fail, because of no appid
-                	wx.request({
-                		url: 'https://api.weixin.qq.com/sns/jscode2session?appid=wxcecebb21f347d058&secret=ffc48a86cd10aa301c432b89a7805b8f&js_code='+response.code+'&grant_type=authorization_code',
-                		header: {
-                		      'Content-Type': 'application/json'
-                		 },
-                		success: function (res) {
-                            wx.getUserInfo({
-                                success: function (r) {
-                                    that.globalData.userInfo = r.userInfo;
-                                    typeof cb == "function" && cb(res.data.openid)
-                                }
-                            })
-                        }
-                    });
-                }
-            });
-        }
-    },
-    openid: '',
-    globalData:{
-        userInfo:null
+        AV.User.loginWithWeapp();
     }
 })

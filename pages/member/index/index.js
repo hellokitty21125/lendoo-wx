@@ -20,10 +20,15 @@ Page({
 	},
 	onShow: function () {
 		var that = this;
-		app.getUserInfo(function (openid) {
-			that.setData({
-				userInfo: app.globalData.userInfo
+		// 获得当前登录用户
+		const user = AV.User.current();
+		// 调用小程序 API，得到用户信息
+		wx.getUserInfo({
+			success: ({userInfo}) => {
+  				that.setData({
+				userInfo: userInfo
 			});
+		  }
 		});
 	}
 })
