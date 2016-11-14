@@ -4,12 +4,15 @@ Page({
     data: {
         topCategories: [],
         subCategories: [],
-        highlight:['highlight','','']
+        highlight:['highlight','',''],
+        banner: ''
     },
     onLoad: function(){
         this.getCategory(null);
         // hard code to read default category,maybe this is a recommend category later.
-        this.getCategory(AV.Object.createWithoutData('Category', '5815b0d5d203090055c24a19'));
+        var category = AV.Object.createWithoutData('Category', '5815b0d5d203090055c24a19');
+        this.getCategory(category);
+        this.getBanner(category);
     },
     tapTopCategory: function(e){
         // 拿到objectId，作为访问子类的参数
@@ -20,6 +23,8 @@ Page({
         // 设定高亮状态
         var index = parseInt(e.currentTarget.dataset.index);
         this.setHighlight(index);
+        // get banner local
+        this.getBanner(parent);
 
     },
     getCategory: function(parent){
@@ -56,6 +61,14 @@ Page({
         var objectId = e.currentTarget.dataset.objectId;
         wx.navigateTo({
             url: "../../../../goods/list/list?categoryId="+objectId
+        });
+    },
+    getBanner: function (parent) {
+        var that = this;
+        parent.fetch().then(function () {
+            that.setData({
+                banner: parent.get('banner').get('url') 
+            });       
         });
     }
 })

@@ -3,15 +3,20 @@
 	<view class="sidebar">
 		<text wx:for="{{topCategories}}" wx:key="objectId" bindtap="tapTopCategory" data-object-id="{{item.objectId}}" data-index="{{index}}" class="{{highlight[index]}}">{{item.title}}</text>
 	</view>
-	<!-- GridView -->
-	<view class="gridview">
-		<dl wx:for="{{subCategories}}" wx:key="objectId">
-			<dt>
-				<image src="{{item.avatar.attributes.url}}" mode="scaleToFit" bindtap="avatarTap" data-object-id="{{item.objectId}}"/>
-			</dt>
-			<dd>
-				<text>{{item.title}}</text>
-			</dd>
-		</dl>
+	<!-- right -->
+	<view class="main">
+		<!-- banner -->
+		<image class="banner" src="{{banner}}" mode="aspectFill" />
+		<!-- GridView -->
+		<view class="gridview">
+			<dl wx:for="{{subCategories}}" wx:key="objectId">
+				<dt>
+					<image src="{{item.avatar.attributes.url}}" mode="scaleToFit" bindtap="avatarTap" data-object-id="{{item.objectId}}"/>
+				</dt>
+				<dd>
+					<text>{{item.title}}</text>
+				</dd>
+			</dl>
+		</view>
 	</view>
 </view>
