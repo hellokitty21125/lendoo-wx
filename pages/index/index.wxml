@@ -17,13 +17,16 @@
 	</view>
 </view>
 <!-- hot goods -->
-<view class="main-goods">
-	<view class="single-goods" wx:for="{{goods}}" wx:key="">
-		<image class="avatar" src="{{item.avatar}}" mode="aspectFill" />
-		<text class="title">{{item.title}}</text>
-		<view class="summary">
-			<text class="price">￥{{item.price}}</text>
-			<text class="sale">已售99件</text>
+<view class="container-goods">
+	<text class="caption">热卖推荐</text>
+	<view class="main-goods">
+		<view class="single-goods" wx:for="{{goods}}" wx:key="">
+			<image class="avatar" src="{{item.avatar}}" mode="aspectFill" />
+			<text class="title">{{item.title}}</text>
+			<view class="summary">
+				<text class="price">￥{{item.price}}</text>
+				<text class="sale">已售99件</text>
+			</view>
 		</view>
 	</view>
 </view>

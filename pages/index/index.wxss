@@ -1,12 +1,18 @@
-button {
-	margin: 20rpx;
+page {
+	background: #eee;
+}
+
+.swiper-image {
+	height: 100%;
 }
 
 /*功能区*/
 .func-area {
 	display: flex;
 	flex-direction: row;
-	margin: 30rpx 0;
+	margin: 20rpx 0;
+	padding-top: 30rpx;
+	background: white;
 }
 
 .func-area view {
@@ -24,6 +30,7 @@ button {
 .func-area image {
 	width: 100rpx;
 	height: 100rpx;
+	border-radius: 20rpx;
 }
 
 .orange {
@@ -35,10 +42,23 @@ button {
 }
 
 /*主商品区*/
+.container-goods {
+	background: white;
+}
+
+.container-goods .caption {
+	font-size: 32rpx;
+	width: 100%;
+	line-height: 60rpx;
+	text-indent: 20rpx;
+	padding: 10rpx;
+}
+
 .main-goods {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+	border-top: 1px solid #eee;
 }
 
 .main-goods .single-goods {
