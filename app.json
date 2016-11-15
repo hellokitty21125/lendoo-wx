@@ -9,6 +9,7 @@
         "pages/goods/detail/detail",
         "pages/order/checkout/checkout",
         "pages/order/payment/payment",
+        "pages/order/list/list",
         "pages/address/list/list"
     ],
     "window": {

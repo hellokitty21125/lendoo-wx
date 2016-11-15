@@ -38,5 +38,15 @@ Page({
 		wx.navigateTo({
 			url: "../goods/detail/detail?objectId=" + goodsId
 		});
+	},
+	showCategories: function () {
+		wx.navigateTo({
+			url: "../category/category"
+		});
+	},
+	showOrders: function () {
+		wx.navigateTo({
+			url: "../order/list/list"
+		});
 	}
 })
