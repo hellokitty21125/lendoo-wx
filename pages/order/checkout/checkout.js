@@ -41,6 +41,7 @@ Page({
 		// submit order
 		var carts = this.data.carts;
 		var buys = [];
+		// create buys & delete carts
 		for (var i = 0; i < carts.length; i++) {
 			// move cart to buy
 			var buy = new AV.Object('Buy');
@@ -57,19 +58,28 @@ Page({
 		var user = AV.User.current();
 		var order = new AV.Object('Order');
 		order.set('user', user);
-		order.set('buys', buys);
 		order.set('status', 0);
 		order.set('amount', this.data.amount);
 		// set address
 		var address = this.addressObjects[this.data.addressIndex];
 		order.set('address', address);
-		order.save().then(function (order) {
-			console.log('pay me from carts...');
-			wx.navigateTo({
-				url: '../../../../../payment/payment?orderId=' + order.get('objectId')
-			});
-		}, function () {
-		});
+	    AV.Object.saveAll(buys).then(function (result) {
+        	if (result) {
+	            var relation = order.relation('buys');
+	            for (var i = 0; i < buys.length; i++) {
+		            relation.add(buys[i]);
+	            }
+	            order.save().then(function (saveResult) {
+	                if (saveResult) {
+	                   // 保存到云端
+               			console.log('pay me from carts...');
+						wx.navigateTo({
+							url: '../../../../../payment/payment?orderId=' + order.get('objectId')
+						});
+	                }
+	            });
+	        }
+	    });
 	},
 	loadAddress: function () {
 		var that = this;
