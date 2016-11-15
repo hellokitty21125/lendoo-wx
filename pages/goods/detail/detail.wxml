@@ -1,4 +1,4 @@
-<swiper indicator-dots="true"
+<swiper class="images" indicator-dots="true"
   autoplay="true" interval="5000" duration="1000" style="height:200px;">
   <block wx:for="{{goods.images}}" wx:key="">
     <swiper-item>
@@ -6,9 +6,9 @@
     </swiper-item>
   </block>
 </swiper>
-<view style="display: flex; flex-direction: column; justify-content: space-between;">
-	<text>{{goods.title}}</text>
-	<text>{{goods.price}}</text>
+<view class="summary">
+	<text class="title">{{goods.title}}</text>
+	<text class="price">￥ {{goods.price}}</text>
 </view>
 <view class="detail">
 	<image wx:for="{{goods.detail}}" src="{{item}}" wx:key="" mode="aspectFill"></image>

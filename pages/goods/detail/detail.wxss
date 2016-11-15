@@ -1,5 +1,36 @@
+page {
+	background: #eee;
+}
+
+/*swiper images*/
+.images {
+	position: relative;
+}
+
 .swiper-image {
 	width: 100%;
+}
+
+/*contains title & price*/
+.summary {
+	display: flex; 
+	flex-direction: column; 
+	justify-content: space-between;
+	background: white;
+	margin: 20rpx 0;
+}
+
+/*goods title*/
+.title {
+	font-size: 34rpx;
+	margin: 10rpx;
+	line-height: 46rpx;
+}
+
+/*goods price*/
+.price {
+	color: #f60;
+	margin: 10rpx;
 }
 
 .detail image{
@@ -13,6 +44,8 @@
 	display: flex; 
 	flex-direction: row; 
 	justify-content: space-between;
+	position: absolute;
+	bottom: 0;
 }
 
 .add-cart {
