@@ -1,3 +1,43 @@
 .swiper-image {
 	width: 100%;
 }
+
+.detail image{
+	width: 100%;
+	height: 300rpx;
+}
+
+.footer {
+	background: #f9f9f9;
+	width: 100%;
+	display: flex; 
+	flex-direction: row; 
+	justify-content: space-between;
+}
+
+.add-cart {
+	float: right;
+	border: 0;	
+	line-height: 100rpx;
+	text-align: center;
+	width: 350rpx;
+	height: 100rpx;
+	background-color: #f60;
+	color: white;
+	font-size: 36rpx;
+	border-radius: 0px;
+}
+
+/*favor*/
+.favor {
+	width: 100%;
+}
+
+.favor-image {
+	width: 40rpx;
+	height: 40rpx;
+}
+
+.favor-text {
+	font-size: 30rpx;
+}

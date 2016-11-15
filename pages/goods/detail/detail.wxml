@@ -10,9 +10,13 @@
 	<text>{{goods.title}}</text>
 	<text>{{goods.price}}</text>
 </view>
-<view>
-	<image wx:for="{{goods.detail}}" wx:key="" mode="aspectFill"></image>
+<view class="detail">
+	<image wx:for="{{goods.detail}}" src="{{item}}" wx:key="" mode="aspectFill"></image>
 </view>
-<view style="display: flex; flex-direction: row; justify-content: space-between;">
+<view class="footer">
+  <view class="favor">
+    <image src="../../../images/favor.png" class="favor-image" />
+    <text class="favor-text">收藏</text>
+  </view>
 	<button class="add-cart" bindtap="addCart">加入购物车</button>
 </view>
