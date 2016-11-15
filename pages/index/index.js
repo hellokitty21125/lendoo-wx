@@ -31,5 +31,12 @@ Page({
 				goods: goodsObjects
 			});
 		});
+	},
+	showDetail: function (e) {
+		var index = e.currentTarget.dataset.index;
+		var goodsId = this.data.goods[index].id;
+		wx.navigateTo({
+			url: "../goods/detail/detail?objectId=" + goodsId
+		});
 	}
 })

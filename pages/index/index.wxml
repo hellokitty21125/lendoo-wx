@@ -20,7 +20,7 @@
 <view class="container-goods">
 	<text class="caption">热卖推荐</text>
 	<view class="main-goods">
-		<view class="single-goods" wx:for="{{goods}}" wx:key="">
+		<view class="single-goods" wx:for="{{goods}}" wx:key="" bindtap="showDetail" data-index="{{index}}">
 			<image class="avatar" src="{{item.avatar}}" mode="aspectFill" />
 			<text class="title">{{item.title}}</text>
 			<view class="summary">
