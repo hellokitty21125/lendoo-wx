@@ -1,1 +1,6 @@
-list order
+<view class="order-item" wx:for="{{orders}}" wx:key="">
+	<image src="" mode="aspectFill" />
+	<text>共N件商品 实付款：{{item.amount}}</text>
+	<text>评价晒单</text>
+	<text>再次购买</text>
+</view>
