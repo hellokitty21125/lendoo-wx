@@ -1,5 +1,6 @@
 {
     "pages":[
+        "pages/address/add/add",
         "pages/member/index/index",
         "pages/index/index",
         "pages/category/category",

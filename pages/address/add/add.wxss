@@ -1,0 +1,53 @@
+page {
+	position: relative;
+}
+
+.modal {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	box-shadow: 10rpx 0 30rpx rgba(0,0,0,.9);
+	margin-top: 22rpx;
+	background: #fff;
+	z-index: 99;
+}
+
+.modal-header {
+	margin: 20rpx 0;
+	font-size: 32rpx;
+	color: #666;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	line-height: 80rpx;
+}
+
+.modal-title {
+	text-align: center;
+	width: 100%;
+}
+
+.modal-close {
+	width: 40rpx;
+}
+
+.modal-body {
+	font-size: 28rpx;
+}
+
+.viewpager-title {
+	padding: 0 20rpx;
+	color: #f03118;
+	line-height: 80rpx;
+}
+
+.viewpager-divider {
+	width: 100%;
+	height: 1rpx;
+	background: #ccc;
+}
+
+.viewpager-listview view{
+	line-height: 60rpx;
+	padding: 0 20rpx;
+}

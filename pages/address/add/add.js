@@ -119,5 +119,27 @@ Page({
 				that.isDefault = true;
 			}
 		});
-	}
+	},
+    cascadePopup: function() {
+    	var animation = wx.createAnimation({
+		      duration: 500,
+		        timingFunction: 'ease-in-out',
+		    });
+	    this.animation = animation;
+	    animation.translateY(-100).step();
+	    this.setData({
+	      animationData:animation.export()
+	    })
+    },
+    cascadeDismiss: function () {
+		var animation = wx.createAnimation({
+		      duration: 500,
+		        timingFunction: 'ease-in-out',
+		    });
+	    this.animation = animation;
+	    animation.translateY(100).step();
+	    this.setData({
+	      animationData:animation.export()
+	    })
+    }
 })
