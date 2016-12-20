@@ -14,7 +14,7 @@
 			区/县：{{region[regionIndex]}}
 		</view>
 	</picker>
-        <input name="cascade" placeholder="请选择省市区" bindtap="cascadePopup" />
+    <input name="cascade" placeholder="请选择省市区" bindtap="cascadePopup" />
 	<input name="detail" placeholder="详情地址" />
 	<input name="realname" placeholder="收件人姓名" />
 	<input name="mobile" placeholder="手机号码" type="number"/>

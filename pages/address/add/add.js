@@ -107,6 +107,12 @@ Page({
 		});
 		// if isDefault, address is empty
 		this.setDefault();
+		// load pixelRatio
+		wx.getSystemInfo({
+			success: function(res) {
+				that.pixelRatio = res.pixelRatio;
+			}
+		})
 		// TODO:load default city...
 	},
 	setDefault: function () {
@@ -127,7 +133,7 @@ Page({
 		        timingFunction: 'ease-in-out',
 		    });
 	    this.animation = animation;
-	    animation.translateY(-100).step();
+	    animation.translateY(-285).step();
 	    this.setData({
 	      animationData:animation.export(),
 	      maskVisual: 'show'
@@ -139,7 +145,7 @@ Page({
 		        timingFunction: 'ease-in-out',
 		    });
 	    this.animation = animation;
-	    animation.translateY(100).step();
+	    animation.translateY(285).step();
 	    this.setData({
 	      animationData:animation.export(),
 	      maskVisual: 'hidden'
