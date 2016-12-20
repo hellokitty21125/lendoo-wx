@@ -20,22 +20,25 @@
 	<input name="mobile" placeholder="手机号码" type="number"/>
 	<button formType="submit" type="primary">Submit</button>
 </form>
-<view animation="{{animationData}}" class="modal">
-    <view class="modal-header">
-        <text class="modal-title">所在地区</text>
-        <text class="modal-close" bindtap="cascadeDismiss">X</text>
-    </view>
-    <view class="modal-body">
-    	<text class="viewpager-title">请选择</text>
-    	<view class="viewpager-divider"></view>
-    	<view class="viewpager-listview">
-	    	<view>黑龙江</view>
-	    	<view>内蒙古</view>
-	    	<view>江苏</view>
-	    	<view>山东</view>
-	    	<view>安徽</view>
-	    	<view>浙江</view>
-	    	<view>福建</view>
-    	</view>
-    </view>
+<view class="modal">
+	<div class="modal-mask {{maskVisual}}" bindtap="cascadeDismiss"></div>
+	<view animation="{{animationData}}" class="modal-content">
+	    <view class="modal-header">
+	        <text class="modal-title">所在地区</text>
+	        <text class="modal-close" bindtap="cascadeDismiss">X</text>
+	    </view>
+	    <view class="modal-body">
+	    	<text class="viewpager-title">请选择</text>
+	    	<view class="viewpager-divider"></view>
+	    	<view class="viewpager-listview">
+		    	<view>黑龙江</view>
+		    	<view>内蒙古</view>
+		    	<view>江苏</view>
+		    	<view>山东</view>
+		    	<view>安徽</view>
+		    	<view>浙江</view>
+		    	<view>福建</view>
+	    	</view>
+	    </view>
+	</view>
 </view>

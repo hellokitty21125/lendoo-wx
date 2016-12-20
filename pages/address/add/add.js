@@ -39,7 +39,8 @@ Page({
 		region: [],
 		provinceObjects: [],
 		cityObjects: [],
-		regionObjects: []
+		regionObjects: [],
+		maskVisual: 'hidden'
 	},
 	getArea: function (pid, cb) {
 		var that = this;
@@ -128,7 +129,8 @@ Page({
 	    this.animation = animation;
 	    animation.translateY(-100).step();
 	    this.setData({
-	      animationData:animation.export()
+	      animationData:animation.export(),
+	      maskVisual: 'show'
 	    })
     },
     cascadeDismiss: function () {
@@ -139,7 +141,8 @@ Page({
 	    this.animation = animation;
 	    animation.translateY(100).step();
 	    this.setData({
-	      animationData:animation.export()
+	      animationData:animation.export(),
+	      maskVisual: 'hidden'
 	    })
     }
 })
