@@ -107,12 +107,6 @@ Page({
 		});
 		// if isDefault, address is empty
 		this.setDefault();
-		// load pixelRatio
-		wx.getSystemInfo({
-			success: function(res) {
-				that.pixelRatio = res.pixelRatio;
-			}
-		})
 		// TODO:load default city...
 	},
 	setDefault: function () {
@@ -129,26 +123,21 @@ Page({
 	},
     cascadePopup: function() {
     	var animation = wx.createAnimation({
-		      duration: 500,
-		        timingFunction: 'ease-in-out',
-		    });
-	    this.animation = animation;
+		    duration: 500,
+		    timingFunction: 'ease-in-out',
+		});
+		this.animation = animation;
 	    animation.translateY(-285).step();
 	    this.setData({
-	      animationData:animation.export(),
+	      animationData: this.animation.export(),
 	      maskVisual: 'show'
-	    })
+	    });
     },
     cascadeDismiss: function () {
-		var animation = wx.createAnimation({
-		      duration: 500,
-		        timingFunction: 'ease-in-out',
-		    });
-	    this.animation = animation;
-	    animation.translateY(285).step();
+	    this.animation.translateY(285).step();
 	    this.setData({
-	      animationData:animation.export(),
+	      animationData: this.animation.export(),
 	      maskVisual: 'hidden'
-	    })
+	    });
     }
 })

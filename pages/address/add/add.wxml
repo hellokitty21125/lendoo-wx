@@ -21,7 +21,7 @@
 	<button formType="submit" type="primary">Submit</button>
 </form>
 <view class="modal">
-	<div class="modal-mask {{maskVisual}}" bindtap="cascadeDismiss"></div>
+	<view class="modal-mask {{maskVisual}}" bindtap="cascadeDismiss"></view>
 	<view animation="{{animationData}}" class="modal-content">
 	    <view class="modal-header">
 	        <text class="modal-title">所在地区</text>
