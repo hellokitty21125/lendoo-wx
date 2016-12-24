@@ -5,7 +5,6 @@
         "pages/index/index",
         "pages/category/category",
         "pages/cart/cart",
-        "pages/address/add/add",
         "pages/goods/list/list",
         "pages/goods/detail/detail",
         "pages/order/checkout/checkout",
