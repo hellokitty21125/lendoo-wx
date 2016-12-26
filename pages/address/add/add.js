@@ -108,23 +108,7 @@ Page({
 		// if isDefault, address is empty
 		this.setDefault();
 		// TODO:load default city...
-                this.showParam();
 	},
-        showParam: function(options) {
-            if (options !== undefined) {
-                wx.showToast({
-                    title: '您的id是' + options.id,
-                    icon: 'success',
-                    duration: 2000
-                })
-            } else {
-                wx.showToast({
-                    title: '获取id失败',
-                    icon: 'success',
-                    duration: 2000
-                });
-            }
-        },
 	setDefault: function () {
 		var that = this;
 		var user = AV.User.current();
@@ -155,12 +139,5 @@ Page({
 	      animationData: this.animation.export(),
 	      maskVisual: 'hidden'
 	    });
-    },
-    onShareAppMessage: function () {
-        return {
-          title: '将带上你的id',
-          desc: '你的id是123',
-          path: '/pages/address/add/add?id=123'
-        }
     }
 })

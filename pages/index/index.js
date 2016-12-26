@@ -48,5 +48,12 @@ Page({
 		wx.navigateTo({
 			url: "../order/list/list"
 		});
-	}
+	},
+    onShareAppMessage: function () {
+        return {
+          title: '灵动开源电商系统',
+          desc: '一个基于LeanCloud开发的开源电商系统',
+          path: '/pages/index/index'
+        }
+    }
 })
