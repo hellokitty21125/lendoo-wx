@@ -107,6 +107,7 @@ Page({
 		});
 		// if isDefault, address is empty
 		this.setDefault();
+		this.cascadePopup();
 		// TODO:load default city...
 	},
 	setDefault: function () {

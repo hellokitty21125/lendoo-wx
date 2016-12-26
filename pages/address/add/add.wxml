@@ -30,15 +30,10 @@
 	    <view class="modal-body">
 	    	<text class="viewpager-title">请选择</text>
 	    	<view class="viewpager-divider"></view>
-	    	<view class="viewpager-listview">
-		    	<view>黑龙江</view>
-		    	<view>内蒙古</view>
-		    	<view>江苏</view>
-		    	<view>山东</view>
-		    	<view>安徽</view>
-		    	<view>浙江</view>
-		    	<view>福建</view>
-	    	</view>
+	    	<scroll-view scroll-y="true" class="viewpager-listview">
+		    	<view wx:for="{{province}}" wx:key="index">{{item}}</view>
+	    	</scroll-view>
+
 	    </view>
 	</view>
 </view>

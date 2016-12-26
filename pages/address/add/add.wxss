@@ -73,7 +73,13 @@ page {
 	background: #ccc;
 }
 
-/*每行地址*/
+/*地址列表ListView容器*/
+.viewpager-listview {
+	padding-top: 5px;
+	height: 220px;
+}
+
+/*每行地址item项*/
 .viewpager-listview view{
 	line-height: 30px;
 	padding: 0 10px;
