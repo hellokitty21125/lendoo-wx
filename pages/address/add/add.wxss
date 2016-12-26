@@ -73,10 +73,15 @@ page {
 	background: #ccc;
 }
 
+/*左右滑动控件*/
+.swiper-area {
+	height:220px;
+}
+
 /*地址列表ListView容器*/
 .viewpager-listview {
 	padding-top: 5px;
-	height: 220px;
+	height: 100%;
 }
 
 /*每行地址item项*/
