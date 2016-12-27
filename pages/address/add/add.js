@@ -40,7 +40,8 @@ Page({
 		provinceObjects: [],
 		cityObjects: [],
 		regionObjects: [],
-		maskVisual: 'hidden'
+		maskVisual: 'hidden',
+		provinceName: '请选择'
 	},
 	getArea: function (pid, cb) {
 		var that = this;
@@ -148,7 +149,8 @@ Page({
     	// provinceIndex是市区数据的标识
     	this.setData({
     		current: 1,
-    		provinceIndex: index
+    		provinceIndex: index,
+    		provinceName: this.data.province[index]
     	});
     	this.provinceIndexChanged(index);
     },
