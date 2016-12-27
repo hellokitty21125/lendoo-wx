@@ -90,6 +90,11 @@ page {
 	padding: 0 10px;
 }
 
+/*高亮当前所选地区*/
+.area-selected {
+	color: red;
+}
+
 /*初始隐藏*/
 .hidden {
 	display: none;
