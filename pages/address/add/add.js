@@ -152,6 +152,7 @@ Page({
     	this.provinceIndexChanged(index);
     },
     provinceIndexChanged: function(index) {
+    	var that = this;
     	//provinceObjects是一个LeanCloud对象，通过遍历得到纯字符串数组
     	// getArea方法是访问网络请求数据，网络访问正常则一个回调function(area){}
 	    this.getArea(this.data.provinceObjects[index].get('aid'), function (area) {
