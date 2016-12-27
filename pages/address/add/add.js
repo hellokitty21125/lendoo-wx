@@ -140,5 +140,30 @@ Page({
 	      animationData: this.animation.export(),
 	      maskVisual: 'hidden'
 	    });
-    }
+    },
+    provinceTapped: function(e) {
+    	var index = e.currentTarget.dataset.index;
+    	// current为1，使得页面向左滑动一页至市级列表
+    	// provinceIndex是市区数据的标识
+    	this.setData({
+    		current: 1,
+    		provinceIndex: index
+    	});
+    	this.provinceIndexChanged(index);
+    },
+    provinceIndexChanged: function(index) {
+    	//provinceObjects是一个LeanCloud对象，通过遍历得到纯字符串数组
+    	// getArea方法是访问网络请求数据，网络访问正常则一个回调function(area){}
+	    this.getArea(this.data.provinceObjects[index].get('aid'), function (area) {
+	    	var array = [];
+			for (var i = 0; i < area.length; i++) {
+				array[i] = area[i].get('name');
+			}
+			// city就是wxml中渲染要用到的城市数据，cityObjects是LeanCloud对象，用于县级标识取值
+			that.setData({
+				city: array,
+				cityObjects: area
+			});
+	    });
+	},
 })

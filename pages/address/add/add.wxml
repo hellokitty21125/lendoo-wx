@@ -30,15 +30,15 @@
 	    <view class="modal-body">
 	    	<text class="viewpager-title">请选择</text>
 	    	<view class="viewpager-divider"></view>
-			<swiper class="swiper-area">
+			<swiper class="swiper-area" current="{{current}}">
 				<swiper-item>
 					<scroll-view scroll-y="true" class="viewpager-listview">
-						<view wx:for="{{province}}" wx:key="index">{{item}}</view>
+						<view wx:for="{{province}}" wx:key="index" data-index="{{index}}" bindtap="provinceTapped">{{item}}</view>
 					</scroll-view>
 				</swiper-item>
 				<swiper-item>
 					<scroll-view scroll-y="true" class="viewpager-listview">
-						<view wx:for="{{province}}" wx:key="index">{{item}}</view>
+						<view wx:for="{{city}}" wx:key="index" data-index="{{index}}" bindtap="cityTapped">{{item}}</view>
 					</scroll-view>
 				</swiper-item>
 			</swiper>
