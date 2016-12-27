@@ -992,7 +992,188 @@ Page({
 })
 ```
 
-源码下载：关注下方的公众号->回复数字1007
+# 12-27 更新了收货地址三级城市选择器，弃用原picker的做法
+
+通过本文可以读到：
+
+1. 省级上下滚动展示scroll-view基本用法
+2. 省市级之间左右滑动展示swiper基本用法
+3. data-index传值方法，wx:for循环语句、wf:if条件判断语句写法
+
+先看下最终效果：
+
+![最终效果](https://static.oschina.net/uploads/img/201612/27114248_fZWd.gif "在这里输入图片标题")
+
+## 一、scroll-view
+
+### 1. scroll-view组件布局
+
+```
+	    	<scroll-view scroll-y="true" class="viewpager-listview">
+		    	<view wx:for="{{province}}" wx:key="index">{{item}}</view>
+	    	</scroll-view>
+```
+
+解释：scroll滚动方向项默认值是false，于是**将scroll-y设为true**。
+
+效果如图：
+
+![输入图片说明](https://static.oschina.net/uploads/img/201612/27095236_g91i.gif "在这里输入图片标题")
+
+### 2.相应的样式表这么写：
+
+```
+
+/*地址列表ListView容器*/
+.viewpager-listview {
+	padding-top: 5px;
+	height: 220px;
+}
+
+/*每行地址item项*/
+.viewpager-listview view{
+	line-height: 30px;
+	padding: 0 10px;
+}
+
+```
+
+说明：height: 220px高度是必选项，**否则上下滚动无效**。
+
+如图：
+
+![输入图片说明](https://static.oschina.net/uploads/img/201612/27095435_ThLc.gif "在这里输入图片标题")
+
+文档传送门：[https://mp.weixin.qq.com/debug/wxadoc/dev/component/scroll-view.html](https://mp.weixin.qq.com/debug/wxadoc/dev/component/scroll-view.html)
+
+## 二、swiper
+
+```
+			<swiper class="swiper-area">
+				<swiper-item>
+					<scroll-view scroll-y="true" class="viewpager-listview">
+						<view wx:for="{{province}}" wx:key="index">{{item}}</view>
+					</scroll-view>
+				</swiper-item>
+			</swiper>
+
+.swiper-area {
+	height:220px;
+}
+```
+
+说明：上面写的scroll-view包在<swiper-item>标签里就可以了，样式表里定义height即可，indicator-dots="true"
+  autoplay="true" interval="5000" duration="1000"对于做首页轮播广告大图有必要，**而这里不需要**。
+
+文档传送门：[https://mp.weixin.qq.com/debug/wxadoc/dev/component/swiper.html](https://mp.weixin.qq.com/debug/wxadoc/dev/component/swiper.html)
+
+## 三、点击省级触发swiper滚动事件
+
+方法是设置swiper的current属性值 <swiper current={{current}}>
+
+绑定事件：<view wx:for="{{province}}" wx:key="index" bindtap="provinceTapped">{{item}}</view>
+
+实现事件：
+
+```
+    provinceTapped: function() {
+    	this.setData({
+    		current: 1
+    	});
+    }
+```
+
+
+如图：
+
+![输入图片说明](https://static.oschina.net/uploads/img/201612/27102056_i3hO.gif "在这里输入图片标题")
+
+## 四、实现市级数据加载
+
+为了记录点击的是哪一个省，设定一个data-index="{{index}}"来标识
+
+```
+<view wx:for="{{province}}" wx:key="index" data-index="{{index}}" bindtap="provinceTapped">{{item}}</view>
+```
+
+在相应的js代码中记录下来该index，并触发省级改变事件this.provinceIndexChanged(index)
+
+```
+    provinceTapped: function(e) {
+        // 标识当前点击省份，记录省份名称与主键id都依赖它
+    	var index = e.currentTarget.dataset.index;
+    	this.setData({
+    		current: 1,
+    		provinceIndex: index
+    	});
+    	this.provinceIndexChanged(index);
+    },
+```
+
+provinceIndexChanged实现如下：
+
+```
+    provinceIndexChanged: function(index) {
+            //provinceObjects是一个leanCloud对象，通过遍历得到纯字符串数组
+            // getArea方法是访问网络请求数据，网络访问正常则一个回调function(area){}
+	    this.getArea(this.data.provinceObjects[index].get('aid'), function (area) {
+	    	var array = [];
+			for (var i = 0; i < area.length; i++) {
+				array[i] = area[i].get('name');
+			}
+                        // city就是wxml中渲染要用到的城市数据，cityObjects是LeanCloud对象，用于县级标识取值
+			that.setData({
+				city: array,
+				cityObjects: area
+			});
+	    });
+	},
+```
+
+最后就是将city数据渲染到wxml了
+
+```
+<view wx:for="{{city}}" wx:key="index" data-index="{{index}}" bindtap="cityTapped">{{item}}</view>
+```
+
+效果如下：
+
+![输入图片说明](https://static.oschina.net/uploads/img/201612/27105702_Wu9i.gif "在这里输入图片标题")
+
+
+## 五、高亮列表当前选中省份
+
+目前点击选中的省份没有高亮，不是很醒目，于是加上一个area-selected样式为红色
+
+原来的省份代码修改如下：
+
+```
+							<view wx:for="{{province}}" wx:key="index" data-index="{{index}}" bindtap="provinceTapped">
+								<text wx:if="{{index == provinceIndex}}" class="area-selected">{{item}}</text>
+								<text wx:else>{{item}}</text>
+							</view>
+```
+
+如果数组index下标等于当于provinceIndex，就设定一个area-selected样式。
+
+效果如下：
+
+![效果](https://static.oschina.net/uploads/img/201612/27113234_VEnt.gif "效果")
+
+## 六、美化标题，由请选择显示为当前省份名称
+
+```
+<text class="viewpager-title">{{provinceName}}</text>
+
+    	this.setData({
+    		current: 1,
+    		provinceIndex: index,
+    		provinceName: this.data.province[index]
+    	});
+```
+
+![最终效果](https://static.oschina.net/uploads/img/201612/27114248_fZWd.gif "在这里输入图片标题")
+
 
 对小程序开发有趣的朋友关注公众号: huangxiujie85，QQ群: 581513218，微信: small_application，陆续还将推出更多作品。
 
