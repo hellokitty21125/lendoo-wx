@@ -29,6 +29,9 @@
 	    </view>
 	    <view class="modal-body">
 	    	<text class="viewpager-title">{{provinceName}}</text>
+	    	<text class="viewpager-title">{{cityName}}</text>
+	    	<text class="viewpager-title">{{regionName}}</text>
+	    	<text class="viewpager-title">{{townName}}</text>
 	    	<view class="viewpager-divider"></view>
 			<swiper class="swiper-area" current="{{current}}">
 				<swiper-item>

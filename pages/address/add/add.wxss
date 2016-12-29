@@ -62,7 +62,7 @@ page {
 /*每级地区标题*/
 .viewpager-title {
 	padding: 0 10px;
-	color: #f03118;
+	/*color: #f03118;*/
 	line-height: 30px;
 }
 
