@@ -37,9 +37,12 @@ Page({
 		province: [],
 		city: [],
 		region: [],
+		town: [],
 		provinceObjects: [],
 		cityObjects: [],
 		regionObjects: [],
+		townObjects: [],
+		areaSelectedStr: '请选择省市区',
 		maskVisual: 'hidden',
 		provinceName: '请选择'
 	},
@@ -217,4 +220,19 @@ Page({
 			});
 	    });
     },
+    townTapped: function (e) {
+    	// 标识当前点击镇级，记录其名称与主键id都依赖它
+    	var index = e.currentTarget.dataset.index;
+    	// current为1，使得页面向左滑动一页至市级列表
+    	// provinceIndex是市区数据的标识
+    	this.setData({
+    		townIndex: index,
+    		townName: this.data.town[index]
+    	});
+    	var areaSelectedStr = this.data.provinceName + this.data.cityName + this.data.regionName + this.data.townName;
+    	this.setData({
+    		areaSelectedStr: areaSelectedStr
+    	});
+    	this.cascadeDismiss();
+    }
 })
