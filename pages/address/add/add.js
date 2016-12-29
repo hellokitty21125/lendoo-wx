@@ -201,7 +201,6 @@ Page({
     	// current为1，使得页面向左滑动一页至市级列表
     	// regionIndex是县级数据的标识
     	this.setData({
-    		current: 3,
     		regionIndex: index,
     		regionName: this.data.region[index]
     	});
@@ -225,6 +224,7 @@ Page({
 			}
 			// region就是wxml中渲染要用到的城市数据，regionObjects是LeanCloud对象，用于县级标识取值
 			that.setData({
+	    		current: 3,
 				town: array,
 				townObjects: area
 			});
