@@ -55,6 +55,14 @@
 						</view>
 					</scroll-view>
 				</swiper-item>
+				<swiper-item>
+					<scroll-view scroll-y="true" class="viewpager-listview">
+						<view wx:for="{{town}}" wx:key="index" data-index="{{index}}" bindtap="townTapped">
+							<text wx:if="{{index == townIndex}}" class="area-selected">{{item}}</text>
+							<text wx:else>{{item}}</text>
+						</view>
+					</scroll-view>
+				</swiper-item>
 			</swiper>
 	    </view>
 	</view>
