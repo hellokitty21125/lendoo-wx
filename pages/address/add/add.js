@@ -209,6 +209,16 @@ Page({
     	//townObjects是一个LeanCloud对象，通过遍历得到纯字符串数组
     	// getArea方法是访问网络请求数据，网络访问正常则一个回调function(area){}
 	    this.getArea(this.data.regionObjects[index].get('aid'), function (area) {
+			// 假如没有镇一级了，关闭悬浮框，并显示地址
+			if (area.length == 0) {
+				console.log(area);
+				var areaSelectedStr = that.data.provinceName + that.data.cityName + that.data.regionName;
+		    	that.setData({
+		    		areaSelectedStr: areaSelectedStr
+		    	});
+		    	that.cascadeDismiss();
+		    	return;
+			}
 	    	var array = [];
 			for (var i = 0; i < area.length; i++) {
 				array[i] = area[i].get('name');
