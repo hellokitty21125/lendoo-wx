@@ -174,7 +174,7 @@ Page({
     	// 标识当前点击县级，记录其名称与主键id都依赖它
     	var index = e.currentTarget.dataset.index;
     	// current为1，使得页面向左滑动一页至市级列表
-    	// provinceIndex是市区数据的标识
+    	// cityIndex是市区数据的标识
     	this.setData({
     		current: 2,
     		cityIndex: index,
@@ -199,7 +199,7 @@ Page({
     	// 标识当前点击镇级，记录其名称与主键id都依赖它
     	var index = e.currentTarget.dataset.index;
     	// current为1，使得页面向左滑动一页至市级列表
-    	// provinceIndex是市区数据的标识
+    	// regionIndex是县级数据的标识
     	this.setData({
     		current: 3,
     		regionIndex: index,
@@ -224,7 +224,7 @@ Page({
     	// 标识当前点击镇级，记录其名称与主键id都依赖它
     	var index = e.currentTarget.dataset.index;
     	// current为1，使得页面向左滑动一页至市级列表
-    	// provinceIndex是市区数据的标识
+    	// townIndex是镇级数据的标识
     	this.setData({
     		townIndex: index,
     		townName: this.data.town[index]
