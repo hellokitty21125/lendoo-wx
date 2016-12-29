@@ -170,4 +170,32 @@ Page({
 			});
 	    });
 	},
+	cityTapped: function(e) {
+    	// 标识当前点击县级，记录省份名称与主键id都依赖它
+    	var index = e.currentTarget.dataset.index;
+    	// current为1，使得页面向左滑动一页至市级列表
+    	// provinceIndex是市区数据的标识
+    	this.setData({
+    		current: 2,
+    		cityIndex: index,
+    		cityName: this.data.city[index]
+    	});
+    	this.cityIndexChanged(index);
+    },
+    cityIndexChanged: function(index) {
+    	var that = this;
+    	//cityObjects是一个LeanCloud对象，通过遍历得到纯字符串数组
+    	// getArea方法是访问网络请求数据，网络访问正常则一个回调function(area){}
+	    this.getArea(this.data.cityObjects[index].get('aid'), function (area) {
+	    	var array = [];
+			for (var i = 0; i < area.length; i++) {
+				array[i] = area[i].get('name');
+			}
+			// region就是wxml中渲染要用到的城市数据，regionObjects是LeanCloud对象，用于县级标识取值
+			that.setData({
+				region: array,
+				regionObjects: area
+			});
+	    });
+	},
 })

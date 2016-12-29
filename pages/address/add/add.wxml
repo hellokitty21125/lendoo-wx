@@ -33,15 +33,26 @@
 			<swiper class="swiper-area" current="{{current}}">
 				<swiper-item>
 					<scroll-view scroll-y="true" class="viewpager-listview">
-							<view wx:for="{{province}}" wx:key="index" data-index="{{index}}" bindtap="provinceTapped">
-								<text wx:if="{{index == provinceIndex}}" class="area-selected">{{item}}</text>
-								<text wx:else>{{item}}</text>
-							</view>
+						<view wx:for="{{province}}" wx:key="index" data-index="{{index}}" bindtap="provinceTapped">
+							<text wx:if="{{index == provinceIndex}}" class="area-selected">{{item}}</text>
+							<text wx:else>{{item}}</text>
+						</view>
 					</scroll-view>
 				</swiper-item>
 				<swiper-item>
 					<scroll-view scroll-y="true" class="viewpager-listview">
-						<view wx:for="{{city}}" wx:key="index" data-index="{{index}}" bindtap="cityTapped">{{item}}</view>
+						<view wx:for="{{city}}" wx:key="index" data-index="{{index}}" bindtap="cityTapped">
+							<text wx:if="{{index == cityIndex}}" class="area-selected">{{item}}</text>
+							<text wx:else>{{item}}</text>
+						</view>
+					</scroll-view>
+				</swiper-item>
+				<swiper-item>
+					<scroll-view scroll-y="true" class="viewpager-listview">
+						<view wx:for="{{region}}" wx:key="index" data-index="{{index}}" bindtap="regionTapped">
+							<text wx:if="{{index == regionIndex}}" class="area-selected">{{item}}</text>
+							<text wx:else>{{item}}</text>
+						</view>
 					</scroll-view>
 				</swiper-item>
 			</swiper>
