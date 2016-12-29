@@ -152,9 +152,6 @@ Page({
     		provinceIndex: index,
     		provinceName: this.data.province[index]
     	});
-    	this.provinceIndexChanged(index);
-    },
-    provinceIndexChanged: function(index) {
     	var that = this;
     	//provinceObjects是一个LeanCloud对象，通过遍历得到纯字符串数组
     	// getArea方法是访问网络请求数据，网络访问正常则一个回调function(area){}
@@ -169,7 +166,7 @@ Page({
 				cityObjects: area
 			});
 	    });
-	},
+    },
 	cityTapped: function(e) {
     	// 标识当前点击县级，记录其名称与主键id都依赖它
     	var index = e.currentTarget.dataset.index;
@@ -180,9 +177,6 @@ Page({
     		cityIndex: index,
     		cityName: this.data.city[index]
     	});
-    	this.cityIndexChanged(index);
-    },
-    cityIndexChanged: function(index) {
     	var that = this;
     	//cityObjects是一个LeanCloud对象，通过遍历得到纯字符串数组
     	// getArea方法是访问网络请求数据，网络访问正常则一个回调function(area){}
@@ -197,7 +191,7 @@ Page({
 				regionObjects: area
 			});
 	    });
-	},
+    },
 	regionTapped: function(e) {
     	// 标识当前点击镇级，记录其名称与主键id都依赖它
     	var index = e.currentTarget.dataset.index;
@@ -208,9 +202,6 @@ Page({
     		regionIndex: index,
     		regionName: this.data.region[index]
     	});
-    	this.regionIndexChanged(index);
-    },
-    regionIndexChanged: function(index) {
     	var that = this;
     	//townObjects是一个LeanCloud对象，通过遍历得到纯字符串数组
     	// getArea方法是访问网络请求数据，网络访问正常则一个回调function(area){}
@@ -225,5 +216,5 @@ Page({
 				townObjects: area
 			});
 	    });
-	},
+    },
 })
