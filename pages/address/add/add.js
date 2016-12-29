@@ -210,7 +210,6 @@ Page({
 	    this.getArea(this.data.regionObjects[index].get('aid'), function (area) {
 			// 假如没有镇一级了，关闭悬浮框，并显示地址
 			if (area.length == 0) {
-				console.log(area);
 				var areaSelectedStr = that.data.provinceName + that.data.cityName + that.data.regionName;
 		    	that.setData({
 		    		areaSelectedStr: areaSelectedStr
@@ -222,7 +221,7 @@ Page({
 			for (var i = 0; i < area.length; i++) {
 				array[i] = area[i].get('name');
 			}
-			// region就是wxml中渲染要用到的城市数据，regionObjects是LeanCloud对象，用于县级标识取值
+			// region就是wxml中渲染要用到的县级数据，regionObjects是LeanCloud对象，用于县级标识取值
 			that.setData({
 	    		current: 3,
 				town: array,
