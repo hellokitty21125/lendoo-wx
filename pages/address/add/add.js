@@ -156,9 +156,9 @@ Page({
 			regionName: '',
 			townName: '',
     		provinceIndex: index,
-			cityIndex: 0,
-			regionIndex: 0,
-			townIndex: 0
+			cityIndex: -1,
+			regionIndex: -1,
+			townIndex: -1
     	});
     	var that = this;
     	//provinceObjects是一个LeanCloud对象，通过遍历得到纯字符串数组
@@ -184,8 +184,8 @@ Page({
     	this.setData({
     		current: 2,
     		cityIndex: index,
-    		regionIndex: 0,
-    		townIndex: 0,
+    		regionIndex: -1,
+    		townIndex: -1,
     		cityName: this.data.city[index],
     		regionName: '',
     		townName: ''
@@ -213,7 +213,7 @@ Page({
     	// regionIndex是县级数据的标识
     	this.setData({
     		regionIndex: index,
-    		townIndex: index,
+    		townIndex: -1,
     		regionName: this.data.region[index],
     		townName: ''
     	});
