@@ -242,5 +242,11 @@ Page({
     		areaSelectedStr: areaSelectedStr
     	});
     	this.cascadeDismiss();
+    },
+    currentChanged: function (e) {
+    	var current = e.detail.current;
+    	this.setData({
+    		current: current
+    	});
     }
 })

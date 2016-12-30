@@ -28,12 +28,16 @@
 	        <text class="modal-close" bindtap="cascadeDismiss">X</text>
 	    </view>
 	    <view class="modal-body">
-	    	<text class="viewpager-title">{{provinceName}}</text>
-	    	<text class="viewpager-title">{{cityName}}</text>
-	    	<text class="viewpager-title">{{regionName}}</text>
-	    	<text class="viewpager-title">{{townName}}</text>
-	    	<view class="viewpager-divider"></view>
-			<swiper class="swiper-area" current="{{current}}">
+    		<text wx:if="{{current == 0}}" class="viewpager-title area-selected">{{provinceName}}</text>
+			<text wx:else class="viewpager-title">{{provinceName}}</text>
+    		<text wx:if="{{current == 1}}" class="viewpager-title area-selected">{{cityName}}</text>
+			<text wx:else class="viewpager-title">{{cityName}}</text>
+    		<text wx:if="{{current == 2}}" class="viewpager-title area-selected">{{regionName}}</text>
+			<text wx:else class="viewpager-title">{{regionName}}</text>
+    		<text wx:if="{{current == 3}}" class="viewpager-title area-selected">{{townName}}</text>
+			<text wx:else class="viewpager-title">{{townName}}</text>
+			<view class="viewpager-divider"></view>
+			<swiper class="swiper-area" current="{{current}}" bindchange="currentChanged">
 				<swiper-item>
 					<scroll-view scroll-y="true" class="viewpager-listview">
 						<view wx:for="{{province}}" wx:key="index" data-index="{{index}}" bindtap="provinceTapped">
