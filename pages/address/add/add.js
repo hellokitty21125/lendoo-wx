@@ -158,7 +158,9 @@ Page({
     		provinceIndex: index,
 			cityIndex: -1,
 			regionIndex: -1,
-			townIndex: -1
+			townIndex: -1,
+			region: [],
+			town: []
     	});
     	var that = this;
     	//provinceObjects是一个LeanCloud对象，通过遍历得到纯字符串数组
@@ -188,7 +190,8 @@ Page({
     		townIndex: -1,
     		cityName: this.data.city[index],
     		regionName: '',
-    		townName: ''
+    		townName: '',
+    		town: []
     	});
     	var that = this;
     	//cityObjects是一个LeanCloud对象，通过遍历得到纯字符串数组
