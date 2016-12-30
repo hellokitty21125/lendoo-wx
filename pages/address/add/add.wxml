@@ -28,14 +28,24 @@
 	        <text class="modal-close" bindtap="cascadeDismiss">X</text>
 	    </view>
 	    <view class="modal-body">
-    		<text wx:if="{{current == 0}}" class="viewpager-title area-selected">{{provinceName}}</text>
-			<text wx:else class="viewpager-title">{{provinceName}}</text>
-    		<text wx:if="{{current == 1}}" class="viewpager-title area-selected">{{cityName}}</text>
-			<text wx:else class="viewpager-title">{{cityName}}</text>
-    		<text wx:if="{{current == 2}}" class="viewpager-title area-selected">{{regionName}}</text>
-			<text wx:else class="viewpager-title">{{regionName}}</text>
-    		<text wx:if="{{current == 3}}" class="viewpager-title area-selected">{{townName}}</text>
-			<text wx:else class="viewpager-title">{{townName}}</text>
+
+	    	<text class="viewpager-title" bindtap="changeCurrent" data-current="0">
+	    		<text wx:if="{{current == 0}}" class="area-selected">{{provinceName}}</text>
+	    		<text wx:else>{{provinceName}}</text>
+	    	</text>
+	    	<text class="viewpager-title" bindtap="changeCurrent" data-current="1">
+	    		<text wx:if="{{current == 1}}" class="area-selected">{{cityName}}</text>
+	    		<text wx:else>{{cityName}}</text>
+	    	</text>
+	    	<text class="viewpager-title" bindtap="changeCurrent" data-current="2">
+	    		<text wx:if="{{current == 2}}" class="area-selected">{{regionName}}</text>
+	    		<text wx:else>{{regionName}}</text>
+	    	</text>
+	    	<text class="viewpager-title" bindtap="changeCurrent" data-current="3">
+	    		<text wx:if="{{current == 3}}" class="area-selected">{{townName}}</text>
+	    		<text wx:else>{{townName}}</text>
+	    	</text>
+
 			<view class="viewpager-divider"></view>
 			<swiper class="swiper-area" current="{{current}}" bindchange="currentChanged">
 				<swiper-item>

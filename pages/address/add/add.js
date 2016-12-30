@@ -247,7 +247,15 @@ Page({
     	this.cascadeDismiss();
     },
     currentChanged: function (e) {
+    	// swiper滚动使得current值被动变化，用于高亮标记
     	var current = e.detail.current;
+    	this.setData({
+    		current: current
+    	});
+    },
+    changeCurrent: function (e) {
+    	// 记录点击的标题所在的区级级别
+    	var current = e.currentTarget.dataset.current;
     	this.setData({
     		current: current
     	});
