@@ -34,6 +34,7 @@ Page({
 		});
 	},
 	data: {
+		current: 0,
 		province: [],
 		city: [],
 		region: [],
