@@ -152,8 +152,13 @@ Page({
     	// provinceIndex是市区数据的标识
     	this.setData({
     		current: 1,
+    		provinceName: this.data.province[index],
+			regionName: '',
+			townName: '',
     		provinceIndex: index,
-    		provinceName: this.data.province[index]
+			cityIndex: 0,
+			regionIndex: 0,
+			townIndex: 0
     	});
     	var that = this;
     	//provinceObjects是一个LeanCloud对象，通过遍历得到纯字符串数组
@@ -179,7 +184,11 @@ Page({
     	this.setData({
     		current: 2,
     		cityIndex: index,
-    		cityName: this.data.city[index]
+    		regionIndex: 0,
+    		townIndex: 0,
+    		cityName: this.data.city[index],
+    		regionName: '',
+    		townName: ''
     	});
     	var that = this;
     	//cityObjects是一个LeanCloud对象，通过遍历得到纯字符串数组
@@ -204,7 +213,9 @@ Page({
     	// regionIndex是县级数据的标识
     	this.setData({
     		regionIndex: index,
-    		regionName: this.data.region[index]
+    		townIndex: index,
+    		regionName: this.data.region[index],
+    		townName: ''
     	});
     	var that = this;
     	//townObjects是一个LeanCloud对象，通过遍历得到纯字符串数组
