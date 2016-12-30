@@ -165,6 +165,7 @@ Page({
 			}
 			// city就是wxml中渲染要用到的城市数据，cityObjects是LeanCloud对象，用于县级标识取值
 			that.setData({
+				cityName: '请选择',
 				city: array,
 				cityObjects: area
 			});
@@ -190,6 +191,7 @@ Page({
 			}
 			// region就是wxml中渲染要用到的城市数据，regionObjects是LeanCloud对象，用于县级标识取值
 			that.setData({
+				regionName: '请选择',
 				region: array,
 				regionObjects: area
 			});
@@ -224,6 +226,7 @@ Page({
 			// region就是wxml中渲染要用到的县级数据，regionObjects是LeanCloud对象，用于县级标识取值
 			that.setData({
 	    		current: 3,
+	    		townName: '请选择',
 				town: array,
 				townObjects: area
 			});
