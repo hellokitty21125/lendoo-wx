@@ -152,7 +152,6 @@ Page({
     	// current为1，使得页面向左滑动一页至市级列表
     	// provinceIndex是市区数据的标识
     	this.setData({
-    		current: 1,
     		provinceName: this.data.province[index],
 			regionName: '',
 			townName: '',
@@ -177,6 +176,10 @@ Page({
 				city: array,
 				cityObjects: area
 			});
+			// 确保生成了数组数据再移动swiper
+			that.setData({
+	    		current: 1
+			});
 	    });
     },
 	cityTapped: function(e) {
@@ -185,7 +188,6 @@ Page({
     	// current为1，使得页面向左滑动一页至市级列表
     	// cityIndex是市区数据的标识
     	this.setData({
-    		current: 2,
     		cityIndex: index,
     		regionIndex: -1,
     		townIndex: -1,
@@ -207,6 +209,10 @@ Page({
 				regionName: '请选择',
 				region: array,
 				regionObjects: area
+			});
+			// 确保生成了数组数据再移动swiper
+			that.setData({
+	    		current: 2
 			});
 	    });
     },
@@ -240,10 +246,13 @@ Page({
 			}
 			// region就是wxml中渲染要用到的县级数据，regionObjects是LeanCloud对象，用于县级标识取值
 			that.setData({
-	    		current: 3,
 	    		townName: '请选择',
 				town: array,
 				townObjects: area
+			});
+			// 确保生成了数组数据再移动swiper
+			that.setData({
+	    		current: 3
 			});
 	    });
     },
