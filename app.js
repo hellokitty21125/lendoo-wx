@@ -1,5 +1,6 @@
 // 初始化AV
-const AV = require('./utils/av-weapp.js')
+const AV = require('./utils/av-weapp.js');
+var md5 = require('./utils/md5.js');
 const appId = "SgHcsYqoLaFTG0XDMD3Gtm0I-gzGzoHsz";
 const appKey = "xdv2nwjUK5waNglFoFXkQcxP";
 
@@ -15,8 +16,6 @@ App({
         var that = this;
         AV.User.loginWithWeapp();
         
-        var user = AV.User.current();
-        // console.log(user.get('username'));
 		wx.login({
 	      success: function(res) {
 	        if (res.code) {
@@ -27,7 +26,51 @@ App({
 	              code: res.code
 	            },
 	            success: function (response) {
-	            	console.log(response);
+	            	// 获取openId
+	            	var openId = response.data.openid;
+	            	console.log(openId);
+	            	// TODO 缓存 openId
+	            	//统一下单接口对接
+	            	wx.request({
+	            		url: 'https://lendoo.leanapp.cn/index.php/WXPay',
+	            		data: {
+	            			openId: openId
+	            		},
+	            		method: 'POST',
+	            		success: function (response) {
+	            			console.log('pay:');
+	            			console.log(response);
+			            	// 发起支付
+			            	var appId = 'wx9114b997bd86f8ed';
+			            	// var appId = response.data.appid;
+			            	var timeStamp = (Date.parse(new Date()) / 1000).toString();
+			            	var pkg = 'prepay_id=' + 'wx2017010310144508a4f7b72b0255261470';
+			            	var nonceStr = 'MauUXdes5ni9wjis';
+			            	// var pkg = 'prepay_id=' + response.data.prepay_id;
+			            	// var nonceStr = response.data.nonce_str;
+			            	console.log('appId='+appId+'&nonceStr='+nonceStr+'&package='+pkg+'&signType=MD5&timeStamp='+timeStamp);
+			            	var paySign = md5.hex_md5('appId='+appId+'&nonceStr='+nonceStr+'&package='+pkg+'&signType=MD5&timeStamp='+timeStamp+"&key=d27551c7803cf16015e536b192d5d03b").toUpperCase();
+			            	console.log(paySign);
+			            	console.log(appId);
+			            	wx.requestPayment({
+								'timeStamp': timeStamp,
+								'nonceStr': nonceStr,
+								'package': pkg,
+								'signType': 'MD5',
+								'paySign': paySign,
+								'success':function(res){
+									console.log('success');
+									console.log(res);
+								},
+								'fail':function(res){
+									console.log('error');
+									console.log(res);
+								}
+							});
+
+	            		}
+	            	});
+
 	            }
 	          })
 	        } else {
