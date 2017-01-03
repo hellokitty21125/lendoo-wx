@@ -38,7 +38,7 @@ App({
 	            		},
 	            		method: 'POST',
 	            		header: {
-						    'content-type': 'application/json'
+						    'content-type': 'application/x-www-form-urlencoded'
 						},
 	            		success: function (response) {
 	            			console.log(response);
