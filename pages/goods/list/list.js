@@ -102,5 +102,8 @@ Page({
 		  title: '加载中',
 		  icon: 'loading'
 		})
+	},
+	onPullDownRefresh: function () {
+		this.getGoods(this.category, 0);
 	}
 });
