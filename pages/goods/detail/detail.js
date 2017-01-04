@@ -72,5 +72,11 @@ Page({
 			url: '../../../../../../cart/cart'
 		});
 
+	},
+	previewImage: function () {
+		wx.previewImage({
+			current: '', // 当前显示图片的http链接
+			urls: this.data.goods.get('images') // 需要预览的图片http链接列表
+		})
 	}
 });
