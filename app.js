@@ -15,7 +15,7 @@ App({
         // auto login via SDK
         var that = this;
         AV.User.loginWithWeapp();
-        
+        /*暂时注释，先去实现商品列表上拉加载
 		wx.login({
 	      success: function(res) {
 	        if (res.code) {
@@ -76,7 +76,7 @@ App({
 	        }
 	      }
 	    });
-
+	*/
 
 
     }

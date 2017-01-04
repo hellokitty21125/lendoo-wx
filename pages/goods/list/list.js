@@ -22,16 +22,25 @@ Page({
 		var categoryId = options.categoryId;
 		// 生成Category对象
         var category = AV.Object.createWithoutData('Category', categoryId);
-        this.getGoods(category);
+        this.category = category;
+        this.getGoods(category, 0);
 	},
-	getGoods: function(category){
+	getGoods: function(category, pageIndex){
+		var pageSize = 7;
 		var that = this;
         var query = new AV.Query('Goods');
         // 查询顶级分类，设定查询条件parent为null
         query.equalTo('category',category);
+        // 分页查询
+        query.limit(pageSize);// 最多返回 10 条结果
+		query.skip(pageIndex * pageSize);// 跳过 20 条结果
         query.find().then(function (goods) {
+        	// 让goods结果集迭加
+        	var originGoods = that.data.goods;
+        	// 如果初始有值，就合并；否则就是新数据集本身
+        	var newGoods = originGoods.length > 0 ? originGoods.concat(goods) : goods;
             that.setData({
-                goods: goods
+                goods: newGoods
             });
         }).catch(function(error) {
         });
@@ -84,5 +93,8 @@ Page({
 		this.setData({
 			subMenuHighLight: initSubMenuHighLight
 		});
+	},
+	onReachBottom: function () {
+		this.getGoods(this.category, 1);
 	}
 });
