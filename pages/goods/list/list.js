@@ -35,6 +35,8 @@ Page({
         query.limit(pageSize);// 最多返回 10 条结果
 		query.skip(pageIndex * pageSize);// 跳过 20 条结果
         query.find().then(function (goods) {
+        	// 关闭loading提示框
+        	wx.hideToast();
         	// 让goods结果集迭加
         	var originGoods = that.data.goods;
         	// 如果初始有值，就合并；否则就是新数据集本身
@@ -96,5 +98,9 @@ Page({
 	},
 	onReachBottom: function () {
 		this.getGoods(this.category, 1);
+		wx.showToast({
+		  title: '加载中',
+		  icon: 'loading'
+		})
 	}
 });
