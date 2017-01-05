@@ -15,7 +15,6 @@ App({
         // auto login via SDK
         var that = this;
         AV.User.loginWithWeapp();
-        /*暂时注释，先去实现商品列表上拉加载
 		wx.login({
 	      success: function(res) {
 	        if (res.code) {
@@ -41,31 +40,18 @@ App({
 						    'content-type': 'application/x-www-form-urlencoded'
 						},
 	            		success: function (response) {
-	            			console.log(response);
 			            	// 发起支付
-			            	// var appId = 'wx9114b997bd86f8ed';
-			            	var appId = response.data.appid;
-			            	var timeStamp = (Date.parse(new Date()) / 1000).toString();
-			            	// var pkg = 'prepay_id=' + 'wx2017010310144508a4f7b72b0255261470';
-			            	// var nonceStr = 'MauUXdes5ni9wjis';
-			            	var pkg = 'prepay_id=' + response.data.prepay_id;
-			            	var nonceStr = response.data.nonce_str;
-			            	console.log('appId='+appId+'&nonceStr='+nonceStr+'&package='+pkg+'&signType=MD5&timeStamp='+timeStamp);
-			            	var paySign = md5.hex_md5('appId='+appId+'&nonceStr='+nonceStr+'&package='+pkg+'&signType=MD5&timeStamp='+timeStamp+"&key=d27551c7803cf16015e536b192d5d03b").toUpperCase();
-			            	console.log(paySign);
-			            	console.log(appId);
 			            	wx.requestPayment({
-								'timeStamp': timeStamp,
-								'nonceStr': nonceStr,
-								'package': pkg,
+								'timeStamp': response.data.timeStamp,
+								'nonceStr': response.data.nonceStr,
+								'package': response.data.package,
 								'signType': 'MD5',
-								'paySign': paySign,
+								'paySign': response.data.paySign,
 								'success':function(res){
 									console.log('success');
 									console.log(res);
 								}
 							});
-
 	            		}
 	            	});
 
@@ -76,7 +62,6 @@ App({
 	        }
 	      }
 	    });
-	*/
 
 
     }
