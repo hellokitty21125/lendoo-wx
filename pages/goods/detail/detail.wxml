@@ -1,8 +1,8 @@
 <swiper class="images" indicator-dots="true"
-  autoplay="true" interval="5000" duration="1000" style="height:200px;" bindtap="previewImage" current="{{current}}" bindchange="bindchange">
+  autoplay="true" interval="5000" duration="1000" style="height:200px;">
   <block wx:for="{{goods.images}}" wx:key="">
     <swiper-item>
-      <image src="{{item}}" mode="aspectFill" class="swiper-image"/>
+      <image src="{{item}}" mode="aspectFill" class="swiper-image" bindtap="previewImage" data-current="{{index}}"/>
     </swiper-item>
   </block>
 </swiper>

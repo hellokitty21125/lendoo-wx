@@ -74,17 +74,11 @@ Page({
 		});
 
 	},
-	previewImage: function () {
+	previewImage: function (e) {
 		wx.previewImage({
-			//从页面data中取出current，得到String类型的url路径
-			current: this.data.goods.get('images')[this.data.current],
+			//从<image>的data-current取到current，得到String类型的url路径
+			current: this.data.goods.get('images')[parseInt(e.currentTarget.dataset.current)],
 			urls: this.data.goods.get('images') // 需要预览的图片http链接列表
 		})
-	},
-	bindchange: function (e) {
-		//左右滑动swiper存下当前所在页面的 index
-		this.setData({
-			current: e.detail.current
-		});
 	}
 });
