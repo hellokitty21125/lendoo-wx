@@ -16,8 +16,6 @@ Page({
         // 生成商品对象
 		query.get(goodsId).then(function (goods) {
 			// console.log(goods);
-			// 遍历商品的图片
-			that.getDetailImageHeight(goods.get('detail'));
 			that.setData({
 				goods: goods
 			});
@@ -26,19 +24,14 @@ Page({
 		// 异常处理
 		});
 	},
-	getDetailImageHeight: function (imagesUrl) {
-		var that = this;
-		var detailImagesHeight = [];
-		for (var i = 0; i < imagesUrl.length; i++) {
-			wx.getImageInfo({
-				src: imagesUrl[i],
-				success: function (res) {
-					detailImagesHeight[i] = res.height;
-					// console.log(res.height);
-				}
-			});
-		}
-		that.setData({
+	bindImageLoad: function (e) {
+		// 取出当前图片的下标
+		var index = parseInt(e.currentTarget.dataset.index);
+		// 先读取本地detailImagesHeight原值
+		var detailImagesHeight = this.data.detailImagesHeight;
+		// 相当地存入对应图片的高度
+		detailImagesHeight[index] = getApp().screenWidth / (e.detail.width / e.detail.height);
+		this.setData({
 			detailImagesHeight: detailImagesHeight
 		});
 	},
