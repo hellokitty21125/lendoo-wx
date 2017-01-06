@@ -2,7 +2,9 @@ const AV = require('../../../utils/av-weapp.js')
 Page({
 	data: {
 		goods: {},
-		current: 0
+		current: 0,
+		galleryHeight: getApp().screenWidth,
+		detailImagesHeight: []
 	},
 	onLoad: function(options) {
 		var goodsId = options.objectId;
@@ -14,12 +16,30 @@ Page({
         // 生成商品对象
 		query.get(goodsId).then(function (goods) {
 			// console.log(goods);
+			// 遍历商品的图片
+			that.getDetailImageHeight(goods.get('detail'));
 			that.setData({
 				goods: goods
 			});
 		// 成功获得实例
 		}, function (error) {
 		// 异常处理
+		});
+	},
+	getDetailImageHeight: function (imagesUrl) {
+		var that = this;
+		var detailImagesHeight = [];
+		for (var i = 0; i < imagesUrl.length; i++) {
+			wx.getImageInfo({
+				src: imagesUrl[i],
+				success: function (res) {
+					detailImagesHeight[i] = res.height;
+					// console.log(res.height);
+				}
+			});
+		}
+		that.setData({
+			detailImagesHeight: detailImagesHeight
 		});
 	},
 	addCart: function() {

@@ -1,5 +1,5 @@
 <swiper class="images" indicator-dots="true"
-  autoplay="true" interval="5000" duration="1000" style="height:200px;">
+  autoplay="true" interval="5000" duration="1000" style="height:{{galleryHeight}}px;">
   <block wx:for="{{goods.images}}" wx:key="">
     <swiper-item>
       <image src="{{item}}" mode="aspectFill" class="swiper-image" bindtap="previewImage" data-current="{{index}}"/>
@@ -11,7 +11,7 @@
 	<text class="price">￥ {{goods.price}}</text>
 </view>
 <view class="detail">
-	<image wx:for="{{goods.detail}}" src="{{item}}" wx:key="" mode="aspectFill"></image>
+	<image wx:for="{{goods.detail}}" src="{{item}}" wx:key="" mode="aspectFill" style="{{detailImagesHeight[index]}}"></image>
 </view>
 <view class="footer">
   <view class="favor">

@@ -9,6 +9,7 @@ page {
 
 .swiper-image {
 	width: 100%;
+	height: 100%;
 }
 
 /*contains title & price*/
@@ -35,7 +36,6 @@ page {
 
 .detail image{
 	width: 100%;
-	height: 300rpx;
 }
 
 .footer {
