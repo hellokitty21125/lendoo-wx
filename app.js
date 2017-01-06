@@ -41,17 +41,17 @@ App({
 						},
 	            		success: function (response) {
 			            	// 发起支付
-			            	wx.requestPayment({
-								'timeStamp': response.data.timeStamp,
-								'nonceStr': response.data.nonceStr,
-								'package': response.data.package,
-								'signType': 'MD5',
-								'paySign': response.data.paySign,
-								'success':function(res){
-									console.log('success');
-									console.log(res);
-								}
-							});
+							// wx.requestPayment({
+							// 	'timeStamp': response.data.timeStamp,
+							// 	'nonceStr': response.data.nonceStr,
+							// 	'package': response.data.package,
+							// 	'signType': 'MD5',
+							// 	'paySign': response.data.paySign,
+							// 	'success':function(res){
+							// 		console.log('success');
+							// 		console.log(res);
+							// 	}
+							// });
 	            		}
 	            	});
 
@@ -63,6 +63,12 @@ App({
 	      }
 	    });
 
-
+		// 设备信息
+		wx.getSystemInfo({
+			success: function(res) {
+				that.screenWidth = res.windowWidth;
+				that.pixelRatio = res.pixelRatio;
+			}
+		});
     }
 })

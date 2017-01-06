@@ -2,7 +2,8 @@ const AV = require('../../utils/av-weapp.js')
 Page({
 	data: {
 		banner: [],
-		goods: []
+		goods: [],
+		bannerHeight: Math.ceil(290.0 / 750.0 * getApp().screenWidth)
 	},
 	onLoad: function () {
 		this.loadBanner();
