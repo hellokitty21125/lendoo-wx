@@ -11,7 +11,7 @@
 	<text class="price">￥ {{goods.price}}</text>
 </view>
 <view class="detail">
-	<image wx:for="{{goods.detail}}" src="{{item}}" wx:key="" mode="" bindload="bindImageLoad" data-index="{{index}}" style="height: {{detailImagesHeight[index]}}px;"></image>
+	<image wx:for="{{goods.detail}}" src="{{item}}" wx:key="" mode="widthFix"></image>
 </view>
 <view class="footer">
   <view class="favor">

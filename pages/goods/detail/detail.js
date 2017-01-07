@@ -24,17 +24,6 @@ Page({
 		// 异常处理
 		});
 	},
-	bindImageLoad: function (e) {
-		// 取出当前图片的下标
-		var index = parseInt(e.currentTarget.dataset.index);
-		// 先读取本地detailImagesHeight原值
-		var detailImagesHeight = this.data.detailImagesHeight;
-		// 相当地存入对应图片的高度
-		detailImagesHeight[index] = getApp().screenWidth / (e.detail.width / e.detail.height);
-		this.setData({
-			detailImagesHeight: detailImagesHeight
-		});
-	},
 	addCart: function() {
 		var that = this;
 		// add cart
