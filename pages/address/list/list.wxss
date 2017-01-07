@@ -47,7 +47,7 @@ page {
 
 /*地址列表包装容器*/
 .address-list {
-	margin-bottom: 46px;
+	margin-bottom: 56px;
 }
 
 /*添加地址按钮*/
