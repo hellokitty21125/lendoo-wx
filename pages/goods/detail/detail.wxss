@@ -34,6 +34,11 @@ page {
 	margin: 10rpx;
 }
 
+/*详情图片底部边距*/
+.detail {
+	margin-bottom: 50px;
+}
+
 .detail image{
 	width: 100%;
 }
