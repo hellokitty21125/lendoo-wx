@@ -44,3 +44,15 @@ page {
 	width: 60rpx;
 	height: 60rpx;
 }
+
+/*地址列表包装容器*/
+.address-list {
+	margin-bottom: 46px;
+}
+
+/*添加地址按钮*/
+.address-add {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}

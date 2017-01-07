@@ -5,7 +5,7 @@ Page({
 			url: '../add/add'
 		});
 	},
-	onLoad: function () {
+	onShow: function () {
 		var that = this;
 		var query = new AV.Query('Address');
 		query.equalTo('user', AV.User.current());

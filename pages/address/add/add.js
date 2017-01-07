@@ -58,45 +58,6 @@ Page({
 			
 		});
 	},
-	bindProvincePickerChange: function(e) {
-		var that = this;
-		// load city
-	    this.setData({
-	    	provinceIndex: e.detail.value
-	    })
-	    this.getArea(this.data.provinceObjects[e.detail.value].get('aid'), function (area) {
-	    	var array = [];
-			for (var i = 0; i < area.length; i++) {
-				array[i] = area[i].get('name');
-			}
-			that.setData({
-				city: array,
-				cityObjects: area
-			});
-	    });
-	},
-	bindCityPickerChange: function(e) {
-		var that = this;
-		// load city
-	    this.setData({
-	    	cityIndex: e.detail.value
-	    })
-	    this.getArea(this.data.cityObjects[e.detail.value].get('aid'), function (area) {
-	    	var array = [];
-			for (var i = 0; i < area.length; i++) {
-				array[i] = area[i].get('name');
-			}
-			that.setData({
-				region: array,
-				regionObjects: area
-			});
-	    });
-	},
-	bindRegionPickerChange: function(e) {
-	    this.setData({
-	    	regionIndex: e.detail.value
-	    })
-	},
 	onLoad: function () {
 		var that = this;
 		// load province

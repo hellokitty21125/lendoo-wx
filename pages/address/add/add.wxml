@@ -1,19 +1,4 @@
 <form bindsubmit="formSubmit">
-	<picker bindchange="bindProvincePickerChange" value="{{index}}" range="{{province}}">
-		<view class="picker">
-			省：{{province[provinceIndex]}}
-		</view>
-	</picker>
-	<picker bindchange="bindCityPickerChange" value="{{index}}" range="{{city}}">
-		<view class="picker">
-			市：{{city[cityIndex]}}
-		</view>
-	</picker>
-	<picker bindchange="bindRegionPickerChange" value="{{index}}" range="{{region}}">
-		<view class="picker">
-			区/县：{{region[regionIndex]}}
-		</view>
-	</picker>
     <text bindtap="cascadePopup" class="area_select">{{areaSelectedStr}}</text>
 	<input name="detail" placeholder="详情地址" />
 	<input name="realname" placeholder="收件人姓名" />
