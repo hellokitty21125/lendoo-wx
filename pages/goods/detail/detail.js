@@ -3,8 +3,7 @@ Page({
 	data: {
 		goods: {},
 		current: 0,
-		galleryHeight: getApp().screenWidth,
-		detailImagesHeight: []
+		galleryHeight: getApp().screenWidth
 	},
 	onLoad: function(options) {
 		var goodsId = options.objectId;
