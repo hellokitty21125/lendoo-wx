@@ -5,9 +5,14 @@ Page({
 		goods: [],
 		bannerHeight: Math.ceil(290.0 / 750.0 * getApp().screenWidth)
 	},
-	onLoad: function () {
+	onLoad: function (options) {
 		this.loadBanner();
 		this.loadMainGoods();
+		this.getInviteCode(options);
+	},
+	function (options) {
+		var inviteCode = options.inviteCode;
+		console.log('inviteCode: ' + inviteCode);
 	},
 	loadBanner: function () {
 		var that = this;
@@ -54,7 +59,7 @@ Page({
         return {
           title: '灵动开源电商系统',
           desc: '一个基于LeanCloud开发的开源电商系统',
-          path: '/pages/index/index'
+          path: '/pages/index/index?inviteCode=123'
         }
     }
 })
