@@ -27,7 +27,6 @@ App({
 	            success: function (response) {
 	            	// 获取openId
 	            	var openId = response.data.openid;
-	            	console.log(openId);
 	            	// TODO 缓存 openId
 	            	//统一下单接口对接
 	            	wx.request({

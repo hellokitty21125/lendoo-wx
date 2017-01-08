@@ -10,9 +10,14 @@ Page({
 		this.loadMainGoods();
 		this.getInviteCode(options);
 	},
-	function (options) {
-		var inviteCode = options.inviteCode;
-		console.log('inviteCode: ' + inviteCode);
+	getInviteCode: function (options) {
+		if (options.uid != undefined) {
+			wx.showToast({
+			  title: '来自用户:' + options.uid + '的分享',
+			  icon: 'success',
+			  duration: 2000
+			})
+		}
 	},
 	loadBanner: function () {
 		var that = this;
@@ -59,7 +64,7 @@ Page({
         return {
           title: '灵动开源电商系统',
           desc: '一个基于LeanCloud开发的开源电商系统',
-          path: '/pages/index/index?inviteCode=123'
+          path: '/pages/index/index?uid=4719784'
         }
     }
 })

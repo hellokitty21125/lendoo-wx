@@ -20,4 +20,8 @@
 	<image src="../../../images/icon_address.png" />
 	<text>收货地址</text>
 </view>
+<view bindtap="navigateToAddressAboutus" class="tableviewcell">
+	<image src="../../../images/icon_address.png" />
+	<text>关于我们</text>
+</view>
 <button bindtap="logout" type="warn" class="logout">退出</button>

@@ -1,0 +1,6 @@
+.desc {
+	padding: 20px;
+	margin: 20px;
+	line-height: 40px;
+	color: #333;
+}

@@ -57,5 +57,10 @@ Page({
 				).catch(console.error);
 			}
 		})
+	},
+	navigateToAddressAboutus: function () {
+		wx.navigateTo({
+			url: '/pages/member/aboutus/aboutus'
+		});
 	}
 })
