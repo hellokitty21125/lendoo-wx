@@ -14,22 +14,10 @@
 	    </view>
 	    <view class="modal-body">
 
-	    	<text class="viewpager-title" bindtap="changeCurrent" data-current="0">
-	    		<text wx:if="{{current == 0}}" class="area-selected">{{provinceName}}</text>
-	    		<text wx:else>{{provinceName}}</text>
-	    	</text>
-	    	<text class="viewpager-title" bindtap="changeCurrent" data-current="1">
-	    		<text wx:if="{{current == 1}}" class="area-selected">{{cityName}}</text>
-	    		<text wx:else>{{cityName}}</text>
-	    	</text>
-	    	<text class="viewpager-title" bindtap="changeCurrent" data-current="2">
-	    		<text wx:if="{{current == 2}}" class="area-selected">{{regionName}}</text>
-	    		<text wx:else>{{regionName}}</text>
-	    	</text>
-	    	<text class="viewpager-title" bindtap="changeCurrent" data-current="3">
-	    		<text wx:if="{{current == 3}}" class="area-selected">{{townName}}</text>
-	    		<text wx:else>{{townName}}</text>
-	    	</text>
+	    	<text class="viewpager-title {{current == 0 ? 'area-selected' : ''}}" bindtap="changeCurrent" data-current="0">{{provinceName}}</text>
+	    	<text class="viewpager-title {{current == 1 ? 'area-selected' : ''}}" bindtap="changeCurrent" data-current="1">{{cityName}}</text>
+	    	<text class="viewpager-title {{current == 2 ? 'area-selected' : ''}}" bindtap="changeCurrent" data-current="2">{{regionName}}</text>
+	    	<text class="viewpager-title {{current == 3 ? 'area-selected' : ''}}" bindtap="changeCurrent" data-current="3">{{townName}}</text>
 
 			<view class="viewpager-divider"></view>
 			<swiper class="swiper-area" current="{{current}}" bindchange="currentChanged">
