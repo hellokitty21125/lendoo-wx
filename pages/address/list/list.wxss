@@ -9,11 +9,11 @@ page {
 	background: #fff;
 	padding: 20rpx;
 }
-
+/*姓名与手机号码*/
 .item .header {
-	font-size: 42rpx;
+	font-size: 36rpx;
 	color: #333;
-	line-height: 86rpx;
+	line-height: 72rpx;
 }
 
 .item .header text {
@@ -22,8 +22,8 @@ page {
 
 .item .summary {
 	color: #999;
-	font-size: 38rpx;
-	line-height: 70rpx;
+	font-size: 32rpx;
+	line-height: 60rpx;
 }
 
 .item .footer {
@@ -31,18 +31,36 @@ page {
 	font-size: 30rpx;
 	color: #999;
 	padding-left: 10rpx;
+	padding-top: 10rpx;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 }
 
+/*设为默认地址*/
+.set-default {
+	display: flex;
+	align-items: center;
+}
+
+.set-default text {
+	margin-left: 10rpx;
+}
+
+/*编辑与删除操作*/
 .item .footer .operation {
-	width: 250rpx;
+	width: 280rpx;
+	display: flex;
+	align-items: center;
 }
 
 .item .footer .operation image {
 	width: 60rpx;
 	height: 60rpx;
+}
+
+.item .footer .operation text {
+	margin-left: 10rpx;
 }
 
 /*地址列表包装容器*/

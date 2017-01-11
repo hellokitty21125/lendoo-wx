@@ -10,7 +10,7 @@
 		<!-- third row -->
 		<view class="footer">
 			<!-- is default switch -->
-			<view>
+			<view class="set-default">
 				<!-- circle or success type -->
 				<icon type="circle"/>
 				<text>默认地址</text>
