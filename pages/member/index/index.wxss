@@ -29,6 +29,8 @@ page {
 	border-bottom: 1rpx solid #ddd;
 	color: #666;
 	background: white;
+	display: flex;
+	align-items: center;
 }
 
 /*icon*/
@@ -39,7 +41,6 @@ page {
 
 /*text*/
 .tableviewcell text {
-	line-height:40rpx;
 }
 
 /*button*/
