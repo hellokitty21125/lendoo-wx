@@ -12,7 +12,7 @@
 			<!-- is default switch -->
 			<view class="set-default">
 				<!-- circle or success type -->
-				<icon type="circle"/>
+				<icon type="{{item.isDefault == true ? 'success_circle' : 'circle'}}"/>
 				<text>默认地址</text>
 			</view>
 			<!-- edit and delete button -->

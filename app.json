@@ -1,8 +1,9 @@
 {
     "pages":[
+        "pages/address/list/list",
+        "pages/address/add/add",
         "pages/member/index/index",
         "pages/index/index",
-        "pages/address/add/add",
         "pages/member/aboutus/aboutus",
         "pages/category/category",
         "pages/cart/cart",
@@ -10,8 +11,7 @@
         "pages/goods/detail/detail",
         "pages/order/checkout/checkout",
         "pages/order/payment/payment",
-        "pages/order/list/list",
-        "pages/address/list/list"
+        "pages/order/list/list"
     ],
     "window": {
         "navigationBarBackgroundColor": "#48C23D",
