@@ -10,7 +10,7 @@
 		<!-- third row -->
 		<view class="footer">
 			<!-- is default switch -->
-			<view class="set-default">
+			<view class="set-default" data-index="{{index}}" bindtap="setDefault">
 				<!-- circle or success type -->
 				<icon type="{{item.isDefault == true ? 'success_circle' : 'circle'}}"/>
 				<text>默认地址</text>

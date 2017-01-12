@@ -8,6 +8,33 @@ Page({
 	onShow: function () {
 		this.loadData();
 	},
+	setDefault: function (e) {
+		// 设置为默认地址
+		var that = this;
+		// 取得下标
+		var index = parseInt(e.currentTarget.dataset.index);
+		// 遍历所有地址对象设为非默认
+		var addressObjects = that.data.addressObjects;
+		for (var i = 0; i < addressObjects.length; i++) {
+			// 判断是否为当前地址，是则传true
+			addressObjects[i].set('isDefault', i == index)
+		}
+		// 提交网络更新该用户所有的地址
+		AV.Object.saveAll(addressObjects).then(function (addressObjects) {
+		    // 成功同时更新本地数据源
+		    that.setData({
+		    	addressObjects: addressObjects
+		    });
+		    // 设置成功提示
+		    wx.showToast({
+  				title: '设置成功',
+  				icon: 'success',
+  				duration: 2000
+  			});
+		}, function (error) {
+		    // 异常处理
+		});
+	},
 	delete: function (e) {
 		var that = this;
 		// 取得下标
