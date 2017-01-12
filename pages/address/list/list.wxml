@@ -17,7 +17,7 @@
 			</view>
 			<!-- edit and delete button -->
 			<view class="operation">
-				<view class="container" data-index="{{index}}" bindtap="delete"><image src="../../../images/icon_edit.png" /><text>编辑</text></view>
+				<view class="container" data-index="{{index}}" bindtap="edit"><image src="../../../images/icon_edit.png" /><text>编辑</text></view>
 				<view class="container" data-index="{{index}}" bindtap="delete"><image src="../../../images/icon_delete.png" /><text>删除</text></view>
 			</view>
 		</view>

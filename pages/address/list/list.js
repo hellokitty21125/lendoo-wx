@@ -35,6 +35,14 @@ Page({
 		    // 异常处理
 		});
 	},
+	edit: function (e) {
+		var that = this;
+		// 取得下标
+		var index = parseInt(e.currentTarget.dataset.index);
+		wx.navigateTo({
+			url: '../edit/edit'
+		});
+	},
 	delete: function (e) {
 		var that = this;
 		// 取得下标

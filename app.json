@@ -3,6 +3,7 @@
         "pages/address/list/list",
         "pages/index/index",
         "pages/address/add/add",
+        "pages/address/edit/edit",
         "pages/member/index/index",
         "pages/member/aboutus/aboutus",
         "pages/category/category",
