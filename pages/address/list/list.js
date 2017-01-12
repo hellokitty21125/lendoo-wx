@@ -39,8 +39,10 @@ Page({
 		var that = this;
 		// 取得下标
 		var index = parseInt(e.currentTarget.dataset.index);
+		// 取出id值
+		var objectId = this.data.addressObjects[index].get('objectId');
 		wx.navigateTo({
-			url: '../edit/edit'
+			url: '../add/add?objectId='+objectId
 		});
 	},
 	delete: function (e) {
