@@ -51,15 +51,19 @@ page {
 .item .footer .operation {
 	width: 280rpx;
 	display: flex;
+}
+
+.item .footer .operation .container {
+	display: flex;
 	align-items: center;
 }
 
-.item .footer .operation image {
+.item .footer .operation .container image {
 	width: 60rpx;
 	height: 60rpx;
 }
 
-.item .footer .operation text {
+.item .footer .operation .container text {
 	margin-left: 10rpx;
 }
 

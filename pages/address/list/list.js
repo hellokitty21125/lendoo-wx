@@ -14,5 +14,9 @@ Page({
 				address: addressObjects
 			});
 		});
+	},
+	delete: function (e) {
+		var index = parseInt(e.currentTarget.dataset.index);
+		console.log("index: " + index);
 	}
 })
