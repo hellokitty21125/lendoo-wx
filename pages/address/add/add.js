@@ -12,6 +12,10 @@ Page({
 		var mobile = e.detail.value.mobile;
 		// save address to leanCloud
 		var address = new AV.Object('Address');
+		// 如果是编辑地址而不是新增
+		if (this.data.address != undefined) {
+			address = this.data.address;
+		}
 		// if isDefault address
 		address.set('isDefault', this.isDefault);
 		address.set('detail', detail);
@@ -25,12 +29,15 @@ Page({
 		var that = this;
 		address.save().then(function (address) {
 			console.log(address);
-			that.setData('address', address);
+			// that.setData('address', address);
 			wx.showToast({
-				title: '添加成功'
+				title: '保存成功',
+				duration: 500
 			});
-			// navi back
-			wx.navigateBack();
+			// 等待半秒，toast消失后返回上一页
+			setTimeout(function () {
+				wx.navigateBack();
+			}, 500);
 		}, function (error) {
 			console.log(error);
 		});
@@ -82,21 +89,21 @@ Page({
 	loadAddress: function (options) {
 		var that = this;
 		if (options.objectId != undefined) {
-			  // 第一个参数是 className，第二个参数是 objectId
-			  	var address = AV.Object.createWithoutData('Address', options.objectId);
-			  	address.fetch().then(function () {
-			  		that.setData({
-			  			address: address,
-			  			areaSelectedStr: address.get('province') + address.get('city') + address.get('region')
-			  		});
-				}, function (error) {
-				    // 异常处理
-				});
-			}
-		},
-		setDefault: function () {
-			var that = this;
-			var user = AV.User.current();
+			// 第一个参数是 className，第二个参数是 objectId
+		  	var address = AV.Object.createWithoutData('Address', options.objectId);
+		  	address.fetch().then(function () {
+		  		that.setData({
+		  			address: address,
+		  			areaSelectedStr: address.get('province') + address.get('city') + address.get('region')
+		  		});
+			}, function (error) {
+			    // 异常处理
+			});
+		}
+	},
+	setDefault: function () {
+		var that = this;
+		var user = AV.User.current();
 		// if user has no address, set the address for default
 		var query = new AV.Query('Address');
 		query.equalTo('user', user);
