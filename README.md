@@ -20,8 +20,6 @@
 
 ## 3.微信支付
 
-![git](https://static.oschina.net/uploads/img/201701/03104002_Fyxz.png "效果展示")
-
 教程详见：[https://my.oschina.net/huangxiujie/blog/817654](https://my.oschina.net/huangxiujie/blog/817654)
 
 ## 4.下拉筛选
