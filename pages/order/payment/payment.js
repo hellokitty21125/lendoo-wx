@@ -13,22 +13,20 @@ Page({
 	},
 	pay: function () {
 		var that = this;
-		console.log(getApp().code);
 		//统一下单接口对接
 		wx.request({
 			url: 'https://lendoo.leanapp.cn/index.php/WXPay',
 			data: {
-				code: getApp().code,
+				openid: getApp().openid,
 				body: '灵动商城',
 				tradeNo: that.data.orderId,
-				totalFee: parseInt(that.data.totalFee)
+				totalFee: parseInt(that.data.totalFee) * 100
 			},
 			method: 'POST',
 			header: {
 				'content-type': 'application/x-www-form-urlencoded'
 			},
 			success: function (response) {
-				console.log(response);
 				// 发起支付
 				wx.requestPayment({
 					'timeStamp': response.data.timeStamp,

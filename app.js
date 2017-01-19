@@ -18,35 +18,21 @@ App({
         wx.login({
         	success: function(res) {
         		if (res.code) {
-	          // 获取openId
-	            	// TODO 缓存 openId
-	            	//统一下单接口对接
+        			that.code = res.code;
+	          		// 获取openId并缓存
 	            	wx.request({
-	            		url: 'https://lendoo.leanapp.cn/index.php/WXPay',
+	            		url: 'https://lendoo.leanapp.cn/index.php/WXPay/getSession',
 	            		data: {
-	            			code: res.code
+	            			code: res.code,
 	            		},
 	            		method: 'POST',
 	            		header: {
 	            			'content-type': 'application/x-www-form-urlencoded'
 	            		},
 	            		success: function (response) {
-			            	// 发起支付
-							// wx.requestPayment({
-							// 	'timeStamp': response.data.timeStamp,
-							// 	'nonceStr': response.data.nonceStr,
-							// 	'package': response.data.package,
-							// 	'signType': 'MD5',
-							// 	'paySign': response.data.paySign,
-							// 	'success':function(res){
-							// 		// wx.showToast({
-							// 		// 	title: '支付成功'
-							// 		// });
-							// 		// console.log(res);
-							// 	}
-							// });
-						}
-					});
+	            			that.openid = response.data.openid;
+			            }
+			        });
 	            } else {
 	            	console.log('获取用户登录态失败！' + res.errMsg)
 	            }
