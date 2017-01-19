@@ -132,17 +132,24 @@
 	background: white;
 }
 
+.select-and-amount {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
 /*复选框*/
 .carts-footer icon {
 	margin-left: 20rpx;
-	margin-top: 20rpx;
+	display: block;
 }
 
 /*全选字样*/
 .carts-footer text {
 	font-size: 30rpx;
 	margin-left: 8rpx;
-	line-height: 10rpx;
+	/*line-height: 10rpx;*/
+	display: block;
 }
 
 /*立即结算按钮*/

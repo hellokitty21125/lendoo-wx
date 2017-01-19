@@ -29,11 +29,10 @@
     </view>
 </view>
 <view class="carts-footer">
-	<view bindtap="bindSelectAll">
-		<icon wx:if="{{selectedAllStatus}}" type="success_circle" size="20"/>
-		<icon wx:else type="circle" size="20" />
+	<view class="select-and-amount" bindtap="bindSelectAll">
+		<icon type="{{selectedAllStatus ? 'success_circle' : 'circle'}}" size="18"/>
 		<text>全选</text>
-		<text>￥: {{total}}</text>
+		<text>￥{{total}}</text>
 	</view>
 	<view class="button" bindtap="bindCheckout">立即结算</view>
 </view>
