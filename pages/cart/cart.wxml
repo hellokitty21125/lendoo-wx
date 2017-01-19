@@ -12,7 +12,7 @@
         <text class="carts-title">{{goodsList[index].title}}</text>
         <view class="carts-subtitle">
         <!-- 价格 -->
-          <text class="carts-price">{{item.sum}}</text>
+          <text class="carts-price">{{goodsList[index].price}}</text>
           <!-- 数量加减 -->
           <view>
 	          <view class="stepper">
