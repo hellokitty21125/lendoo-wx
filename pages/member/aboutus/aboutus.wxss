@@ -1,6 +1,11 @@
+page {
+	display: flex;
+	flex-direction: column;
+}
+
 .desc {
-	padding: 20px;
-	margin: 20px;
 	line-height: 40px;
 	color: #333;
+	text-align: center;
+	display: block;
 }

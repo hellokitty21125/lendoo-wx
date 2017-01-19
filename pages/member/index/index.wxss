@@ -25,7 +25,6 @@ page {
 /*menu list*/
 .tableviewcell {
 	padding: 20rpx 40rpx;
-	margin: 10rpx 0;
 	border-bottom: 1rpx solid #ddd;
 	color: #666;
 	background: white;
