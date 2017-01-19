@@ -14,7 +14,7 @@ Page({
 	readCarts: function (options) {
 		// from carts
 		// amount
-		var amount = parseInt(options.amount);
+		var amount = parseFloat(options.amount);
 		this.setData({
 			amount: amount
 		});

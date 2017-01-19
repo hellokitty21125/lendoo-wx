@@ -20,7 +20,7 @@ Page({
 				openid: getApp().openid,
 				body: '灵动商城',
 				tradeNo: that.data.orderId,
-				totalFee: parseInt(that.data.totalFee) * 100
+				totalFee: parseFloat(that.data.totalFee) * 100
 			},
 			method: 'POST',
 			header: {
