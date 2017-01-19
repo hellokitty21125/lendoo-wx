@@ -20,6 +20,8 @@
 
 ## 3.微信支付
 
+![输入图片说明](https://static.oschina.net/uploads/img/201701/19155702_xIbI.gif "在这里输入图片标题")
+
 教程详见：[https://my.oschina.net/huangxiujie/blog/817654](https://my.oschina.net/huangxiujie/blog/817654)
 
 ## 4.下拉筛选

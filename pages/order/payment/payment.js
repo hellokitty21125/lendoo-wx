@@ -35,6 +35,9 @@ Page({
 					'signType': 'MD5',
 					'paySign': response.data.paySign,
 					'success':function(res){
+						wx.showToast({
+							title: '支付成功'
+						});
 						// update order
 						var query = new AV.Query('Order');
 						query.get(that.data.orderId).then(function (order) {

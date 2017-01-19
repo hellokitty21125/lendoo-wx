@@ -72,7 +72,6 @@ Page({
 	            order.save().then(function (saveResult) {
 	                if (saveResult) {
 	                   // 保存到云端
-               			console.log('pay me from carts...');
 						wx.navigateTo({
 							url: '../../../../../payment/payment?orderId=' + order.get('objectId') + '&totalFee=' + that.data.amount
 						});
