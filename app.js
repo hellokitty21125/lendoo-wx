@@ -1,6 +1,5 @@
 // 初始化AV
 const AV = require('./utils/av-weapp.js');
-var md5 = require('./utils/md5.js');
 const appId = "SgHcsYqoLaFTG0XDMD3Gtm0I-gzGzoHsz";
 const appKey = "xdv2nwjUK5waNglFoFXkQcxP";
 
