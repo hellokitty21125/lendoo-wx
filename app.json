@@ -1,5 +1,6 @@
 {
     "pages":[
+        "pages/order/list/list",
         "pages/index/index",
         "pages/address/list/list",
         "pages/address/add/add",
@@ -10,8 +11,7 @@
         "pages/goods/list/list",
         "pages/goods/detail/detail",
         "pages/order/checkout/checkout",
-        "pages/order/payment/payment",
-        "pages/order/list/list"
+        "pages/order/payment/payment"
     ],
     "window": {
         "navigationBarBackgroundColor": "#48C23D",

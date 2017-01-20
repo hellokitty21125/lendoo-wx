@@ -1,3 +1,8 @@
+<text wx:for="{{buysData}}" wx:key="">
+	{{item.title}}
+	{{item.quantity}}
+	{{item.price}}
+</text>
 <view class="order-item" wx:for="{{orders}}" wx:key="">
 	<image src="" mode="aspectFill" />
 	<text>共N件商品 实付款：{{item.amount}}</text>
