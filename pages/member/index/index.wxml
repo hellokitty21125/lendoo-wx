@@ -3,15 +3,15 @@
 	<text class="userinfo-nickname">{{userInfo.nickName}}</text>
 </view>
 <view class="order-area">
-	<view bindtap="navigateToAddress" class="order">
+	<view bindtap="navigateToOrder" class="order">
 		<image src="../../../images/icon_order.png" />
 		<text>待付款</text>
 	</view>
-	<view bindtap="navigateToAddress" class="order">
+	<view bindtap="navigateToOrder" class="order">
 		<image src="../../../images/icon_order.png" />
 		<text>待发货</text>
 	</view>
-	<view bindtap="navigateToAddress" class="order">
+	<view bindtap="navigateToOrder" class="order">
 		<image src="../../../images/icon_order.png" />
 		<text>已完成</text>
 	</view>
@@ -20,7 +20,7 @@
 	<image src="../../../images/icon_address.png" />
 	<text>收货地址</text>
 </view>
-<view bindtap="navigateToAddressAboutus" class="tableviewcell">
+<view bindtap="navigateToAboutus" class="tableviewcell">
 	<image src="../../../images/icon_aboutus.png" />
 	<text>关于我们</text>
 </view>

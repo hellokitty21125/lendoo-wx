@@ -6,6 +6,11 @@ Page({
 			url: '../../address/list/list'
 		});
 	},
+	navigateToOrder: function () {
+		wx.navigateTo({
+			url: '../../order/list/list'
+		});
+	},
 	logout: function () {
 		if (AV.User.current()) {
 			AV.User.logOut();
@@ -58,7 +63,7 @@ Page({
 			}
 		})
 	},
-	navigateToAddressAboutus: function () {
+	navigateToAboutus: function () {
 		wx.navigateTo({
 			url: '/pages/member/aboutus/aboutus'
 		});
