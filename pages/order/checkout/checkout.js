@@ -12,6 +12,7 @@ Page({
 		this.loadAddress();
 	},
 	readCarts: function (options) {
+		var that = this;
 		// from carts
 		// amount
 		var amount = parseFloat(options.amount);
@@ -23,19 +24,19 @@ Page({
 		var cartIds = options.cartIds;
 		var cartIdArray = cartIds.split(',');
 		// restore carts object
-		var carts = [];
 		for (var i = 0; i < cartIdArray.length; i++) {
 			var query = new AV.Query('Cart');
 			query.include('goods');
 			query.get(cartIdArray[i]).then(function (cart) {
+				var carts = that.data.carts == undefined ? [] : that.data.carts;
 				carts.push(cart);
+				that.setData({
+					carts: carts
+				});
 			}, function (error) {
 
 			});
 		}
-		this.setData({
-			carts: carts
-		});
 	},
 	confirmOrder: function () {
 		// submit order
