@@ -41,20 +41,6 @@ Page({
 	confirmOrder: function () {
 		// submit order
 		var carts = this.data.carts;
-		var buys = [];
-		// create buys & delete carts
-		for (var i = 0; i < carts.length; i++) {
-			// move cart to buy
-			var buy = new AV.Object('Buy');
-			var cart = carts[i];
-			buy.set('goods', cart.get('goods'));
-			buy.set('quantity', cart.get('quantity'));
-			buy.set('user', cart.get('user'));
-			buys[i] = buy;
-			// delete carts from carts list
-			cart.destroy();
-		}
-		// create order
 		var that = this;
 		var user = AV.User.current();
 		var order = new AV.Object('Order');
@@ -64,22 +50,33 @@ Page({
 		// set address
 		var address = this.addressObjects[this.data.addressIndex];
 		order.set('address', address);
-	    AV.Object.saveAll(buys).then(function (result) {
-        	if (result) {
-	            var relation = order.relation('buys');
-	            for (var i = 0; i < buys.length; i++) {
-		            relation.add(buys[i]);
-	            }
-	            order.save().then(function (saveResult) {
-	                if (saveResult) {
-	                   // 保存到云端
-						wx.navigateTo({
-							url: '../../../../../payment/payment?orderId=' + order.get('objectId') + '&totalFee=' + that.data.amount
-						});
-	                }
-	            });
-	        }
-	    });
+		order.save().then(function (saveResult) {
+			if (saveResult) {
+				// OrderGoodsMap数组，批量提交
+				var orderGoodsMapArray = [];
+				// create buys & delete carts
+				for (var i = 0; i < carts.length; i++) {
+					// 创建订单商品中间表OrderGoodsMap
+					var orderGoodsMap = AV.Object('OrderGoodsMap');
+					// 遍历购物车对象
+					// move cart to buy
+					var cart = carts[i];
+					orderGoodsMap.set('order', saveResult);
+					orderGoodsMap.set('goods', cart.get('goods'));
+					orderGoodsMap.set('quantity', cart.get('quantity'));
+					orderGoodsMap.set('user', cart.get('user'));
+					cart.destroy();
+					orderGoodsMapArray.push(orderGoodsMap);
+				}
+				AV.Object.saveAll(orderGoodsMapArray).then(function () {
+	            	// 保存到云端
+	            	wx.navigateTo({
+	               		url: '../../../../../payment/payment?orderId=' + order.get('objectId') + '&totalFee=' + that.data.amount
+	            	});
+					
+				});
+			}
+		});
 	},
 	loadAddress: function () {
 		var that = this;
