@@ -1,11 +1,24 @@
-<text wx:for="{{buysData}}" wx:key="">
-	{{item.title}}
-	{{item.quantity}}
-	{{item.price}}
-</text>
 <view class="order-item" wx:for="{{orders}}" wx:key="">
-	<image src="" mode="aspectFill" />
-	<text>共N件商品 实付款：{{item.amount}}</text>
-	<text>评价晒单</text>
-	<text>再次购买</text>
+	<view wx:for="{{mappingData[index]}}" wx:for-item="mapping" wx:key="" class="carts-item">
+		<view>
+			<!-- 缩略图 -->
+			<image class="carts-image" src="{{mapping.avatar}}" mode="aspectFill"/>
+		</view>
+		<view class="carts-text">
+			<!-- 商品标题 -->
+			<text class="carts-title">{{mapping.title}}</text>
+			<view class="carts-subtitle">
+				<!-- 价格 -->
+				<text class="carts-price">{{mapping.price}}</text>
+				<text>x{{mapping.quantity}}</text>
+			</view>
+		</view>
+	</view>
+	<view class="order-footer">
+		<text>实付款：{{item.amount}}</text>
+		<text>评价晒单</text>
+<!-- 		
+		<text>再次购买</text>
+ -->		<text>{{item.createdAt}}</text>
+	</view>
 </view>
