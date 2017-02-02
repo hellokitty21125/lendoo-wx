@@ -44,6 +44,8 @@
 
 ![git](https://static.oschina.net/uploads/img/201610/08171205_p1hX.gif "效果展示")
 
+LeanCloud数据包下载：[https://pan.baidu.com/s/1nvPmcsx](https://pan.baidu.com/s/1nvPmcsx)
+
 教程详见：[https://my.oschina.net/huangxiujie/blog/755324](https://my.oschina.net/huangxiujie/blog/760429)
 
 对移动开发有兴趣的朋友可以关注我的公众号【huangxiujie85】与我交流讨论，给我留言或文章评论。
