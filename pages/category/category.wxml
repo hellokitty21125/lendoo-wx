@@ -6,7 +6,7 @@
 	<!-- right -->
 	<view class="main">
 		<!-- banner -->
-		<image class="banner" src="{{banner}}" mode="aspectFill" />
+		<image class="banner" src="{{banner}}" mode="widthFix" />
 		<!-- GridView -->
 		<view class="gridview">
 			<dl wx:for="{{subCategories}}" wx:key="objectId">
