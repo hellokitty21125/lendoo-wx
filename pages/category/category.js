@@ -13,6 +13,15 @@ Page({
         var category = AV.Object.createWithoutData('Category', '5815b0d5d203090055c24a19');
         this.getCategory(category);
         this.getBanner(category);
+        this.setImageWidth();
+    },
+    setImageWidth: function () {
+        var app = getApp();
+        var screenWidth = app.screenWidth;
+        var imageWidth = (screenWidth - 130) / 3;
+        this.setData({
+            imageWidth: imageWidth
+        });
     },
     tapTopCategory: function(e){
         // 拿到objectId，作为访问子类的参数

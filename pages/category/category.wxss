@@ -63,8 +63,8 @@ page {
 
 /*图片*/
 .gridview dt image {
-	width: 60px;
-	height: 60px;
+	width: 75px;
+	height: 75px;
 }
 
 /*文字*/
