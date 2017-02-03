@@ -14,13 +14,18 @@ Page({
         this.getCategory(category);
         this.getBanner(category);
         this.setImageWidth();
+        this.setSideHeight();
     },
     setImageWidth: function () {
-        var app = getApp();
-        var screenWidth = app.screenWidth;
+        var screenWidth = getApp().screenWidth;
         var imageWidth = (screenWidth - 130) / 3;
         this.setData({
             imageWidth: imageWidth
+        });
+    },
+    setSideHeight: function () {
+        this.setData({
+            sidebarHeight: getApp().screenHeight
         });
     },
     tapTopCategory: function(e){

@@ -42,6 +42,7 @@ App({
 		wx.getSystemInfo({
 			success: function(res) {
 				that.screenWidth = res.windowWidth;
+				that.screenHeight = res.windowHeight;
 				that.pixelRatio = res.pixelRatio;
 			}
 		});

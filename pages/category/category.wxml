@@ -1,6 +1,6 @@
 <view class="container">
 	<!-- 侧边栏 -->
-	<view class="sidebar">
+	<view class="sidebar" style="height: {{sidebarHeight}}px;">
 		<text wx:for="{{topCategories}}" wx:key="objectId" bindtap="tapTopCategory" data-object-id="{{item.objectId}}" data-index="{{index}}" class="{{highlight[index]}}">{{item.title}}</text>
 	</view>
 	<!-- right -->
