@@ -18,7 +18,7 @@ Page({
     },
     setImageWidth: function () {
         var screenWidth = getApp().screenWidth;
-        var imageWidth = (screenWidth - 130) / 3;
+        var imageWidth = (screenWidth - 130) / 3 - 5;
         this.setData({
             imageWidth: imageWidth
         });

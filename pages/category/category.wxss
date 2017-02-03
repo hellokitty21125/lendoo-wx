@@ -51,7 +51,7 @@ page {
 /*网格布局子类九宫格分布*/
 .gridview {
 	background-color: #fff;
-	height: 90%;
+	height: 80%;
 }
 
 /*向左流动*/
