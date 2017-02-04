@@ -56,13 +56,18 @@ page {
 }
 
 .main-goods {
-	display: flex;
+/*	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	border-top: 1px solid #eee;
+	
+*/	border-top: 1px solid #eee;
+	background: white;
+	display: inline-block;
 }
 
 .main-goods .single-goods {
+	display: block;
+	float: left;
 	width: 50%;
 }
 
