@@ -80,9 +80,11 @@ page {
 
 .main-goods .title {
 	display: block;
+	width: 90%;
 	color: #999;
 	font-size: 28rpx;
 	margin: 10rpx 6rpx;
+	height: 74rpx;
 }
 
 .main-goods .summary {
