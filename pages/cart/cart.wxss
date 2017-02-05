@@ -67,7 +67,7 @@
 }
 
 /*人民币符号*/
-.carts-price:before {
+.carts-price:before, .select-and-amount text:last-child:before {
 	content: '￥';	
 }
 
@@ -163,4 +163,5 @@
 	font-size: 36rpx;
 	border-radius: 0;
 	border: 0;
+	z-index: -99;
 }

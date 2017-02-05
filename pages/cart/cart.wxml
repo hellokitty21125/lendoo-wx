@@ -32,7 +32,7 @@
 	<view class="select-and-amount" bindtap="bindSelectAll">
 		<icon type="{{selectedAllStatus ? 'success_circle' : 'circle'}}" size="18"/>
 		<text>全选</text>
-		<text>￥{{total}}</text>
+		<text>{{total}}</text>
 	</view>
 	<view class="button" bindtap="bindCheckout">立即结算</view>
 </view>
