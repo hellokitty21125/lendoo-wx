@@ -84,7 +84,9 @@ page {
 	color: #999;
 	font-size: 28rpx;
 	margin: 10rpx 6rpx;
-	height: 74rpx;
+	height: 60rpx;
+	line-height: 32rpx;
+	overflow: hidden;
 }
 
 .main-goods .summary {
