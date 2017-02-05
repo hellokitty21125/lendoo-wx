@@ -13,18 +13,18 @@ Page({
 		var that = this
 		var query = new AV.Query('Goods');
         // 生成商品对象
-		query.get(goodsId).then(function (goods) {
+        query.get(goodsId).then(function (goods) {
 			// console.log(goods);
 			that.setData({
 				goods: goods
 			});
 		// 成功获得实例
-		}, function (error) {
+	}, function (error) {
 		// 异常处理
-		});
-	},
-	addCart: function() {
-		var that = this;
+	});
+    },
+    addCart: function() {
+    	var that = this;
 		// add cart
 		var user = AV.User.current();
 		// search if this goods exsit or not.if did exsit then quantity ++ updated cart object;
@@ -68,12 +68,15 @@ Page({
 		wx.showToast({
 			title: '已加入购物车',
 			icon: 'success',
-			duration: 1000
+			duration: 1000,
+			success: function () {
+				setTimeout(function () {
+					wx.switchTab({
+						url: '../../cart/cart'
+					});
+				},500);
+			}
 		});
-		wx.switchTab({
-			url: '../../cart/cart'
-		});
-
 	},
 	previewImage: function (e) {
 		wx.previewImage({
