@@ -163,6 +163,7 @@ Page({
 				total += carts[i].get('quantity') * carts[i].get('goods').get('price');
 			}
 		}
+		total = total.toFixed(2);
 		// 写回经点击修改后的数组
 		this.setData({
 			carts: carts,
