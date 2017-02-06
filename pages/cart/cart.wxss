@@ -163,5 +163,4 @@
 	font-size: 36rpx;
 	border-radius: 0;
 	border: 0;
-	z-index: -99;
 }

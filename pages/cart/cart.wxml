@@ -1,8 +1,7 @@
 <view class="container carts-list">
-    <view wx:for="{{carts}}" wx:key="index" class="carts-item">
+    <view wx:for="{{carts}}" wx:key="index" class="carts-item" bindtap="showGoods" data-index="{{index}}">
     	<!-- 复选框图标 -->
-		<icon wx:if="{{item.selected}}" type="success_circle" size="20" bindtap="bindCheckbox" data-index="{{index}}"/>
-		<icon wx:else type="circle" size="20" bindtap="bindCheckbox" data-index="{{index}}"/>
+		<icon type="{{item.selected ? 'success_circle' : 'circle'}}" size="20" catchtap="bindCheckbox" data-index="{{index}}"/>
 		<view>
 		<!-- 缩略图 -->
 		  <image class="carts-image" src="{{goodsList[index].avatar}}" mode="aspectFill"/>
@@ -17,11 +16,11 @@
           <view>
 	          <view class="stepper">
 				<!-- 减号 -->
-				<text class="{{minusStatuses[index]}}" data-index="{{index}}" bindtap="bindMinus">-</text>
+				<text class="{{minusStatuses[index]}}" data-index="{{index}}" catchtap="bindMinus">-</text>
 				<!-- 数值 -->
 				<input type="number" data-index="{{index}}" bindchange="bindManual" value="{{item.quantity}}" />
 				<!-- 加号 -->
-				<text class="normal" data-index="{{index}}" bindtap="bindPlus">+</text>
+				<text class="normal" data-index="{{index}}" catchtap="bindPlus">+</text>
 			  </view>
 		  </view>
         </view>
