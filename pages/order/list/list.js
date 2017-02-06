@@ -2,14 +2,22 @@ const AV = require('../../../utils/av-weapp.js')
 Page({
 	data: {
 		orders: [],
-
 	},
-	onLoad: function () {
+	onLoad: function (options) {
+		// 订单状态，已下单为0，已付为1，已发货为2，已收货为3
+		var status = parseInt(options.status);
+		// 存为全局变量，控制支付按钮是否显示
+		this.setData({
+			status: status
+		});
+	},
+	onShow: function() {
 		var that = this;
 		var user = AV.User.current();
 		var query = new AV.Query('Order');	
 		query.include('buys');
 		query.equalTo('user', user);
+		query.equalTo('status', this.data.status);
 		query.descending('createdAt');
 		query.find().then(function (orderObjects) {
 			that.setData({
@@ -50,6 +58,13 @@ Page({
 					});
 				});
 			}
+		});
+	},
+	pay: function(e) {
+		var objectId = e.currentTarget.dataset.objectId;
+		var totalFee = e.currentTarget.dataset.totalFee;
+		wx.navigateTo({
+			url: '../payment/payment?orderId=' + objectId + '&totalFee=' + totalFee
 		});
 	}
 });

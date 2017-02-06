@@ -3,15 +3,19 @@
 	<text class="userinfo-nickname">{{userInfo.nickName}}</text>
 </view>
 <view class="order-area">
-	<view bindtap="navigateToOrder" class="order">
+	<view bindtap="navigateToOrder" class="order" data-status="0">
 		<image src="../../../images/icon_order.png" />
 		<text>待付款</text>
 	</view>
-	<view bindtap="navigateToOrder" class="order">
+	<view bindtap="navigateToOrder" class="order" data-status="1">
 		<image src="../../../images/icon_order.png" />
 		<text>待发货</text>
 	</view>
-	<view bindtap="navigateToOrder" class="order">
+	<view bindtap="navigateToOrder" class="order" data-status="2">
+		<image src="../../../images/icon_order.png" />
+		<text>已发货</text>
+	</view>
+	<view bindtap="navigateToOrder" class="order" data-status="3">
 		<image src="../../../images/icon_order.png" />
 		<text>已完成</text>
 	</view>

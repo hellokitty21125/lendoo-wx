@@ -16,7 +16,7 @@
 	</view>
 	<view class="order-footer">
 		<text>实付款：{{item.amount}}</text>
-		<text>评价晒单</text>
+		<text bindtap="pay" data-object-id="{{item.objectId}}" data-total-fee="{{item.amount}}" class="{{status != 0 ? 'hidden': ''}}">支付</text>
 <!-- 		
 		<text>再次购买</text>
  -->		<text>{{item.createdAt}}</text>

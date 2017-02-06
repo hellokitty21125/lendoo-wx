@@ -70,3 +70,8 @@ page {
 	font-size:14px;
 	line-height: 22px;
 }
+
+/*隐藏元素*/
+.hidden {
+	display: none;
+}

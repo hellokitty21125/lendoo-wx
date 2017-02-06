@@ -60,7 +60,7 @@ Page({
 	},
 	showOrders: function () {
 		wx.navigateTo({
-			url: "../order/list/list"
+			url: "../order/list/list?status=1"
 		});
 	},
 	onShareAppMessage: function () {

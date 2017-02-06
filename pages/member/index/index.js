@@ -6,9 +6,10 @@ Page({
 			url: '../../address/list/list'
 		});
 	},
-	navigateToOrder: function () {
+	navigateToOrder: function (e) {
+		var status = e.currentTarget.dataset.status
 		wx.navigateTo({
-			url: '../../order/list/list'
+			url: '../../order/list/list?status=' + status
 		});
 	},
 	logout: function () {
