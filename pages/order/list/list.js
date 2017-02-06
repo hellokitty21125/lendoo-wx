@@ -12,6 +12,9 @@ Page({
 		});
 	},
 	onShow: function() {
+		this.reloadData();
+	},
+	reloadData: function() {
 		var that = this;
 		var user = AV.User.current();
 		var query = new AV.Query('Order');	
@@ -66,5 +69,26 @@ Page({
 		wx.navigateTo({
 			url: '../payment/payment?orderId=' + objectId + '&totalFee=' + totalFee
 		});
+	},
+	receive: function(e) {
+		var that = this;
+		wx.showModal({
+			title: '请确认',
+			content: '确认要收货吗',
+			success: function(res) {
+				if (res.confirm) {
+					var objectId = e.currentTarget.dataset.objectId;
+					var order = new AV.Object.createWithoutData('Order', objectId);
+					order.set('status', 3);
+					order.save().then(function () {
+						wx.showToast({
+							'title': '确认成功'
+						});
+						that.reloadData();
+					});
+					
+				}
+			}
+		})
 	}
 });
