@@ -40,7 +40,6 @@ Page({
 						var order = orders[index];
 						if (order.get('objectId') == mappingObject.get('order').get('objectId')) {
 							k = index;
-							console.log('k: ' + k);
 							break;
 						}
 					}

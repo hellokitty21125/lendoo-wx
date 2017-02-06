@@ -13,9 +13,9 @@ Page({
 	getInviteCode: function (options) {
 		if (options.uid != undefined) {
 			wx.showToast({
-			  title: '来自用户:' + options.uid + '的分享',
-			  icon: 'success',
-			  duration: 2000
+				title: '来自用户:' + options.uid + '的分享',
+				icon: 'success',
+				duration: 2000
 			})
 		}
 	},
@@ -63,11 +63,16 @@ Page({
 			url: "../order/list/list"
 		});
 	},
-    onShareAppMessage: function () {
-        return {
-          title: '灵动开源电商系统',
-          desc: '一个基于LeanCloud开发的开源电商系统',
-          path: '/pages/index/index?uid=4719784'
-        }
-    }
+	onShareAppMessage: function () {
+		return {
+			title: '灵动开源电商系统',
+			desc: '一个基于LeanCloud开发的开源电商系统',
+			path: '/pages/index/index?uid=4719784'
+		}
+	},
+	showGoods: function () {
+		wx.navigateTo({
+			url: '../goods/detail/detail?objectId=5816e3b22e958a0054a1d711'
+		});
+	}
 })

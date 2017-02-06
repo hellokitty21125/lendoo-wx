@@ -84,5 +84,10 @@ Page({
                 banner: parent.get('banner').get('url') 
             });       
         });
+    },
+    showGoods: function () {
+        wx.navigateTo({
+            url: '../goods/detail/detail?objectId=5816e3b22e958a0054a1d711'
+        });
     }
 })

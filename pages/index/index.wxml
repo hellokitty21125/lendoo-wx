@@ -2,7 +2,7 @@
   autoplay="true" interval="5000" duration="1000" style="height:{{bannerHeight}}px;">
   <block wx:for="{{banner}}" wx:key="">
     <swiper-item>
-      <image src="{{item}}" mode="aspectFill" class="swiper-image"/>
+      <image src="{{item}}" mode="aspectFill" class="swiper-image" bindtap="showGoods"/>
     </swiper-item>
   </block>
 </swiper>
