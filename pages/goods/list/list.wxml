@@ -39,7 +39,7 @@
           <text class="carts-price">￥{{item.price}}元</text>
 		<!-- 销量与评价 -->
 		<view class="goods-score">
-			<text>已售N件</text>
+			<text>已售99件</text>
 			<text>好评率 99%</text>
 		</view>
       </view>

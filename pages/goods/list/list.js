@@ -50,7 +50,7 @@ Page({
 	tapGoods: function(e) {
 		var objectId = e.currentTarget.dataset.objectId;
 		wx.navigateTo({
-			url:"../detail/detail?objectId="+objectId
+			url:"../detail/detail?objectId=" + objectId
 		});
 	},
 	tapMainMenu: function(e) {

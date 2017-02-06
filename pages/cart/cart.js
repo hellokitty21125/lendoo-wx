@@ -172,9 +172,7 @@ Page({
 	},
 	showGoods: function (e) {
 		// 点击购物车某件商品跳转到商品详情
-		var index = parseInt(e.currentTarget.dataset.index);
-		var carts = this.data.carts;
-		var objectId = carts[index].get('objectId');
+		var objectId = e.currentTarget.dataset.objectId;
 		wx.navigateTo({
 			url: '../goods/detail/detail?objectId=' + objectId
 		});

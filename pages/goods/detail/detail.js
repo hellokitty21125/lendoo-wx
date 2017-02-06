@@ -68,14 +68,7 @@ Page({
 		wx.showToast({
 			title: '已加入购物车',
 			icon: 'success',
-			duration: 1000,
-			success: function () {
-				setTimeout(function () {
-					wx.switchTab({
-						url: '../../cart/cart'
-					});
-				},500);
-			}
+			duration: 1000
 		});
 	},
 	previewImage: function (e) {
@@ -84,5 +77,10 @@ Page({
 			current: this.data.goods.get('images')[parseInt(e.currentTarget.dataset.current)],
 			urls: this.data.goods.get('images') // 需要预览的图片http链接列表
 		})
+	},
+	showCart: function () {
+		wx.switchTab({
+			url: '../../cart/cart'
+		});
 	}
 });

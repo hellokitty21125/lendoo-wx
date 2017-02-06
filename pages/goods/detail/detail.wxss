@@ -66,16 +66,26 @@ page {
 	border-radius: 0px;
 }
 
-/*favor*/
-.favor {
+/*购物车按钮、收藏等*/
+.opt-buttons {
 	width: 100%;
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-around;
 }
 
-.favor-image {
-	width: 40rpx;
-	height: 40rpx;
+/*cart*/
+.button-group {
+	display: flex;
+	flex-direction: column;
 }
 
-.favor-text {
-	font-size: 30rpx;
+.button-image {
+	width: 60rpx;
+	height: 60rpx;
+}
+
+.button-text {
+	font-size: 24rpx;
+	line-height: 40rpx;
 }
