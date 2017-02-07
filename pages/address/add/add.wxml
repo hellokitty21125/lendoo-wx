@@ -1,9 +1,19 @@
 <form bindsubmit="formSubmit">
-    <text bindtap="cascadePopup" class="area_select">{{areaSelectedStr}}</text>
-	<input name="detail" placeholder="详情地址" value="{{address.detail}}" />
-	<input name="realname" placeholder="收件人姓名" value="{{address.realname}}" />
-	<input name="mobile" placeholder="手机号码" value="{{address.mobile}}" type="number"/>
-	<button formType="submit" type="primary">保存</button>
+	<view class="cell">
+	    <text>区域</text><text bindtap="cascadePopup" class="area_select">{{areaSelectedStr}}</text>
+	</view>
+	<view class="cell">
+		<text>地址</text><input name="detail" placeholder="请输入详情地址" value="{{address.detail}}" />
+	</view>
+	<view class="cell">
+		<text>姓名</text>
+		<input name="realname" placeholder="请输入收件人姓名" value="{{address.realname}}" />
+	</view>
+	<view class="cell">
+		<text>手机</text>
+		<input name="mobile" placeholder="请输入手机号码" value="{{address.mobile}}" type="number"/>
+	</view>
+	<button class="save" formType="submit" type="primary">保存</button>
 </form>
 <view class="modal">
 	<view class="modal-mask {{maskVisual}}" bindtap="cascadeDismiss"></view>

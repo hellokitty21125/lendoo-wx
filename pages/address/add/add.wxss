@@ -4,8 +4,7 @@ page {
 }
 
 .area_select {
-	width: 100%;
-	display: block;
+	color: #808080;
 }
 
 /*弹窗主体*/
@@ -103,4 +102,34 @@ page {
 /*运行时显示*/
 .show {
 	display: block;
+}
+
+/*单元格*/
+.cell {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items:center;
+	margin: 4px;
+	border-bottom: 1px solid #eee;
+	line-height: 28px;
+}
+
+.cell:last-child {
+	border-bottom: 0;
+}
+
+/*label显示字符*/
+.cell text:first-child {
+	width: 50px;
+}
+
+/*请选择区域*/
+.region {
+	width: 90%;
+}
+
+/*保存按钮*/
+.save {
+	margin: 8px;
 }
