@@ -10,6 +10,31 @@ Page({
 		var realname = e.detail.value.realname;
 		// mobile
 		var mobile = e.detail.value.mobile;
+		// 表单验证
+		if (areaSelectedStr == '') {
+			wx.showToast({
+				title: '请输入区域'
+			});
+			return;
+		}
+		if (detail == '') {
+			wx.showToast({
+				title: '请填写详情地址'
+			});
+			return;
+		}
+		if (realname == '') {
+			wx.showToast({
+				title: '请填写收件人'
+			});
+			return;
+		}
+		if(!(/^1[34578]\d{9}$/.test(mobile))){ 
+			wx.showToast({
+				title: '请填写正确手机号码'
+			});
+			return; 
+		} 
 		// save address to leanCloud
 		var address = new AV.Object('Address');
 		// 如果是编辑地址而不是新增
