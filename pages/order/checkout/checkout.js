@@ -9,6 +9,8 @@ Page({
 	addressObjects: [],
 	onLoad: function (options) {
 		this.readCarts(options);
+	},
+	onShow: function () {
 		this.loadAddress();
 	},
 	readCarts: function (options) {
@@ -105,5 +107,13 @@ Page({
 		this.setData({
 	    	addressIndex: e.detail.value
 	    })
+	},
+	bindCreateNew: function () {
+		var addressList = this.data.addressList;
+		if (addressList.length == 0) {
+			wx.navigateTo({
+				url: '../../address/add/add'
+			});
+		}
 	}
 })

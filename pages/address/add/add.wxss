@@ -5,6 +5,7 @@ page {
 
 .area_select {
 	color: #808080;
+	width: 90%;
 }
 
 /*弹窗主体*/

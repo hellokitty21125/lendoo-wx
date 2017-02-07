@@ -11,7 +11,7 @@ Page({
 		// mobile
 		var mobile = e.detail.value.mobile;
 		// 表单验证
-		if (areaSelectedStr == '') {
+		if (this.data.areaSelectedStr == '请选择省市区') {
 			wx.showToast({
 				title: '请输入区域'
 			});
