@@ -23,12 +23,12 @@ Page({
 		address.set('province', this.data.province[this.data.provinceIndex]);
 		address.set('city', this.data.city[this.data.cityIndex]);
 		address.set('region', this.data.region[this.data.regionIndex]);
+		address.set('town', this.data.town[this.data.townIndex]);
 		address.set('user', user);
 		address.set('realname', realname);
 		address.set('mobile', mobile);
 		var that = this;
 		address.save().then(function (address) {
-			console.log(address);
 			// that.setData('address', address);
 			wx.showToast({
 				title: '保存成功',
@@ -94,7 +94,7 @@ Page({
 		  	address.fetch().then(function () {
 		  		that.setData({
 		  			address: address,
-		  			areaSelectedStr: address.get('province') + address.get('city') + address.get('region')
+		  			areaSelectedStr: address.get('province') + address.get('city') + address.get('region') + address.get('town')
 		  		});
 			}, function (error) {
 			    // 异常处理

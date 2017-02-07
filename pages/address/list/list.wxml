@@ -6,7 +6,7 @@
 			<text class="mobile">{{item.mobile}}</text>
 		</view>
 		<!-- second row -->
-		<view class="summary">{{item.province}}{{item.city}}{{item.region}}{{item.detail}}</view>
+		<view class="summary">{{item.province}}{{item.city}}{{item.region}}{{item.town}}{{item.detail}}</view>
 		<!-- third row -->
 		<view class="footer">
 			<!-- is default switch -->
