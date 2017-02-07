@@ -1,5 +1,5 @@
 <view class="order-item" wx:for="{{orders}}" wx:key="">
-	<view wx:for="{{mappingData[index]}}" wx:for-item="mapping" wx:key="" class="carts-item">
+	<view wx:for="{{mappingData[index]}}" wx:for-item="mapping" wx:key="" class="carts-item" bindtap="showGoods" data-object-id="{{mapping.objectId}}">
 		<view>
 			<!-- 缩略图 -->
 			<image class="carts-image" src="{{mapping.avatar}}" mode="aspectFill"/>

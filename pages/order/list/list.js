@@ -61,6 +61,7 @@ Page({
 					for (var j = 0; j < mappingObjects.length; j++) {
 						var mappingObject = mappingObjects[j];
 						var mapping = {
+							objectId: mappingObject.get('goods').get('objectId'),
 							avatar: mappingObject.get('goods').get('avatar'),
 							title: mappingObject.get('goods').get('title'),
 							price: mappingObject.get('goods').get('price'),
@@ -114,5 +115,11 @@ Page({
 				}
 			}
 		})
+	},
+	showGoods: function (e) {
+		var objectId = e.currentTarget.dataset.objectId;
+		wx.navigateTo({
+			url: '../../goods/detail/detail?objectId=' + objectId
+		});
 	}
 });
