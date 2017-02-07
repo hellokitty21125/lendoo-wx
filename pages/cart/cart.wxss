@@ -164,3 +164,10 @@
 	border-radius: 0;
 	border: 0;
 }
+
+/*删除按钮*/
+.carts-footer .delete {
+	height: 80rpx;
+	line-height: 80rpx;
+	color: #fc9326;
+}

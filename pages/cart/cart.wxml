@@ -33,5 +33,6 @@
 		<text>全选</text>
 		<text>{{total}}</text>
 	</view>
+	<view class="delete" bindtap="bindDelete">删除</view>
 	<view class="button" bindtap="bindCheckout">立即结算</view>
 </view>

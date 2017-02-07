@@ -104,6 +104,33 @@ Page({
 
 	},
 	bindCheckout: function() {
+		var cartIds = this.calcIds();
+		cartIds = cartIds.join(',');
+		wx.navigateTo({
+			url: '../../../../order/checkout/checkout?cartIds=' + cartIds + '&amount=' + this.data.total
+		});
+	},
+	bindDelete: function () {
+		var cartIds = this.calcIds();
+		var cartObjects = [];
+		for (var i = 0; i < cartIds.length; i++) {
+			var objectId = cartIds[i];
+			cartObjects.push(AV.Object.createWithoutData('Cart', objectId));
+		}
+		AV.Object.destroyAll(cartObjects).then(function () {
+			// 成功
+			wx.showToast({
+				title: '删除成功',
+				icon: 'success',
+				duration: 1000
+			});
+			//todo reload data
+			//validate
+		}, function (error) {
+			// 异常处理
+		});
+	},
+	calcIds: function () {
 		// 遍历取出已勾选的cid
 		// var buys = [];
 		var cartIds = [];
@@ -122,10 +149,7 @@ Page({
 			})
 			return;
 		}
-		cartIds = cartIds.join(',');
-		wx.navigateTo({
-			url: '../../../../order/checkout/checkout?cartIds=' + cartIds + '&amount=' + this.data.total
-		});
+		return cartIds;
 	},
 	onShow: function() {
 		// auto login
