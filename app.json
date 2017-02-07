@@ -1,7 +1,7 @@
 {
     "pages":[
-        "pages/cart/cart",
         "pages/member/index/index",
+        "pages/cart/cart",
         "pages/address/add/add",
         "pages/index/index",
         "pages/category/category",

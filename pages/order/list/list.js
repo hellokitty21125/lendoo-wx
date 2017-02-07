@@ -15,10 +15,24 @@ Page({
 		this.reloadData();
 	},
 	reloadData: function() {
+		// 声明一个class
+		// var Address = AV.Object.extend('Address');
+		// Object.defineProperty(
+		// 	Address.prototype, 'detail', 
+		// 	{
+		// 		get: function(){ 
+		// 			return this.get('detail'); 
+		// 		}, 
+		// 		set: function(value) { 
+		// 			this.set('detail', value); 
+		// 		} 
+		// 	}
+		// );
 		var that = this;
 		var user = AV.User.current();
 		var query = new AV.Query('Order');	
 		query.include('buys');
+		query.include('address');
 		query.equalTo('user', user);
 		query.equalTo('status', this.data.status);
 		query.descending('createdAt');
@@ -26,6 +40,16 @@ Page({
 			that.setData({
 				orders: orderObjects
 			});
+			// 存储地址字段
+			for (var i = 0; i < orderObjects.length; i++) {
+				var address = orderObjects[i].get('address');
+				// i为0是，左值为false故取右值，i>=0时，左值为true故取左值
+				var addressArray = that.data.addressArray || [];
+				addressArray.push(address);
+				that.setData({
+					addressArray: addressArray
+				});
+			}
 			// loop search order, fetch the Buy objects
 			for (var i = 0; i < orderObjects.length; i++) {
 				var order = orderObjects[i];

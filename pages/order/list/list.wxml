@@ -15,11 +15,16 @@
 		</view>
 	</view>
 	<view class="order-footer">
-		<text>实付款：{{item.amount}}</text>
+		<text>实付金额 {{item.amount}}</text>
 		<text bindtap="pay" data-object-id="{{item.objectId}}" data-total-fee="{{item.amount}}" class="{{status != 0 ? 'hidden': ''}}">支付</text>
 		<text bindtap="receive" data-object-id="{{item.objectId}}" class="{{status != 2 ? 'hidden': ''}}">确认收货</text>
 <!-- 		
 		<text>再次购买</text>
  -->		<text>{{item.createdAt}}</text>
 	</view>
+	<view class="order-footer">
+		<text>收货地址</text>
+		<text>{{addressArray[index].detail}}</text>
+	</view>
+
 </view>
