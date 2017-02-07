@@ -33,8 +33,8 @@ Page({
 			wx.showToast({
 				title: '请填写正确手机号码'
 			});
-			return; 
-		} 
+			return;
+		}
 		// save address to leanCloud
 		var address = new AV.Object('Address');
 		// 如果是编辑地址而不是新增
