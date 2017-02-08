@@ -24,7 +24,10 @@ Page({
 	});
     },
     addCart: function() {
-    	var that = this;
+    	this.insertCart(this.data.goods);
+	},
+	insertCart: function (goods) {
+		var that = this;
 		// add cart
 		var user = AV.User.current();
 		// search if this goods exsit or not.if did exsit then quantity ++ updated cart object;
@@ -32,7 +35,7 @@ Page({
 		// query cart
 		var query = new AV.Query('Cart');
 		query.equalTo('user', user);
-		query.equalTo('goods', that.data.goods);
+		query.equalTo('goods', goods);
 		// if count less then zero
 		query.count().then(function (count) {
 			if (count <= 0) {
@@ -40,7 +43,7 @@ Page({
 				var cart = AV.Object('Cart');
 				cart.set('user', user);
 				cart.set('quantity', 1);
-				cart.set('goods', that.data.goods);
+				cart.set('goods', goods);
 				cart.save().then(function(cart){
 					that.showCartToast();
 				},function(error) {
@@ -62,7 +65,6 @@ Page({
 		}, function (error) {
 
 		});
-
 	},
 	showCartToast: function () {
 		wx.showToast({

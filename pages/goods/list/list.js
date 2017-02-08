@@ -7,10 +7,10 @@ function initSubMenuDisplay() {
 
 //定义初始化数据，用于运行时保存
 var initSubMenuHighLight = [
-		['','','','',''],
-		['',''],
-		['','','']
-	];
+['','','','',''],
+['',''],
+['','','']
+];
 
 Page({
 	data:{
@@ -21,49 +21,49 @@ Page({
 	onLoad: function(options){
 		var categoryId = options.categoryId;
 		// 生成Category对象
-        var category = AV.Object.createWithoutData('Category', categoryId);
-        this.category = category;
-        this.getGoods(category, 0);
+		var category = AV.Object.createWithoutData('Category', categoryId);
+		this.category = category;
+		this.getGoods(category, 0);
 	},
 	getGoods: function(category, pageIndex){
 		var pageSize = 7;
 		var that = this;
-        var query = new AV.Query('Goods');
+		var query = new AV.Query('Goods');
         // 查询顶级分类，设定查询条件parent为null
         query.equalTo('category',category);
         // 分页查询
         query.limit(pageSize);// 最多返回 10 条结果
 		query.skip(pageIndex * pageSize);// 跳过 20 条结果
-        query.find().then(function (goods) {
+		query.find().then(function (goods) {
         	// 关闭loading提示框
         	wx.hideToast();
         	// 让goods结果集迭加
         	var originGoods = that.data.goods;
         	// 如果初始有值，就合并；否则就是新数据集本身
         	var newGoods = originGoods.length > 0 ? originGoods.concat(goods) : goods;
-            that.setData({
-                goods: newGoods
-            });
+        	that.setData({
+        		goods: newGoods
+        	});
         }).catch(function(error) {
         });
-	},
-	tapGoods: function(e) {
-		var objectId = e.currentTarget.dataset.objectId;
-		wx.navigateTo({
-			url:"../detail/detail?objectId=" + objectId
-		});
-	},
-	tapMainMenu: function(e) {
+    },
+    tapGoods: function(e) {
+    	var objectId = e.currentTarget.dataset.objectId;
+    	wx.navigateTo({
+    		url:"../detail/detail?objectId=" + objectId
+    	});
+    },
+    tapMainMenu: function(e) {
 //		获取当前显示的一级菜单标识
-		var index = parseInt(e.currentTarget.dataset.index);
+var index = parseInt(e.currentTarget.dataset.index);
 		// 生成数组，全为hidden的，只对当前的进行显示
 		var newSubMenuDisplay = initSubMenuDisplay();
 //		如果目前是显示则隐藏，反之亦反之。同时要隐藏其他的菜单
-		if(this.data.subMenuDisplay[index] == 'hidden') {
-			newSubMenuDisplay[index] = 'show';
-		} else {
-			newSubMenuDisplay[index] = 'hidden';
-		}
+if(this.data.subMenuDisplay[index] == 'hidden') {
+	newSubMenuDisplay[index] = 'show';
+} else {
+	newSubMenuDisplay[index] = 'hidden';
+}
 		// 设置为新的数组
 		this.setData({
 			subMenuDisplay: newSubMenuDisplay
@@ -99,11 +99,63 @@ Page({
 	onReachBottom: function () {
 		this.getGoods(this.category, 1);
 		wx.showToast({
-		  title: '加载中',
-		  icon: 'loading'
+			title: '加载中',
+			icon: 'loading'
 		})
 	},
 	onPullDownRefresh: function () {
 		this.getGoods(this.category, 0);
+	},
+	addCart: function (e) {
+		var objectId = e.currentTarget.dataset.objectId;
+		var goods = AV.Object.createWithoutData('Goods', objectId);
+		this.insertCart(goods);
+	},
+	insertCart: function (goods) {
+		var that = this;
+		// add cart
+		var user = AV.User.current();
+		// search if this goods exsit or not.if did exsit then quantity ++ updated cart object;
+		// if not, create cart object
+		// query cart
+		var query = new AV.Query('Cart');
+		query.equalTo('user', user);
+		query.equalTo('goods', goods);
+		// if count less then zero
+		query.count().then(function (count) {
+			if (count <= 0) {
+				// if didn't exsit, then create new one
+				var cart = AV.Object('Cart');
+				cart.set('user', user);
+				cart.set('quantity', 1);
+				cart.set('goods', goods);
+				cart.save().then(function(cart){
+					that.showCartToast();
+				},function(error) {
+					console.log(error);
+				});
+			} else {
+				// if exsit, get the cart self
+				query.first().then(function(cart){
+					// update quantity
+					cart.increment('quantity', 1);
+					// atom operation
+					// cart.fetchWhenSave(true);
+					that.showCartToast();
+					return cart.save();
+				}, function (error) {
+					console.log(error);
+				});
+			}
+		}, function (error) {
+
+		});
+	},
+	showCartToast: function () {
+		wx.showToast({
+			title: '已加入购物车',
+			icon: 'success',
+			duration: 1000
+		});
 	}
 });
