@@ -38,7 +38,7 @@
 			<view class="carts-subtitle">
 				<!-- 价格 -->
 				<text class="carts-price">￥{{item.price}}元</text>
-				<image class="cart-icon" src="/images/icon_cart.png" catchtap="addCart" data-object-id="{{item.objectId}}" />
+				<image class="cart-icon" src="/images/icon_cart.png" catchtap="addCart" mode="widthFix" data-object-id="{{item.objectId}}" />
 			</view>
 			<!-- 销量与评价 -->
 			<view class="goods-score">

@@ -144,8 +144,7 @@
 
 /*添加购物车按钮*/
 .cart-icon {
-	width: 60rpx;
-	height: 60rpx;
+	width: 50rpx;
 }
 /*一级菜单高亮的颜色：eeeeee*/
 /*还需要一个三角形，动画旋转，下拉时背景渐渐变暗*/
