@@ -168,6 +168,8 @@
 /*删除按钮*/
 .carts-footer .delete {
 	height: 80rpx;
+	width: 200rpx;
+	text-align: right;
 	line-height: 80rpx;
 	color: #fc9326;
 }
