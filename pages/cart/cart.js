@@ -111,24 +111,38 @@ Page({
 		});
 	},
 	bindDelete: function () {
+		var that = this;
 		var cartIds = this.calcIds();
-		var cartObjects = [];
-		for (var i = 0; i < cartIds.length; i++) {
-			var objectId = cartIds[i];
-			cartObjects.push(AV.Object.createWithoutData('Cart', objectId));
-		}
-		AV.Object.destroyAll(cartObjects).then(function () {
-			// 成功
+		if (cartIds.length <= 0) {
 			wx.showToast({
-				title: '删除成功',
-				icon: 'success',
-				duration: 1000
+				title: '请勾选商品'
 			});
-			//todo reload data
-			//validate
-		}, function (error) {
-			// 异常处理
-		});
+			return;
+		}
+		wx.showModal({
+			title: '提示',
+			content: '确认要删除吗',
+			success: function(res) {
+				if (res.confirm) {
+					var cartObjects = [];
+					for (var i = 0; i < cartIds.length; i++) {
+						var objectId = cartIds[i];
+						cartObjects.push(AV.Object.createWithoutData('Cart', objectId));
+					}
+					AV.Object.destroyAll(cartObjects).then(function () {
+						// 成功
+						wx.showToast({
+							title: '删除成功',
+							icon: 'success',
+							duration: 1000
+						});
+						that.reloadData();
+					}, function (error) {
+						// 异常处理
+					});
+				}
+			}
+		})
 	},
 	calcIds: function () {
 		// 遍历取出已勾选的cid
@@ -147,11 +161,10 @@ Page({
 				icon: 'success',
 				duration: 1000
 			})
-			return;
 		}
 		return cartIds;
 	},
-	onShow: function() {
+	reloadData: function() {
 		// auto login
 		var that = this;
 		var user = AV.User.current();
@@ -177,6 +190,9 @@ Page({
 			that.sum();
 		});
 
+	},
+	onShow: function() {
+		this.reloadData();
 	},
 	sum: function() {
 		var carts = this.data.carts;
