@@ -76,7 +76,7 @@
 .stepper {
 	border: 1px solid #ccc;
 	border-radius: 3px;
-	width: 80px;
+	width: 70px;
 	height: 26px;
 	margin:0 auto;
 }
@@ -95,7 +95,7 @@
 	color: black;
 	float: left;
 	margin: 0 auto;
-	width: 40px;
+	width: 30px;
 	height: 26px;
 	text-align: center;
 	font-size: 12px;
@@ -172,4 +172,8 @@
 	text-align: right;
 	line-height: 80rpx;
 	color: #fc9326;
+}
+
+.carts-subtitle .delete {
+	width: 30px;
 }

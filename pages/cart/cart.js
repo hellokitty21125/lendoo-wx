@@ -110,7 +110,34 @@ Page({
 			url: '../../../../order/checkout/checkout?cartIds=' + cartIds + '&amount=' + this.data.total
 		});
 	},
-	bindDelete: function () {
+	deleteOne: function (e) {
+		var that = this;
+		// 购物车单个删除
+		var objectId = e.currentTarget.dataset.objectId;
+		console.log(objectId);
+		wx.showModal({
+			title: '提示',
+			content: '确认要删除吗',
+			success: function(res) {
+				if (res.confirm) {
+					// 从网络上将它删除
+					var cart = AV.Object.createWithoutData('Cart', objectId);
+					cart.destroy().then(function () {
+						// 成功
+						wx.showToast({
+							title: '删除成功',
+							icon: 'success',
+							duration: 1000
+						});
+						that.reloadData();
+					}, function (error) {
+						// 异常处理
+					});
+				}
+			}
+		})
+	},
+	deleteAll: function () {
 		var that = this;
 		var cartIds = this.calcIds();
 		if (cartIds.length <= 0) {
