@@ -15,7 +15,7 @@
     ],
     "window": {
         "navigationBarBackgroundColor": "#48C23D",
-        "navigationBarTitleText": "灵动商城开源系统",
+        "navigationBarTitleText": "灵动云商",
         "navigationBarTextStyle":"white"
     },
     "tabBar":{
