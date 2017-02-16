@@ -1,3 +1,7 @@
+## 请扫描下方二维码体验
+
+![输入图片说明](https://static.oschina.net/uploads/img/201702/16103707_mrRD.jpg "在这里输入图片标题")
+
 ## 概览
 
 ![首页](https://static.oschina.net/uploads/img/201701/24201453_7EH9.png "在这里输入图片标题")

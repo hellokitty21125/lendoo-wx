@@ -3,9 +3,14 @@ page {
 	height: 100%;
 }
 
+/*省市区文本框*/
 .area_select {
 	color: #808080;
-	width: 90%;
+	width: 60%;
+}
+
+.opi {
+	font-size: 12px;
 }
 
 /*弹窗主体*/

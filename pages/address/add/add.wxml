@@ -1,6 +1,7 @@
 <form bindsubmit="formSubmit">
 	<view class="cell">
 	    <text>区域</text><text bindtap="cascadePopup" class="area_select">{{areaSelectedStr}}</text>
+	    <text bindtap="fetchOPI" class="opi">自动获取</text>
 	</view>
 	<view class="cell">
 		<text>地址</text><input name="detail" placeholder="请输入详情地址" value="{{address.detail}}" />

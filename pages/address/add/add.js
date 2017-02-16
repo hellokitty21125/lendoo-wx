@@ -1,4 +1,6 @@
 const AV = require('../../../utils/av-weapp.js')
+var QQMapWX = require('../../../utils/qqmap-wx-jssdk.min.js');
+var qqmapsdk;
 Page({
 	isDefault: false,
 	formSubmit: function(e) {
@@ -93,6 +95,10 @@ Page({
 		});
 	},
 	onLoad: function (options) {
+		// 实例化API核心类
+		qqmapsdk = new QQMapWX({
+			key: 'BJFBZ-ZFTHW-Y2HRO-RL2UZ-M6EC3-GMF4U'
+		});
 		var that = this;
 		// load province
 		this.getArea(0, function (area) {
@@ -115,12 +121,12 @@ Page({
 		var that = this;
 		if (options.objectId != undefined) {
 			// 第一个参数是 className，第二个参数是 objectId
-		  	var address = AV.Object.createWithoutData('Address', options.objectId);
-		  	address.fetch().then(function () {
-		  		that.setData({
-		  			address: address,
-		  			areaSelectedStr: address.get('province') + address.get('city') + address.get('region') + address.get('town')
-		  		});
+			var address = AV.Object.createWithoutData('Address', options.objectId);
+			address.fetch().then(function () {
+				that.setData({
+					address: address,
+					areaSelectedStr: address.get('province') + address.get('city') + address.get('region') + address.get('town')
+				});
 			}, function (error) {
 			    // 异常处理
 			});
@@ -293,6 +299,26 @@ Page({
     	var current = e.currentTarget.dataset.current;
     	this.setData({
     		current: current
+    	});
+    },
+    fetchOPI: function () {
+    	var that = this;
+    	// 调用接口
+    	qqmapsdk.reverseGeocoder({
+    		poi_options: 'policy=2',
+    		get_poi: 1,
+		    success: function(res) {
+				console.log(res);
+				that.setData({
+					areaSelectedStr: res.result.address
+				});
+		    },
+		    fail: function(res) {
+		//         console.log(res);
+		    },
+		    complete: function(res) {
+		//         console.log(res);
+		    }
     	});
     }
 })
