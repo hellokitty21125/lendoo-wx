@@ -31,9 +31,13 @@ Page({
 		// 调用小程序 API，得到用户信息
 		wx.getUserInfo({
 			success: ({userInfo}) => {
-				that.setData({
-					userInfo: userInfo
-				});
+				// 更新当前用户的信息，昵称头像等
+                user.set(userInfo).save().then(user => {
+			    	// 成功，此时可在控制台中看到更新后的用户信息
+					that.setData({
+						userInfo: userInfo
+					});
+			    }).catch(console.error);
 			}
 		});
 	},
