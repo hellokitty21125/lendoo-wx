@@ -187,10 +187,6 @@
 	color: #fc9326;
 }
 
-.carts-subtitle .delete {
-	width: 25px;
-}
-
 /*删除按钮*/
 .delete-button {
 	width: 60px;
