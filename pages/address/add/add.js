@@ -301,7 +301,7 @@ Page({
     		current: current
     	});
     },
-    fetchOPI: function () {
+    fetchPOI: function () {
     	var that = this;
     	// 调用接口
     	qqmapsdk.reverseGeocoder({
