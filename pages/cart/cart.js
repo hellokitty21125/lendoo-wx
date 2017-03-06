@@ -132,6 +132,9 @@ Page({
 							duration: 1000
 						});
 						that.reloadData();
+						that.setData({
+							itemLefts: []
+						});
 					}, function (error) {
 						// 异常处理
 					});
@@ -249,7 +252,8 @@ Page({
 	touchStart: function (e) {
 		var startX = e.touches[0].clientX;
 		this.setData({
-			startX: startX
+			startX: startX,
+			itemLefts: []
 		});
 	},
 	touchMove: function (e) {
