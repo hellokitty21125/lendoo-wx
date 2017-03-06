@@ -193,7 +193,8 @@
 
 /*删除按钮*/
 .delete-button {
-	width: 80px;
+	width: 60px;
+	font-size: 16px;
 	height: 99%;
 	line-height: 90px;
 	border: 0;

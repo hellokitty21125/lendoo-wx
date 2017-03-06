@@ -270,8 +270,8 @@ Page({
 		var index = e.currentTarget.dataset.index;
 		var endX = e.changedTouches[0].clientX;
 		var distance = this.data.startX - endX;
-		// button width is 80
-		var buttonWidth = 80;
+		// button width is 60
+		var buttonWidth = 60;
 		if (distance <= 0) {
 			distance = 0;
 		} else {
