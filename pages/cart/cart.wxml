@@ -1,6 +1,6 @@
 <view class="container carts-list">
-    <view wx:for="{{carts}}" class="carts-body" wx:key="index" bindtap="showGoods" data-object-id="{{goodsList[index].objectId}}">
-    	<view class="carts-item">
+    <view wx:for="{{carts}}" class="carts-container" wx:key="index" bindtap="showGoods" data-object-id="{{goodsList[index].objectId}}">
+    	<view class="carts-item" style="left: {{itemLeft}}px;" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
 	    	<!-- 复选框图标 -->
 			<icon type="{{item.selected ? 'success_circle' : 'circle'}}" size="20" catchtap="bindCheckbox" data-index="{{index}}"/>
 			<view>

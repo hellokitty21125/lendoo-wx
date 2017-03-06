@@ -25,12 +25,17 @@
 	border-bottom: 1px solid #eee;
 	padding: 30rpx 0;
 	margin-right: 40rpx;
+	position: absolute;
+	top: 0;
+	left: 0;
 	background: white;
 }
 
 /*item与button的容器*/
-.carts-body {
+.carts-container {
 	position: relative;
+	width: 100%;
+	height: 90px;
 }
 
 /*左部图片*/
@@ -188,7 +193,7 @@
 /*删除按钮*/
 .delete-button {
 	width: 80px;
-	height: 100%;
+	height: 99%;
 	line-height: 90px;
 	border: 0;
 	border-radius: 0;

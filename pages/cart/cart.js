@@ -6,7 +6,8 @@ Page({
 		goodsList: [],
 		minusStatuses: ['disabled', 'disabled', 'normal', 'normal', 'disabled'],
 		selectedAllStatus: false,
-		total: ''
+		total: '',
+		startX: 0
 	},
 	bindMinus: function(e) {
 		var index = parseInt(e.currentTarget.dataset.index);
@@ -242,6 +243,39 @@ Page({
 		var objectId = e.currentTarget.dataset.objectId;
 		wx.navigateTo({
 			url: '../goods/detail/detail?objectId=' + objectId
+		});
+	},
+	touchStart: function (e) {
+		var startX = e.touches[0].clientX;
+		this.setData({
+			startX: startX
+		});
+	},
+	touchMove: function (e) {
+		var movedX = e.touches[0].clientX;
+		var distance = this.data.startX - movedX;
+		this.setData({
+			itemLeft: -distance
+		});
+	},
+	touchEnd: function (e) {
+		var endX = e.changedTouches[0].clientX;
+		var distance = this.data.startX - endX;
+		// button width is 80
+		var buttonWidth = 80;
+		if (distance <= 0) {
+			distance = 0;
+		} else {
+			if (distance >= buttonWidth) {
+				distance = buttonWidth;
+			} else if (distance >= buttonWidth / 2){
+				distance = buttonWidth;
+			} else {
+				distance = 0;
+			}
+		}
+		this.setData({
+			itemLeft: -distance
 		});
 	}
 })
