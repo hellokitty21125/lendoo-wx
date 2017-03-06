@@ -7,7 +7,8 @@ Page({
 		minusStatuses: ['disabled', 'disabled', 'normal', 'normal', 'disabled'],
 		selectedAllStatus: false,
 		total: '',
-		startX: 0
+		startX: 0,
+		itemLefts: []
 	},
 	bindMinus: function(e) {
 		var index = parseInt(e.currentTarget.dataset.index);
@@ -252,13 +253,18 @@ Page({
 		});
 	},
 	touchMove: function (e) {
+		var index = e.currentTarget.dataset.index;
+		console.log(index);
 		var movedX = e.touches[0].clientX;
 		var distance = this.data.startX - movedX;
+		var itemLefts = this.data.itemLefts;
+		itemLefts[index] = -distance;
 		this.setData({
-			itemLeft: -distance
+			itemLefts: itemLefts
 		});
 	},
 	touchEnd: function (e) {
+		var index = e.currentTarget.dataset.index;
 		var endX = e.changedTouches[0].clientX;
 		var distance = this.data.startX - endX;
 		// button width is 80
@@ -274,8 +280,10 @@ Page({
 				distance = 0;
 			}
 		}
+		var itemLefts = this.data.itemLefts;
+		itemLefts[index] = -distance;
 		this.setData({
-			itemLeft: -distance
+			itemLefts: itemLefts
 		});
 	}
 })
