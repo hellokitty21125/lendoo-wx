@@ -1,31 +1,34 @@
 <view class="container carts-list">
-    <view wx:for="{{carts}}" wx:key="index" class="carts-item" bindtap="showGoods" data-object-id="{{goodsList[index].objectId}}">
-    	<!-- 复选框图标 -->
-		<icon type="{{item.selected ? 'success_circle' : 'circle'}}" size="20" catchtap="bindCheckbox" data-index="{{index}}"/>
-		<view>
-		<!-- 缩略图 -->
-		  <image class="carts-image" src="{{goodsList[index].avatar}}" mode="aspectFill"/>
-		</view>
-      <view class="carts-text">
-      	<!-- 商品标题 -->
-        <text class="carts-title">{{goodsList[index].title}}</text>
-        <view class="carts-subtitle">
-        <!-- 价格 -->
-          <text class="carts-price">{{goodsList[index].price}}</text>
-          <!-- 数量加减 -->
-          <view>
-	          <view class="stepper">
-				<!-- 减号 -->
-				<text class="{{minusStatuses[index]}}" data-index="{{index}}" catchtap="bindMinus">-</text>
-				<!-- 数值 -->
-				<input type="number" data-index="{{index}}" bindchange="bindManual" value="{{item.quantity}}" />
-				<!-- 加号 -->
-				<text class="normal" data-index="{{index}}" catchtap="bindPlus">+</text>
-			  </view>
-		  </view>
-		  <image catchtap="deleteOne" data-object-id="{{item.objectId}}" class="delete" src="../../images/icon_delete.png" style="" mode="widthFix" />
-        </view>
-      </view>
+    <view wx:for="{{carts}}" class="carts-body" wx:key="index" bindtap="showGoods" data-object-id="{{goodsList[index].objectId}}">
+    	<view class="carts-item">
+	    	<!-- 复选框图标 -->
+			<icon type="{{item.selected ? 'success_circle' : 'circle'}}" size="20" catchtap="bindCheckbox" data-index="{{index}}"/>
+			<view>
+			<!-- 缩略图 -->
+				<image class="carts-image" src="{{goodsList[index].avatar}}" mode="aspectFill"/>
+			</view>
+			<view class="carts-text">
+				<!-- 商品标题 -->
+				<text class="carts-title">{{goodsList[index].title}}</text>
+				<view class="carts-subtitle">
+				<!-- 价格 -->
+				  	<text class="carts-price">{{goodsList[index].price}}</text>
+				  	<!-- 数量加减 -->
+				  	<view>
+				      <view class="stepper">
+						<!-- 减号 -->
+						<text class="{{minusStatuses[index]}}" data-index="{{index}}" catchtap="bindMinus">-</text>
+						<!-- 数值 -->
+						<input type="number" data-index="{{index}}" bindchange="bindManual" value="{{item.quantity}}" />
+						<!-- 加号 -->
+						<text class="normal" data-index="{{index}}" catchtap="bindPlus">+</text>
+					  </view>
+				  	</view>
+				  	<image catchtap="deleteOne" data-object-id="{{item.objectId}}" class="delete" src="../../images/icon_delete.png" style="" mode="widthFix" />
+				</view>
+			</view>
+      	</view>
+      	<button type="warn" class="delete-button">删除</button>
     </view>
 </view>
 <view class="carts-footer">

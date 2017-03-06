@@ -11,7 +11,7 @@
 .carts-list {
 	display: flex;
 	flex-direction: column;
-	padding: 0 40rpx;
+	padding-left: 40rpx;
 	margin-bottom: 80rpx;
 }
 
@@ -24,6 +24,13 @@
 	width:100%;
 	border-bottom: 1px solid #eee;
 	padding: 30rpx 0;
+	margin-right: 40rpx;
+	background: white;
+}
+
+/*item与button的容器*/
+.carts-body {
+	position: relative;
 }
 
 /*左部图片*/
@@ -176,4 +183,21 @@
 
 .carts-subtitle .delete {
 	width: 25px;
+}
+
+/*删除按钮*/
+.delete-button {
+	width: 80px;
+	height: 100%;
+	line-height: 90px;
+	border: 0;
+	border-radius: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: -99;
+}
+
+.delete-button:before {
+	border: 0;
 }
