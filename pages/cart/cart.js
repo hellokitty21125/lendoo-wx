@@ -254,7 +254,6 @@ Page({
 	},
 	touchMove: function (e) {
 		var index = e.currentTarget.dataset.index;
-		console.log(index);
 		var movedX = e.touches[0].clientX;
 		var distance = this.data.startX - movedX;
 		var itemLefts = this.data.itemLefts;
