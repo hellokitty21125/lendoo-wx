@@ -1,13 +1,14 @@
 {
     "pages":[
-        "pages/cart/cart",
         "pages/index/index",
-        "pages/category/category",
         "pages/member/index/index",
+        "pages/member/aboutus/aboutus",
+        "pages/member/share/share",
+        "pages/cart/cart",
+        "pages/category/category",
         "pages/address/add/add",
         "pages/order/list/list",
         "pages/address/list/list",
-        "pages/member/aboutus/aboutus",
         "pages/goods/list/list",
         "pages/goods/detail/detail",
         "pages/order/checkout/checkout",

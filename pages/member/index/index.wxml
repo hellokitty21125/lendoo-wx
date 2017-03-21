@@ -24,6 +24,10 @@
 	<image src="../../../images/icon_address.png" />
 	<text>收货地址</text>
 </view>
+<view bindtap="navigateToShare" class="tableviewcell">
+	<image src="../../../images/icon_share.png" />
+	<text>扫码分享</text>
+</view>
 <view bindtap="navigateToAboutus" class="tableviewcell">
 	<image src="../../../images/icon_aboutus.png" />
 	<text>关于我们</text>

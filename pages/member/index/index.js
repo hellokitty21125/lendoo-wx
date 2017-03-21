@@ -72,5 +72,10 @@ Page({
 		wx.navigateTo({
 			url: '/pages/member/aboutus/aboutus'
 		});
+	},
+	navigateToShare: function () {
+		wx.navigateTo({
+			url: '/pages/member/share/share'
+		});
 	}
 })
