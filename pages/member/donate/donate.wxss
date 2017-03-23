@@ -10,6 +10,7 @@ page {
 	display: block;
 	font-size: 18px;
 	padding: 10px 20px;
+	margin-bottom: 20px;
 }
 
 image {
@@ -20,7 +21,7 @@ image {
 /*金额*/
 .value {
 	color: #48c23d;
-	font-size: 88rpx;
+	font-size: 100rpx;
 	text-align: center;
 	line-height: 140rpx;
 }
