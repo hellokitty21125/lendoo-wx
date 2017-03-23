@@ -7,9 +7,12 @@ Page({
 	},
 	onLoad: function (options) {
 		that = this;
-		that.draw();
+		// 绘制标尺
+		that.drawRuler();
+		// 绘制三角形游标
+		that.drawCursor();
 	},
-	draw: function() {
+	drawRuler: function() {
 
 		/* 1.定义变量 */
 
@@ -35,14 +38,16 @@ Page({
 			context.beginPath();
 			// 2.2 画刻度线
 			context.moveTo(origion.x + i * ratio, origion.y);
-			// 画线到刻度高度
+			// 画线到刻度高度，10的位数就加高
 			context.lineTo(origion.x + i * ratio, origion.y - (i % ratio == 0 ? heightDecimal : heightDigit));
 			// 设置属性
 			context.setLineWidth(2);
+			// 10的位数就加深
 			context.setStrokeStyle(i % ratio == 0 ? 'gray' : 'darkgray');
 			// 描线
 			context.stroke();
 			// 2.3 描绘文本标签
+			context.setFillStyle('gray');
 			if (i % ratio == 0) {
 				context.setFontSize(fontSize);
 				// 为零补一个空格，让它看起来2位数，页面更整齐
@@ -52,6 +57,26 @@ Page({
 		}
 
 		// 2.4 绘制到context
+		context.draw();
+	},
+	drawCursor: function () {
+		/* 定义变量 */
+		// 定义三角形顶点 TODO x
+		var center = {x: 170, y: 0};
+		// 定义三角形边长
+		var length = 20;
+		// 左端点
+		var left = {x: center.x - length / 2, y: center.y + length / 2 * Math.sqrt(3)};
+		// 右端点
+		var right = {x: center.x + length / 2, y: center.y + length / 2 * Math.sqrt(3)};
+		// 初始化context
+		const context = wx.createCanvasContext('canvas-cursor');
+		context.moveTo(center.x, center.y);
+		context.lineTo(left.x, left.y);
+		context.lineTo(right.x, right.y);
+		// fill()填充而不是stroke()描边，于是省去手动回归原点，context.lineTo(center.x, center.y);
+		context.setFillStyle('#48c23d');
+		context.fill();
 		context.draw();
 	},
 	bindscroll: function (e) {
