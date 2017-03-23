@@ -31,7 +31,7 @@ Page({
 		// 1.5 总刻度值
 		var maxValue = 200;
 		// 1.6 当前刻度值
-		var currentValue = 10;
+		var currentValue = 20;
 		// 1.7 每个刻度所占位的px
 		var ratio = 10;
 		// 1.8 画布宽度

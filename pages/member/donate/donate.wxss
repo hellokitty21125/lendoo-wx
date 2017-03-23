@@ -4,11 +4,12 @@ page {
 }
 
 .desc {
-	line-height: 40px;
-	color: #333;
+	line-height: 30px;
+	color: #666;
 	text-align: center;
 	display: block;
-	padding: 0 20px;
+	font-size: 18px;
+	padding: 10px 20px;
 }
 
 image {
