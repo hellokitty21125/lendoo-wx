@@ -28,6 +28,10 @@
 	<image src="../../../images/icon_share.png" />
 	<text>扫码分享</text>
 </view>
+<view bindtap="navigateToDonate" class="tableviewcell">
+	<image src="../../../images/icon_donate.png" />
+	<text>赞赏捐赠</text>
+</view>
 <view bindtap="navigateToAboutus" class="tableviewcell">
 	<image src="../../../images/icon_aboutus.png" />
 	<text>关于我们</text>
