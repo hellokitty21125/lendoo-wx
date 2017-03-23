@@ -1,3 +1,4 @@
+const AV = require('../../../utils/av-weapp.js')
 var that;
 var deltaX = 0;
 var minValue = 1;
@@ -100,5 +101,56 @@ Page({
 			value: Math.floor(- deltaX / 10 + minValue)
 		});
 		console.log(deltaX)
+	},
+	donateButtonTapped: function () {
+		// 生成订单
+		var order = new AV.Object('Donate');
+		order.set('user', AV.User.current());
+		order.set('amount', that.data.value);
+		order.set('status', false);
+		// 保存订单
+		order.save().then(function (savedOrder) {
+			// 保存成功
+			var orderId = savedOrder.get('objectId');
+			// 发起支付
+			//统一下单接口对接
+			wx.request({
+				url: 'https://lendoo.leanapp.cn/index.php/WXPay',
+				data: {
+					openid: getApp().openid,
+					body: '赞赏捐赠',
+					tradeNo: orderId,
+					totalFee: parseFloat(that.data.value) * 100
+				},
+				method: 'POST',
+				header: {
+					'content-type': 'application/x-www-form-urlencoded'
+				},
+				success: function (response) {
+					// 发起支付
+					wx.requestPayment({
+						'timeStamp': response.data.timeStamp,
+						'nonceStr': response.data.nonceStr,
+						'package': response.data.package,
+						'signType': 'MD5',
+						'paySign': response.data.paySign,
+						'success':function(res){
+							wx.showModal({
+								title: '谢谢赞赏',
+								showCancel: false
+							});
+							// update order
+							var query = new AV.Query('Donate');
+							query.get(orderId).then(function (order) {
+								order.set('status', true);
+								order.save();
+							}, function (err) {
+								
+							});
+						}
+					});
+				}
+			});
+		});
 	}
 });

@@ -7,4 +7,4 @@
 </scroll-view>
 <canvas canvas-id="canvas-cursor" id="canvas-cursor"></canvas>
 
-<button type="primary">赞赏</button>
+<button type="primary" bindtap="donateButtonTapped">赞赏</button>

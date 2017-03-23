@@ -73,6 +73,11 @@ Page({
 			url: '/pages/member/aboutus/aboutus'
 		});
 	},
+	navigateToDonate: function () {
+		wx.navigateTo({
+			url: '/pages/member/donate/donate'
+		});
+	},
 	navigateToShare: function () {
 		wx.navigateTo({
 			url: '/pages/member/share/share'
