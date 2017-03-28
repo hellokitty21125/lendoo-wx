@@ -89,3 +89,9 @@ page {
 	font-size: 24rpx;
 	line-height: 40rpx;
 }
+
+.contact-button {
+	width: 60rpx;
+	height: 48rpx;
+	padding-top: 5px; 
+}

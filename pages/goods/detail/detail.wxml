@@ -19,6 +19,10 @@ autoplay="true" interval="5000" duration="1000" style="height:{{galleryHeight}}p
             <image src="../../../images/icon_cart.png" class="button-image" />
             <text class="button-text">购物车</text>
         </view>
+        <view class="button-group" bindtap="">
+            <contact-button class="contact-button" size="22" /> 
+            <text class="button-text">联系客服</text>
+        </view>
     </view>
     <button class="add-cart" bindtap="addCart">加入购物车</button>
 </view>
