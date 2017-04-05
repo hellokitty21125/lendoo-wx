@@ -3,7 +3,7 @@ var app = getApp()
 Page({
 	data:{
 		carts: [],
-		minusStatuses: ['disabled', 'disabled', 'normal', 'normal', 'disabled'],
+		minusStatuses: [],
 		selectedAllStatus: false,
 		total: '',
 		startX: 0,
@@ -114,7 +114,7 @@ Page({
 			url: '../../../../order/checkout/checkout?cartIds=' + cartIds + '&amount=' + this.data.total
 		});
 	},
-	deleteOne: function (e) {
+	delete: function (e) {
 		var that = this;
 		// 购物车单个删除
 		var objectId = e.currentTarget.dataset.objectId;
@@ -137,40 +137,6 @@ Page({
 						that.setData({
 							itemLefts: []
 						});
-					}, function (error) {
-						// 异常处理
-					});
-				}
-			}
-		})
-	},
-	deleteAll: function () {
-		var that = this;
-		var cartIds = this.calcIds();
-		if (cartIds.length <= 0) {
-			wx.showToast({
-				title: '请勾选商品'
-			});
-			return;
-		}
-		wx.showModal({
-			title: '提示',
-			content: '确认要删除吗',
-			success: function(res) {
-				if (res.confirm) {
-					var cartObjects = [];
-					for (var i = 0; i < cartIds.length; i++) {
-						var objectId = cartIds[i];
-						cartObjects.push(AV.Object.createWithoutData('Cart', objectId));
-					}
-					AV.Object.destroyAll(cartObjects).then(function () {
-						// 成功
-						wx.showToast({
-							title: '删除成功',
-							icon: 'success',
-							duration: 1000
-						});
-						that.reloadData();
 					}, function (error) {
 						// 异常处理
 					});
