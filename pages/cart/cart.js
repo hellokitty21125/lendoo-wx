@@ -10,6 +10,11 @@ Page({
 		itemLefts: []
 	},
 	bindMinus: function(e) {
+		// loading提示
+		wx.showLoading({
+			title: '操作中',
+			mask: true
+		});
 		var index = parseInt(e.currentTarget.dataset.index);
 		var num = this.data.carts[index].get('quantity');
 		// 如果只有1件了，就不允许再减了
@@ -30,10 +35,16 @@ Page({
 			minusStatuses: minusStatuses
 		});
 		// update database
-		carts[index].save();
+		carts[index].save().then(function () {
+			wx.hideLoading();
+		});
 		this.sum();
 	},
 	bindPlus: function(e) {
+		wx.showLoading({
+			title: '操作中',
+			mask: true
+		});
 		var index = parseInt(e.currentTarget.dataset.index);
 		var num = this.data.carts[index].get('quantity');
 		// 自增
@@ -52,10 +63,16 @@ Page({
 			minusStatuses: minusStatuses
 		});
 		// update database
-		carts[index].save();
+		carts[index].save().then(function () {
+			wx.hideLoading();
+		});
 		this.sum();
 	},
 	bindManual: function(e) {
+		wx.showLoading({
+			title: '操作中',
+			mask: true
+		});
 		var index = parseInt(e.currentTarget.dataset.index);
 		var carts = this.data.carts;
 		var num = parseInt(e.detail.value);
@@ -64,7 +81,9 @@ Page({
 		this.setData({
 			carts: carts
 		});
-		carts[index].save();
+		carts[index].save().then(function () {
+			wx.hideLoading();
+		});
 		this.sum();
 	},
 	bindManualTapped: function() {
