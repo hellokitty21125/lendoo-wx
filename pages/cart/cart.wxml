@@ -1,18 +1,18 @@
 <view class="container carts-list">
-    <view wx:for="{{carts}}" class="carts-container" wx:key="index" bindtap="showGoods" data-object-id="{{goodsList[index].objectId}}">
+    <view wx:for="{{carts}}" class="carts-container" wx:key="index" bindtap="showGoods" data-object-id="{{item.goods.objectId}}">
     	<view class="carts-item" style="left: {{itemLefts[index]}}px;" data-index="{{index}}" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
 	    	<!-- 复选框图标 -->
 			<icon type="{{item.selected ? 'success_circle' : 'circle'}}" size="20" catchtap="bindCheckbox" data-index="{{index}}"/>
 			<view>
 			<!-- 缩略图 -->
-				<image class="carts-image" src="{{goodsList[index].avatar}}" mode="aspectFill"/>
+				<image class="carts-image" src="{{item.goods.avatar}}" mode="aspectFill"/>
 			</view>
 			<view class="carts-text">
 				<!-- 商品标题 -->
-				<text class="carts-title">{{goodsList[index].title}}</text>
+				<text class="carts-title">{{item.goods.title}}</text>
 				<view class="carts-subtitle">
 				<!-- 价格 -->
-				  	<text class="carts-price">{{goodsList[index].price}}</text>
+				  	<text class="carts-price">{{item.goods.price}}</text>
 				  	<!-- 数量加减 -->
 				  	<view>
 				      <view class="stepper">

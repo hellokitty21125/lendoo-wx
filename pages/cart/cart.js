@@ -3,7 +3,6 @@ var app = getApp()
 Page({
 	data:{
 		carts: [],
-		goodsList: [],
 		minusStatuses: ['disabled', 'disabled', 'normal', 'normal', 'disabled'],
 		selectedAllStatus: false,
 		total: '',
@@ -205,17 +204,12 @@ Page({
 		query.equalTo('user',user);
 		query.include('goods');
 		query.find().then(function (carts) {
-			// set goods data
-			var goodsList = [];
 			for(var i = 0; i < carts.length; i++){
-				var goods = carts[i].get('goods');
-				goodsList[i] = goods;
 				minusStatuses[i] = carts[i].get('quantity') <= 1 ? 'disabled' : 'normal';
 			}
 			// console.log(carts);
 			that.setData({
 				carts: carts,
-				goodsList: goodsList,
 				minusStatuses: minusStatuses
 			});
 			// sum

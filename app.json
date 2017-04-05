@@ -1,10 +1,10 @@
 {
     "pages":[
+        "pages/cart/cart",
         "pages/index/index",
         "pages/member/donate/donate",
         "pages/member/index/index",
         "pages/member/share/share",
-        "pages/cart/cart",
         "pages/category/category",
         "pages/address/add/add",
         "pages/order/list/list",
