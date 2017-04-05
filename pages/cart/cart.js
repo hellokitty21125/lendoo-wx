@@ -90,6 +90,10 @@ Page({
 		// 什么都不做，只为打断跳转
 	},
 	bindCheckbox: function(e) {
+		wx.showLoading({
+			title: '操作中',
+			mask: true
+		});
 		/*绑定点击事件，将checkbox样式改变为选中与非选中*/
 		//拿到下标值，以在carts作遍历指示用
 		var index = parseInt(e.currentTarget.dataset.index);
@@ -103,10 +107,16 @@ Page({
 			carts: carts,
 		});
 		// update database
-		carts[index].save();
+		carts[index].save().then(function () {
+			wx.hideLoading();
+		});
 		this.sum();
 	},
 	bindSelectAll: function() {
+		wx.showLoading({
+			title: '操作中',
+			mask: true
+		});
 		// 环境中目前已选状态
 		var selectedAllStatus = this.data.selectedAllStatus;
 		// 取反操作
@@ -117,8 +127,12 @@ Page({
 		for (var i = 0; i < carts.length; i++) {
 			carts[i].set('selected', selectedAllStatus);
 			// update selected status to db
-			carts[i].save();
 		}
+		AV.Object.saveAll(carts).then(function (objects) {
+			wx.hideLoading();
+		}, function (error) {
+		    // 异常处理
+		});
 		this.setData({
 			selectedAllStatus: selectedAllStatus,
 			carts: carts,
