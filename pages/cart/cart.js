@@ -58,14 +58,17 @@ Page({
 	bindManual: function(e) {
 		var index = parseInt(e.currentTarget.dataset.index);
 		var carts = this.data.carts;
-		var num = e.detail.value;
+		var num = parseInt(e.detail.value);
 		carts[index].set('quantity', num);
 		// 将数值与状态写回
 		this.setData({
 			carts: carts
 		});
-		cart[index].save();
-		console.log(this.data.carts);
+		carts[index].save();
+		this.sum();
+	},
+	bindManualTapped: function() {
+		// 什么都不做，只为打断跳转
 	},
 	bindCheckbox: function(e) {
 		/*绑定点击事件，将checkbox样式改变为选中与非选中*/
