@@ -52,6 +52,8 @@ LeanCloud数据包下载：[https://pan.baidu.com/s/1nvPmcsx](https://pan.baidu.
 
 教程详见：[https://my.oschina.net/huangxiujie/blog/755324](https://my.oschina.net/huangxiujie/blog/760429)
 
+后台源码：[https://git.oschina.net/dotton/lendoo-web](https://git.oschina.net/dotton/lendoo-web)
+
 对移动开发有兴趣的朋友可以关注我的公众号【huangxiujie85】与我交流讨论，给我留言或文章评论。
 
 ![公众号](https://static.oschina.net/uploads/img/201610/07111145_qD6d.jpg "二维码")
