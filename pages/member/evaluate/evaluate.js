@@ -47,11 +47,12 @@ Page({
 			).catch(console.error);
 		});
 	},
-	tap: function(e) {
-    this.setData({
-      x: 30,
-      y: 30
-    });
-  }
-
+	delete: function (e) {
+		var index = e.currentTarget.dataset.index;
+		var images = that.data.images;
+		images.splice(index, 1);
+		that.setData({
+			images: images
+		});
+	}
 })
