@@ -3,13 +3,16 @@ var that;
 Page({
 	data: {
 		images: [],
+		uploadedImages: [],
 		imageWidth: getApp().screenWidth / 4 - 10
 	},
 	onLoad: function (options) {
 		that = this;
-		that.setData({
-			images: ["wxfile://tmp_1319638221o6zAJsyOMl81KZyBLvZsExE1WAvYc54054c974de6fb387cc68ff84d024ed.png", "wxfile://tmp_1319638221o6zAJsyOMl81KZyBLvZsExE1WAvYeceb8dadd5f9db88457dfc3216cb47d5.jpg", "wxfile://tmp_1319638221o6zAJsyOMl81KZyBLvZsExE1WAvY5de13c0d2c52c0c2f785dad5913036c6.jpg","wxfile://tmp_1319638221o6zAJsyOMl81KZyBLvZsExE1WAvY1ab885b07d055165b0ed9cd24e61e2bb.png"]
-		});
+		// that.setData({
+		// 	images: ["wxfile://tmp_1319638221o6zAJsyOMl81KZyBLvZsExE1WAvYc54054c974de6fb387cc68ff84d024ed.png", "wxfile://tmp_1319638221o6zAJsyOMl81KZyBLvZsExE1WAvYeceb8dadd5f9db88457dfc3216cb47d5.jpg", "wxfile://tmp_1319638221o6zAJsyOMl81KZyBLvZsExE1WAvY5de13c0d2c52c0c2f785dad5913036c6.jpg","wxfile://tmp_1319638221o6zAJsyOMl81KZyBLvZsExE1WAvY1ab885b07d055165b0ed9cd24e61e2bb.png"]
+		// });
+		var objectId = options.objectId;
+		console.log(objectId);
 	},
 	chooseImage: function () {
 		// 选择图片
@@ -42,9 +45,23 @@ Page({
 			}).save().then(
 				// file => console.log(file.url())
 				function(file) {
-					console.log(file.url());
+					// 先读取
+					var uploadedImages = that.data.uploadedImages;
+					uploadedImages.push(file.url());
+					// 再写入
+					that.setData({
+						uploadedImages: uploadedImages
+					});
+					console.log(uploadedImages);
 				}
 			).catch(console.error);
+		});
+		// TODO Promise
+		wx.showToast({
+			title: '评价成功',
+			success: function () {
+				wx.navigateBack();
+			}
 		});
 	},
 	delete: function (e) {
