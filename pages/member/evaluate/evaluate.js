@@ -10,7 +10,6 @@ Page({
 		that.setData({
 			images: ["wxfile://tmp_1319638221o6zAJsyOMl81KZyBLvZsExE1WAvYc54054c974de6fb387cc68ff84d024ed.png", "wxfile://tmp_1319638221o6zAJsyOMl81KZyBLvZsExE1WAvYeceb8dadd5f9db88457dfc3216cb47d5.jpg", "wxfile://tmp_1319638221o6zAJsyOMl81KZyBLvZsExE1WAvY5de13c0d2c52c0c2f785dad5913036c6.jpg","wxfile://tmp_1319638221o6zAJsyOMl81KZyBLvZsExE1WAvY1ab885b07d055165b0ed9cd24e61e2bb.png"]
 		});
-		console.log(this.data.imageWidth);
 	},
 	chooseImage: function () {
 		// 选择图片

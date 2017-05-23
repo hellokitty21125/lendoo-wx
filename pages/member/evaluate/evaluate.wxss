@@ -8,11 +8,22 @@
 
 /*每张图片所占容器*/
 .item {
+	position: relative;
 	margin: 5px;
 }
 
-.item image {
+/*删除按钮*/
+.delete {
+	position: absolute;
+	height: 20px;
+	bottom: 0;
 	width: 100%;
-	height: 100%;
+	background: #ccc;
+	opacity: .8;
 }
 
+.delete image {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+}
