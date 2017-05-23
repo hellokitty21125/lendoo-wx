@@ -121,5 +121,11 @@ Page({
 		wx.navigateTo({
 			url: '../../goods/detail/detail?objectId=' + objectId
 		});
+	},
+	evaluate: function (e) {
+		var objectId = e.currentTarget.dataset.objectId;
+		wx.navigateTo({
+			url: '../../member/evaluate/evaluate?objectId=' + objectId
+		});
 	}
 });
