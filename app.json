@@ -13,6 +13,7 @@
         "pages/goods/list/list",
         "pages/goods/detail/detail",
         "pages/order/checkout/checkout",
+        "pages/member/aboutus/aboutus",
         "pages/order/payment/payment"
     ],
     "window": {
