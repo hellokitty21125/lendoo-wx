@@ -11,7 +11,7 @@
 		<view class="gridview">
 			<dl wx:for="{{subCategories}}" wx:key="objectId">
 				<dt>
-					<image src="{{item.avatar.attributes.url}}" mode="scaleToFit" bindtap="avatarTap" data-object-id="{{item.objectId}}" style="width:{{imageWidth}}px; height: {{imageWidth}}px;"/>
+					<image src="{{item.avatar.url}}" mode="scaleToFit" bindtap="avatarTap" data-object-id="{{item.objectId}}" style="width:{{imageWidth}}px; height: {{imageWidth}}px;"/>
 				</dt>
 				<dd>
 					<text>{{item.title}}</text>
