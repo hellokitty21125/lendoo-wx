@@ -11,9 +11,9 @@ Page({
 		this.getInviteCode(options);
 	    /* debug navi to readme */
 
-	    wx.navigateTo({
-	      url: "/pages/member/donate/donate"
-	    });
+	    // wx.navigateTo({
+	    //   url: "/pages/member/donate/donate"
+	    // });
 
 	},
 	getInviteCode: function (options) {
