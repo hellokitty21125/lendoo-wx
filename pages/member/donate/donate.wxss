@@ -53,3 +53,35 @@ button {
 	height: 40px;
 	/*border: 1px solid #cc1;*/
 }
+
+/*赞赏列表*/
+.donate {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	color: #333;
+	font-size: 14px;
+	text-align: center;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #eee;
+}
+
+/*用户头像*/
+.avatar {
+	width: 15%;
+}
+
+.avatar image {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+}
+
+/*昵称*/
+.nickname {
+	width: 25%;
+	text-align: left;
+}
+

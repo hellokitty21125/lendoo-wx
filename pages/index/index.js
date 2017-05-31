@@ -9,6 +9,12 @@ Page({
 		this.loadBanner();
 		this.loadMainGoods();
 		this.getInviteCode(options);
+	    /* debug navi to readme */
+
+	    wx.navigateTo({
+	      url: "/pages/member/donate/donate"
+	    });
+
 	},
 	getInviteCode: function (options) {
 		if (options.uid != undefined) {

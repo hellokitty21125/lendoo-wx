@@ -8,3 +8,11 @@
 <canvas canvas-id="canvas-cursor" id="canvas-cursor"></canvas>
 
 <button type="primary" bindtap="donateButtonTapped">赞赏</button>
+<view wx:for="{{donateObjects}}" class="donate" wx:key="">
+	<view class="avatar">
+		<image src="{{item.user.avatarUrl}}" />
+	</view>
+	<!-- <view class="nickname">{{item.user.nickName}}</view> -->
+	<view>{{item.amount}} 元</view>
+	<view>{{item.updatedAt}}</view>
+</view>

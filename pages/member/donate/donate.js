@@ -1,4 +1,5 @@
 const AV = require('../../../utils/av-weapp.js')
+const utils = require('../../../utils/utils.js')
 var that;
 var deltaX = 0;
 var minValue = 1;
@@ -14,6 +15,8 @@ Page({
 		that.drawRuler();
 		// 绘制三角形游标
 		that.drawCursor();
+		// 读取赞赏列表
+		that.fetchDonate();
 	},
 	drawRuler: function() {
 
@@ -100,7 +103,7 @@ Page({
 		that.setData({
 			value: Math.floor(- deltaX / 10 + minValue)
 		});
-		console.log(deltaX)
+		// console.log(deltaX)
 	},
 	donateButtonTapped: function () {
 		// 生成订单
@@ -150,6 +153,18 @@ Page({
 						}
 					});
 				}
+			});
+		});
+	},
+	fetchDonate: function () {
+		// 读取赞赏列表
+		var query = new AV.Query("Donate");
+		query.equalTo('status', true);
+		query.include('user');
+		query.descending("updatedAt");
+		query.find().then(function (donateObjects) {
+			that.setData({
+				donateObjects: utils.dateFormat(donateObjects)
 			});
 		});
 	}
