@@ -88,7 +88,6 @@
 	display: flex;
 	flex-direction: column;
 	padding: 0 40rpx;
-	margin-bottom: 80rpx;
 }
 
 /*每行单元格*/
@@ -146,6 +145,14 @@
 .cart-icon {
 	width: 50rpx;
 }
+
+/*上拉加载提示*/
+.loading-indicator {
+	text-align: center;
+	font-size: 12px;
+	margin: 10px 0;
+}
+
 /*一级菜单高亮的颜色：eeeeee*/
 /*还需要一个三角形，动画旋转，下拉时背景渐渐变暗*/
 /*左边一条灰边，右边还有空缺，是由于33%的缘故*/

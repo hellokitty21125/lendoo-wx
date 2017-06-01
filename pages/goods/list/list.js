@@ -13,14 +13,16 @@ var initSubMenuHighLight = [
 ];
 
 var pageIndex = 0;
-
+var that;
 Page({
 	data:{
 		subMenuDisplay:initSubMenuDisplay(),
 		subMenuHighLight:initSubMenuHighLight,
-		goods: []
+		goods: [],
+		loadingTip: '上拉加载更多'
 	},
 	onLoad: function(options){
+		that = this;
 		var categoryId = options.categoryId;
 		// 生成Category对象
 		var category = AV.Object.createWithoutData('Category', categoryId);
@@ -29,7 +31,6 @@ Page({
 	},
 	getGoods: function(category, pageIndex){
 		var pageSize = 7;
-		var that = this;
 		var query = new AV.Query('Goods');
         // 查询顶级分类，设定查询条件parent为null
         query.equalTo('category',category);
@@ -37,8 +38,6 @@ Page({
         query.limit(pageSize);// 最多返回 10 条结果
 		query.skip(pageIndex * pageSize);// 跳过 20 条结果
 		query.find().then(function (goods) {
-        	// 关闭loading提示框
-        	wx.hideToast();
         	// 关闭下拉刷新动画
         	wx.stopPullDownRefresh();
         	// 让goods结果集迭加
@@ -48,6 +47,11 @@ Page({
         	that.setData({
         		goods: newGoods
         	});
+        	if (goods.length < pageSize) {
+        		that.setData({
+        			loadingTip: '没有更多内容'
+        		});
+        	}
         }).catch(function(error) {
         });
     },
@@ -58,16 +62,16 @@ Page({
     	});
     },
     tapMainMenu: function(e) {
-//		获取当前显示的一级菜单标识
-var index = parseInt(e.currentTarget.dataset.index);
+		// 获取当前显示的一级菜单标识
+		var index = parseInt(e.currentTarget.dataset.index);
 		// 生成数组，全为hidden的，只对当前的进行显示
 		var newSubMenuDisplay = initSubMenuDisplay();
-//		如果目前是显示则隐藏，反之亦反之。同时要隐藏其他的菜单
-if(this.data.subMenuDisplay[index] == 'hidden') {
-	newSubMenuDisplay[index] = 'show';
-} else {
-	newSubMenuDisplay[index] = 'hidden';
-}
+		// 如果目前是显示则隐藏，反之亦反之。同时要隐藏其他的菜单
+		if(this.data.subMenuDisplay[index] == 'hidden') {
+			newSubMenuDisplay[index] = 'show';
+		} else {
+			newSubMenuDisplay[index] = 'hidden';
+		}
 		// 设置为新的数组
 		this.setData({
 			subMenuDisplay: newSubMenuDisplay
@@ -101,13 +105,10 @@ if(this.data.subMenuDisplay[index] == 'hidden') {
 		});
 	},
 	onReachBottom: function () {
-		console.log('onReachBottom');
-		// 为页数迭加1
-		this.getGoods(this.category, ++pageIndex);
-		wx.showToast({
-			title: '加载中',
-			icon: 'loading'
-		})
+		setTimeout(function () {
+			// 为页数迭加1
+			that.getGoods(that.category, ++pageIndex);
+		}, 300);
 	},
 	onPullDownRefresh: function () {
 		this.getGoods(this.category, 0);

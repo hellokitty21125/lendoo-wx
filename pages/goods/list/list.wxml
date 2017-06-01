@@ -48,3 +48,6 @@
 		</view>
 	</view>
 </view>
+<view class="loading-indicator">
+	{{loadingTip}}
+</view>
