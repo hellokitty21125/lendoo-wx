@@ -11,9 +11,9 @@ Page({
 		this.getInviteCode(options);
 	    /* debug navi */
 
-	    wx.navigateTo({
-	      url: "/pages/goods/list/list?categoryId=5815b0f5d203090055c24c16"
-	    });
+	    // wx.navigateTo({
+	    //   url: "/pages/goods/list/list?categoryId=5815b0f5d203090055c24c16"
+	    // });
 
 	},
 	getInviteCode: function (options) {
