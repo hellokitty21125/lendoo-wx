@@ -12,6 +12,8 @@ var initSubMenuHighLight = [
 ['','','']
 ];
 
+var pageIndex = 0;
+
 Page({
 	data:{
 		subMenuDisplay:initSubMenuDisplay(),
@@ -37,6 +39,8 @@ Page({
 		query.find().then(function (goods) {
         	// 关闭loading提示框
         	wx.hideToast();
+        	// 关闭下拉刷新动画
+        	wx.stopPullDownRefresh();
         	// 让goods结果集迭加
         	var originGoods = that.data.goods;
         	// 如果初始有值，就合并；否则就是新数据集本身
@@ -97,7 +101,9 @@ if(this.data.subMenuDisplay[index] == 'hidden') {
 		});
 	},
 	onReachBottom: function () {
-		this.getGoods(this.category, 1);
+		console.log('onReachBottom');
+		// 为页数迭加1
+		this.getGoods(this.category, ++pageIndex);
 		wx.showToast({
 			title: '加载中',
 			icon: 'loading'

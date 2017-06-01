@@ -9,11 +9,11 @@ Page({
 		this.loadBanner();
 		this.loadMainGoods();
 		this.getInviteCode(options);
-	    /* debug navi to readme */
+	    /* debug navi */
 
-	    // wx.navigateTo({
-	    //   url: "/pages/member/donate/donate"
-	    // });
+	    wx.navigateTo({
+	      url: "/pages/goods/list/list?categoryId=5815b0f5d203090055c24c16"
+	    });
 
 	},
 	getInviteCode: function (options) {
