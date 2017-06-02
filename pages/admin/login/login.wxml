@@ -1,0 +1,14 @@
+<view class="userinfo">
+	<image class="userinfo-avatar" src="/images/logo.png" background-size="cover"></image>
+</view>
+<form bindsubmit="login">
+	<view bindtap="navigateToAddress" class="tableviewcell">
+		<image src="../../../images/username.png" />
+		<input type="text" name="username" value="lendoo" placeholder="用户名" />
+	</view>
+	<view bindtap="navigateToShare" class="tableviewcell">
+		<image src="../../../images/password.png" />
+		<input type="text" name="password" password="true" value="lendoo888" placeholder="密码" />
+	</view>
+	<button form-type="submit" type="primary" class="login">登录</button>
+</form>

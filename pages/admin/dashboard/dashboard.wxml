@@ -1,0 +1,4 @@
+<view bindtap="orderManage" class="tableviewcell">
+	<image src="../../../images/icon_order.png" />
+	<text>订单管理</text>
+</view>

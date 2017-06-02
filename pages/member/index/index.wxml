@@ -36,4 +36,4 @@
 	<image src="../../../images/icon_aboutus.png" />
 	<text>关于我们</text>
 </view>
-<button bindtap="logout" type="warn" class="logout">退出</button>
+<button bindtap="logout" type="warn" class="logout">切换管理员</button>

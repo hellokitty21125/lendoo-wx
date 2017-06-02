@@ -1,0 +1,53 @@
+/*管理员登录*/
+
+page {
+	background: #eee;
+}
+
+/*user info*/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin:  50rpx 20rpx;
+  border-radius: 50%;
+}
+
+/*menu list*/
+.tableviewcell {
+	padding: 20rpx 40rpx;
+	border-bottom: 1rpx solid #ddd;
+	color: #666;
+	background: white;
+	display: flex;
+	align-items: center;
+}
+
+/*icon*/
+.tableviewcell image {
+	width: 60rpx;
+	height: 60rpx;
+}
+
+/*input*/
+.tableviewcell input {
+	margin-left: 10px;
+	width: 80%;
+}
+
+form {
+	margin-top: 10px;
+	display: inline-block;
+	width: 100%;
+}
+
+/*button*/
+.login {
+	margin: 30rpx;
+}

@@ -14,10 +14,13 @@
         "pages/goods/detail/detail",
         "pages/order/checkout/checkout",
         "pages/member/aboutus/aboutus",
+        "pages/admin/login/login",
+        "pages/admin/dashboard/dashboard",
+        "pages/admin/order/order",
         "pages/order/payment/payment"
     ],
     "window": {
-        "navigationBarBackgroundColor": "#48C23D",
+        "navigationBarBackgroundColor": "#48c23d",
         "navigationBarTitleText": "灵动云商",
         "navigationBarTextStyle":"white"
     },

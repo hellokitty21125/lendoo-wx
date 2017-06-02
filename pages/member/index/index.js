@@ -13,16 +13,9 @@ Page({
 		});
 	},
 	logout: function () {
-		if (AV.User.current()) {
-			AV.User.logOut();
-			wx.showToast({
-				'title': '退出成功'
-			});
-		} else {
-			wx.showToast({
-				'title': '请先登录'
-			});
-		}
+		wx.navigateTo({
+			url: '../../admin/login/login'
+		});
 	},
 	onShow: function () {
 		var that = this;
