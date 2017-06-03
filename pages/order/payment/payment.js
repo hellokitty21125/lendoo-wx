@@ -34,13 +34,16 @@ Page({
 						title: '支付成功'
 					});
 					// update order
-					var query = new AV.Query('Order');
-					query.get(that.data.orderId).then(function (order) {
-						order.set('status', 1);
-						order.save();
-						console.log('status: ' + 1);
-					}, function (err) {
+					// var query = new AV.Query('Order');
+					// query.get(that.data.orderId).then(function (order) {
+					// 	order.set('status', 1);
+					// 	order.save();
+					// 	console.log('status: ' + 1);
+					// }, function (err) {
 						
+					// });
+					wx.navigateTo({
+						url: '../list/list?status=1'
 					});
 				}
 			});
