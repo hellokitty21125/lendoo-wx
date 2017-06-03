@@ -13,43 +13,40 @@ Page({
 	},
 	pay: function () {
 		var that = this;
-		//统一下单接口对接
-		wx.request({
-			url: 'https://lendoo.leanapp.cn/index.php/WXPay',
-			data: {
-				openid: getApp().openid,
-				body: '灵动商城',
-				tradeNo: that.data.orderId,
-				totalFee: parseFloat(that.data.totalFee) * 100
-			},
-			method: 'POST',
-			header: {
-				'content-type': 'application/x-www-form-urlencoded'
-			},
-			success: function (response) {
-				// 发起支付
-				wx.requestPayment({
-					'timeStamp': response.data.timeStamp,
-					'nonceStr': response.data.nonceStr,
-					'package': response.data.package,
-					'signType': 'MD5',
-					'paySign': response.data.paySign,
-					'success':function(res){
-						wx.showToast({
-							title: '支付成功'
-						});
-						// update order
-						var query = new AV.Query('Order');
-						query.get(that.data.orderId).then(function (order) {
-							order.set('status', 1);
-							order.save();
-							console.log('status: ' + 1);
-						}, function (err) {
-							
-						});
-					}
-				});
-			}
+		var paramsJson = {
+			body: '灵动商城',
+			tradeNo: that.data.orderId,
+			totalFee: parseFloat(that.data.totalFee) * 100
+		}
+		AV.Cloud.run('pay', paramsJson).then(function(response) {
+			response = JSON.parse(response);
+			// 调用成功，得到成功的应答 data
+			console.log(response);
+			// 发起支付
+			wx.requestPayment({
+				'timeStamp': response.timeStamp,
+				'nonceStr': response.nonceStr,
+				'package': response.package,
+				'signType': 'MD5',
+				'paySign': response.paySign,
+				'success':function(res){
+					wx.showToast({
+						title: '支付成功'
+					});
+					// update order
+					var query = new AV.Query('Order');
+					query.get(that.data.orderId).then(function (order) {
+						order.set('status', 1);
+						order.save();
+						console.log('status: ' + 1);
+					}, function (err) {
+						
+					});
+				}
+			});
+		}, function(err) {
+		  // 处理调用失败
+		  console.log(err);
 		});
 	}
 })

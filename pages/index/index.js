@@ -11,9 +11,9 @@ Page({
 		this.getInviteCode(options);
 	    /* debug navi */
 
-	    wx.navigateTo({
-	      url: "/pages/admin/login/login"
-	    });
+	    // wx.navigateTo({
+	    //   url: "/pages/admin/login/login"
+	    // });
 
 	},
 	getInviteCode: function (options) {
