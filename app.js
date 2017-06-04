@@ -15,29 +15,29 @@ App({
         var that = this;
         AV.User.loginWithWeapp();
         // 已废弃，已改用云函数实现，详见：http://blog.it577.net/index.php/archives/7/
-     //    wx.login({
-     //    	success: function(res) {
-     //    		if (res.code) {
-     //    			that.code = res.code;
-	    //       		// 获取openId并缓存
-	    //         	wx.request({
-	    //         		url: 'https://lendoo.leanapp.cn/index.php/WXPay/getSession',
-	    //         		data: {
-	    //         			code: res.code,
-	    //         		},
-	    //         		method: 'POST',
-	    //         		header: {
-	    //         			'content-type': 'application/x-www-form-urlencoded'
-	    //         		},
-	    //         		success: function (response) {
-	    //         			that.openid = response.data.openid;
-			  //           }
-			  //       });
-	    //         } else {
-	    //         	console.log('获取用户登录态失败！' + res.errMsg)
-	    //         }
-	    //     }
-	    // });
+        wx.login({
+        	success: function(res) {
+        		if (res.code) {
+        			that.code = res.code;
+	          		// 获取openId并缓存
+	            	wx.request({
+	            		url: 'https://lendoo.leanapp.cn/index.php/WXPay/getSession',
+	            		data: {
+	            			code: res.code,
+	            		},
+	            		method: 'POST',
+	            		header: {
+	            			'content-type': 'application/x-www-form-urlencoded'
+	            		},
+	            		success: function (response) {
+	            			that.openid = response.data.openid;
+			            }
+			        });
+	            } else {
+	            	console.log('获取用户登录态失败！' + res.errMsg)
+	            }
+	        }
+	    });
 
 		// 设备信息
 		wx.getSystemInfo({
