@@ -115,44 +115,41 @@ Page({
 		order.save().then(function (savedOrder) {
 			// 保存成功
 			var orderId = savedOrder.get('objectId');
-			// 发起支付
-			//统一下单接口对接
-			wx.request({
-				url: 'https://lendoo.leanapp.cn/index.php/WXPay',
-				data: {
-					openid: getApp().openid,
-					body: '赞赏捐赠',
-					tradeNo: orderId,
-					totalFee: parseFloat(that.data.value) * 100
-				},
-				method: 'POST',
-				header: {
-					'content-type': 'application/x-www-form-urlencoded'
-				},
-				success: function (response) {
-					// 发起支付
-					wx.requestPayment({
-						'timeStamp': response.data.timeStamp,
-						'nonceStr': response.data.nonceStr,
-						'package': response.data.package,
-						'signType': 'MD5',
-						'paySign': response.data.paySign,
-						'success':function(res){
-							wx.showModal({
-								title: '谢谢赞赏',
-								showCancel: false
-							});
-							// update order
-							var query = new AV.Query('Donate');
-							query.get(orderId).then(function (order) {
-								order.set('status', true);
-								order.save();
-							}, function (err) {
-								
-							});
-						}
-					});
-				}
+			// 云函数
+			var paramsJson = {
+				body: '赞赏捐赠',
+				tradeNo: orderId,
+				totalFee: parseFloat(that.data.value) * 100
+			}
+			AV.Cloud.run('pay', paramsJson).then(function(response) {
+				response = JSON.parse(response);
+				// 调用成功，得到成功的应答 data
+				// console.log(response);
+				// 发起支付
+				wx.requestPayment({
+					'timeStamp': response.timeStamp,
+					'nonceStr': response.nonceStr,
+					'package': response.package,
+					'signType': 'MD5',
+					'paySign': response.paySign,
+					'success':function(res){
+						wx.showModal({
+							title: '谢谢赞赏',
+							showCancel: false
+						});
+						// 插入
+						var query = new AV.Query('Donate');
+						query.get(orderId).then(function (order) {
+							order.set('status', true);
+							order.save();
+						}, function (err) {
+							
+						});
+					}
+				});
+			}, function(err) {
+			  // 处理调用失败
+			  console.log(err);
 			});
 		});
 	},

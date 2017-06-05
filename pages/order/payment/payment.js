@@ -21,7 +21,7 @@ Page({
 		AV.Cloud.run('pay', paramsJson).then(function(response) {
 			response = JSON.parse(response);
 			// 调用成功，得到成功的应答 data
-			console.log(response);
+			// console.log(response);
 			// 发起支付
 			wx.requestPayment({
 				'timeStamp': response.timeStamp,
